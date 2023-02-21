@@ -1,0 +1,1 @@
+import{Q as e}from"./QPage.6479c102.js";import{j as a,k as t,d as s,N as c,l as o,_ as r}from"./index.467e0a25.js";const d={id:"feedbackview"},n=o("h3",null,"feedbacks",-1);function _(l,f){return a(),t("div",d,[s(e,null,{default:c(()=>[n]),_:1})])}const i={};var u=r(i,[["render",_]]);export{u as default};
