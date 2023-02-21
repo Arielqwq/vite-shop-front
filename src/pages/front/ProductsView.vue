@@ -3,7 +3,7 @@
   div.q-mt-lg
     q-btn.q-ml-lg.q-mb-lg(v-for="(name, i) in filterName" :key="i" :label="name" @click="filterCategory = name" push rounded style="background:#630606;color:white")
   div.flex.q-ma-xs.justify-center.row
-    q-card.flex.justify-center.q-pa-md.q-ma-sm.col-12.col-md-6.col-lg-3(v-for="product in filterData" :key="product._id" )
+    q-card.flex.justify-center.q-pa-md.q-ma-sm.col-12.col-md-6.col-lg-3(v-for="product in filterData" :key="product._id" style="width:300px" )
       ProductCard(v-bind="product")
 </template>
 
