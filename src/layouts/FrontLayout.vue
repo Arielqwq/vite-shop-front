@@ -54,6 +54,11 @@
                   q-icon(name="fa-solid fa-heart")
                 q-item-section
                   q-item-label 我的收藏
+              q-item(clickable v-close-popup to="/Mypage/Feedbacks")
+                q-item-section(avatar)
+                  q-icon(name="fa-solid fa-heart")
+                q-item-section
+                  q-item-label 我的回應
               q-item(clickable v-close-popup @click="logout")
                 q-item-section.q-pa-none(avatar)
                   q-icon(name="fa-solid fa-arrow-right-from-bracket")

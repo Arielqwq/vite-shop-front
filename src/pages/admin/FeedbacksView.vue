@@ -1,7 +1,6 @@
 <template lang="pug">
 #feedbackview
-  q-page
-    h3 feedbacks
+  p 回應管理
 </template>
 
 <script setup>

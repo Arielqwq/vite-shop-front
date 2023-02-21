@@ -104,36 +104,36 @@ const columns = [
     required: true,
     label: '帳號',
     align: 'left',
-    field: events => events.account
+    field: customers => customers.account
   },
   {
     name: 'email',
     required: true,
     label: '信箱',
     align: 'left',
-    field: events => events.email,
+    field: customers => customers.email,
     format: val => `${val}`,
     sortable: true
   },
   {
-    name: 'name',
-    label: 'name',
+    name: 'username',
+    label: '會員姓名',
     align: 'left',
-    field: events => events.daysfrom
+    field: customers => customers.username
   },
   {
     name: 'phone',
     label: '連絡電話',
     align: 'left',
-    field: events => events.daysto
+    field: customers => customers.phone
   },
-  {
-    name: 'sell',
-    required: true,
-    label: '狀態',
-    align: 'left',
-    field: events => events.sell
-  },
+  // {
+  //   name: 'sell',
+  //   required: true,
+  //   label: '狀態',
+  //   align: 'left',
+  //   field: customers => customers.sell
+  // },
   {
     name: 'edit',
     label: '編輯',

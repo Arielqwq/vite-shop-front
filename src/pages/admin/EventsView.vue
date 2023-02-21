@@ -72,7 +72,7 @@
               q-input(square filled v-model="form.lecturer" label="講師姓名" )
             .col-2
               q-input(v-bind:disable="form.lecturer.length === 0" square filled v-model="form.lecturerInfo" label="講師簡介" )
-
+            .col-5
               .row
                   q-img(:src="events[form.idx]?.image" style="height:100px")
                   q-file(filled v-model="form.image" label="請上傳圖片" style="max-height: 50px")
@@ -220,15 +220,6 @@ const columns = [
     field: events => events.title
   },
   {
-    name: 'price',
-    required: true,
-    label: '費用',
-    align: 'left',
-    field: events => events.price,
-    format: val => `${val}`,
-    sortable: true
-  },
-  {
     name: 'daysfrom',
     required: true,
     label: '開始日期',
@@ -242,13 +233,13 @@ const columns = [
     align: 'left',
     field: events => events.daysto
   },
-  {
-    name: 'description',
-    required: true,
-    label: '簡介',
-    align: 'left',
-    field: events => events.description
-  },
+  // {
+  //   name: 'description',
+  //   required: true,
+  //   label: '簡介',
+  //   align: 'left',
+  //   field: events => events.description
+  // },
   {
     name: 'lecturer',
     required: true,
@@ -256,19 +247,29 @@ const columns = [
     align: 'left',
     field: events => events.lecturer
   },
-  {
-    name: 'lecturerInfo',
-    required: true,
-    label: '講者簡介',
-    align: 'left',
-    field: events => events.lecturerInfo
-  },
+  // {
+  //   name: 'lecturerInfo',
+  //   required: true,
+  //   label: '講者簡介',
+  //   align: 'left',
+  //   field: events => events.lecturerInfo
+  // },
   {
     name: 'pplNum',
     required: true,
     label: '人數上限',
     align: 'left',
     field: events => events.pplNum
+  },
+
+  {
+    name: 'price',
+    required: true,
+    label: '費用',
+    align: 'left',
+    field: events => events.price,
+    format: val => `${val}`,
+    sortable: true
   },
   {
     name: 'image',

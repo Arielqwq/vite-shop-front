@@ -268,7 +268,17 @@ const routes = [
         name: 'Wishlist',
         component: () => import('@/pages/mypage/WishlistView.vue'),
         meta: {
-          title: '購物網 | 我的願望清單',
+          title: '購物網 | 我的收藏',
+          login: true,
+          admin: false
+        }
+      },
+      {
+        path: 'Feedbacks',
+        name: 'Feedbacks',
+        component: () => import('@/pages/mypage/FeedbacksView.vue'),
+        meta: {
+          title: '購物網 | 我的收藏',
           login: true,
           admin: false
         }

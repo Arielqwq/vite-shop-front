@@ -6,6 +6,10 @@
       q-btn( @click="openDialog(-1)" color="primary" label="新增貼文")
   div(class="q-px-xl q-mt-md")
     q-table(align="center" title="貼文資訊" :columns="columns" :rows="news" row-key="_id" :filter="filter")
+      //- 圖片
+      template( v-slot:body-cell-image="props")
+        q-td
+          img(:src='props.row.image' style='height: 100px;')
 
       //- 搜尋
       template( v-slot:top-right)
@@ -13,19 +17,17 @@
             template( v-slot:append)
               q-icon( name="search")
 
-    //- div(class="q-px-xl q-mt-md " )
-    //-   div( style="width:80% ;height:500px ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")
-    //-     h5 標題： {{ news[0]?.title}}
-    //-     h6 內容： {{ news[0]?.description }}
-    //-     h6 圖片：
-    //-       img(:src='news[0]?.image' style='height: 100px;')
+      //- 編輯按鈕
+      template(#body-cell-edit="data")
+        q-td(class="q-pa-md q-gutter-sm")
+          q-btn( round color="primary" text-color="white" icon="edit"  @click="openDialog(news.indexOf(data.row))")
 
     q-dialog(align="center" v-model="form.dialog" persistent)
       q-card( class="column" style="width: 700px; max-width: 80vw;")
         q-form(@submit="onSubmit" @reset="onReset")
           q-card-actions.row.flex.justify-between
             .div(align="left" class="q-pa-md row" )
-              .text-center {{ form._id.length > 0 ? '編輯關於我們' : '新增關於我們' }}
+              .text-center {{ form._id.length > 0 ? '編輯貼文' : '新增貼文' }}
             q-btn(dense flat icon='close' v-close-popup)
               q-tooltip Close
           q-card-section.column.q-gutter-md
@@ -33,6 +35,8 @@
               q-input(square filled v-model="form.title" label="文章標題" :rules="[rules.required]")
             .col-12
               q-input(square filled v-model="form.description" type="textarea" label="文章內容" :rules="[rules.required]")
+            .col-2
+              q-checkbox(v-model="form.sell" label="上架")
             .col-5
               .row
                 q-img(:src="news[form.idx]?.image" style="height:100px" )
@@ -60,28 +64,38 @@ const rules = {
 const clear = () => {
   form.image = []
 }
-
+const filter = ref('')
 const news = reactive([])
 
 const form = reactive({
   _id: '',
   title: '',
   image: undefined,
-  description: ''
+  description: '',
+  sell: false,
+  loading: false,
+  dialog: false,
+  idx: -1
 })
 
 const openDialog = (idx) => {
-  // console.log(idx)
+  console.log(idx)
   if (idx === -1) {
     form._id = ''
     form.title = ''
     form.image = undefined
     form.description = ''
+    form.sell = false
+    form.loading = false
+    form.idx = -1
   } else {
     form._id = news[idx]._id
     form.title = news[idx].title
     form.description = news[idx].description
-    form.image = undefined
+    form.sell = news[idx].sell
+    form.image = news[idx].image
+    form.loading = false
+    form.idx = idx
   }
   form.dialog = true
 }
@@ -97,7 +111,7 @@ const columns = [
   {
     name: 'description',
     required: true,
-    label: '簡介',
+    label: '內容',
     align: 'left',
     field: news => news.description
   },
@@ -107,13 +121,28 @@ const columns = [
     label: '圖片',
     align: 'left',
     field: news => news.image
+  },
+  {
+    name: 'sell',
+    required: true,
+    label: '上架狀態',
+    align: 'left',
+    field: news => news.sell,
+    sortable: true
+  },
+  {
+    name: 'edit',
+    required: true,
+    label: '編輯',
+    align: 'left'
   }
 ]
 
 const onReset = () => {
-  form.title = ''
+  form.title = null
   form.image = undefined
-  form.description = ''
+  form.description = null
+  form.sell = false
 }
 
 const onSubmit = async () => {
@@ -125,7 +154,7 @@ const onSubmit = async () => {
   fd.append('title', form.title)
   fd.append('description', form.description)
   fd.append('image', form.image)
-  // fd.append('images', form.images)
+  fd.append('sell', form.sell)
   try {
     // 當id長度為 0，新增
     if (form._id.length === 0) {
@@ -138,7 +167,7 @@ const onSubmit = async () => {
       })
     } else {
       const { data } = await apiAuth.patch('/news/' + form._id, fd)
-      news[0] = data.result
+      news[form.idx] = data.result
       Swal.fire({
         icon: 'success',
         title: '成功',
@@ -154,7 +183,7 @@ const onSubmit = async () => {
     })
   }
   form.loading = false
-}
+};
 
 (async () => {
   try {

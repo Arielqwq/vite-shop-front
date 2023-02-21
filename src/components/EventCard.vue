@@ -1,6 +1,6 @@
 <template lang="pug">
 
-q-card.my-card
+q-card.my-eventCard
   q-img.rounded-borders(:src='image' cover)
     .absolute-bottom.text-subtitle2.text-center
       router-link.text-h6.q-mt-sm.q-mb-xs(:to="'/event/' + _id" style="color:white;") {{title}}
@@ -56,7 +56,7 @@ defineProps({
 </script>
 
 <style lang="sass">
-.my-card
+.my-eventCard
   width: 100%
   max-width: 500px
 

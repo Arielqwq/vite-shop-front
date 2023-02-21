@@ -72,6 +72,12 @@ const menuList = [
     separator: true
   },
   {
+    icon: 'send',
+    label: '我的回應',
+    route: '/Mypage/Feedbacks',
+    separator: false
+  },
+  {
     icon: 'fa-solid fa-house',
     iconColor: 'primary',
     label: '回首頁',
