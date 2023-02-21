@@ -21,6 +21,7 @@ jobs:
         run: |
           npm install
           npm run build
+        # 佈署 quasar 新增
         env:
           VITE_API: ${{ secrets.VITE_API }}
       # 步驟三：部署
@@ -28,5 +29,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
+          # 佈署 quasar 新增
           folder: dist/spa
+          # 佈署 quasar 新增
           clean: false
