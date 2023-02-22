@@ -1,7 +1,7 @@
 <template lang="pug">
 #Mypage-info
   .row
-    .q-pa-xl.col-12
+    .col-12
       h3.text-center
       div.flex.q-px-xl.q-mt-md
         div(align="left" style="width:80% ;height:500px ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")

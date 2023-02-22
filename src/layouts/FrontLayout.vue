@@ -8,18 +8,18 @@
         q-btn.text-h7(to="/Products" flat style="color: #FFf" label=" Star Shopping")
 
       .header-toolbar.row(style="background: white;")
-        q-tabs.col-11.header-tabs.rounded-borders( indicator-color="transparent")
-          //- q-route-tab( to="/" label="首頁" )
+        q-tabs.col-1
+          q-route-tab(to="/" bg-color="#630606")
+            img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
+        q-tabs.col-10.header-tabs.rounded-borders( indicator-color="transparent")
           q-btn.text-h6(flat color="secondary"  to="/News" label="最新消息")
           q-btn.text-h6(flat color="secondary"  to="/Products" label="所有商品")
-          q-route-tab(to="/" indicator-color="none")
-            img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
+          //- q-route-tab(to="/" indicator-color="none")
+          //-   img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
           q-btn.text-h6(flat color="secondary" to="/Events" label="課程活動")
-          //- 回應功能
-          //- q-route-tab(to="/ContactUs" label="聯絡我們")
           q-btn.text-h6(flat color="secondary" to="/AboutUs" label="關於我們")
 
-        q-toolbar.col-1.q-toolbar.q-pa-md(align="right" col-6)
+        q-toolbar.col-1.q-toolbar.q-pa-md(align="right")
           q-btn(v-if="!isLogin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-user" @click="showLogin = true")
           //- <q-btn v-if="!isLogin" font-awesome-icon icon="fa-solid fa-user" to="/register" label="註冊"/>
           //- <q-btn v-if="!isLogin" font-awesome-icon icon="fa-solid fa-right-to-bracket" to="/login" label="登入"/>
@@ -32,36 +32,41 @@
             q-list
               q-item(clickable v-close-popup to="/Mypage" )
                 q-item-section(avatar)
-                  q-icon(name="fa-solid fa-pen")
+                  q-icon(name="fa-regular fa-address-card")
                 q-item-section 會員資料
-              q-item(clickable v-close-popup to="/Mypage/Paymentcards")
-                q-item-section(avatar)
-                  q-icon(name="fa-regular fa-credit-card")
-                q-item-section
-                  q-item-label 付款資訊
-              q-item(clickable v-close-popup to="/Mypage/MypageOrders")
-                q-item-section(avatar)
-                  q-icon(name="fa-solid fa-note-sticky")
-                q-item-section
-                  q-item-label 我的訂單
+              //- q-item(clickable v-close-popup to="/Mypage/Paymentcards")
+              //-   q-item-section(avatar)
+              //-     q-icon(name="fa-regular fa-credit-card")
+              //-   q-item-section
+              //-     q-item-label 付款資訊
+
               q-item(clickable v-close-popup to="/Mypage/Mypagecart")
                 q-item-section(avatar)
                   q-icon(name="fa-solid fa-cart-shopping")
                 q-item-section
                   q-item-label 我的購物車
+
               q-item(clickable v-close-popup to="/Mypage/Wishlist")
                 q-item-section(avatar)
-                  q-icon(name="fa-solid fa-heart")
+                  q-icon(name="fa-regular fa-heart")
                 q-item-section
                   q-item-label 我的收藏
+
+              q-item(clickable v-close-popup to="/Mypage/MypageOrders")
+                q-item-section(avatar)
+                  q-icon(name="fa-solid fa-receipt")
+                q-item-section
+                  q-item-label 我的訂單
+
               q-item(clickable v-close-popup to="/Mypage/Feedbacks")
                 q-item-section(avatar)
                   q-icon(name="fa-regular fa-envelope")
                 q-item-section
                   q-item-label 我的回應
+
               q-item(clickable v-close-popup @click="logout")
                 q-item-section.q-pa-none(avatar)
-                  q-icon(name="fa-solid fa-arrow-right-from-bracket")
+                  q-icon(name="fa-solid fa-person-running")
                 q-item-section
                   q-item-label 登出
 

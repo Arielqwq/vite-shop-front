@@ -46,10 +46,9 @@
       .secondEvent
         .row.flex(style="height:100%")
           .homeEventLeft-2.col-12.col-md-7.ml-auto.flex.column
-
-            q-img(style="height:100%; width:80%")
+            q-img(style="height:100%;")
               img(:src="events[1]?.image")
-          .homeEventRight-2.col-12.col-md-3.ml-auto
+          .homeEventRight-2.col-12.col-md-4.ml-auto
             .homeEventContent-2(style="height:75%").flex.column.no-wrap
               .contentTitle.q-mb-md
                 .text-h3 {{ events[1]?.title }}

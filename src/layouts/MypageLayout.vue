@@ -53,12 +53,12 @@ const menuList = [
     route: '/Mypage/Mypagecart',
     separator: true
   },
-  {
-    icon: 'send',
-    label: '付款資訊',
-    route: '/Mypage/Paymentcards',
-    separator: false
-  },
+  // {
+  //   icon: 'send',
+  //   label: '付款資訊',
+  //   route: '/Mypage/Paymentcards',
+  //   separator: false
+  // },
   {
     icon: 'delete',
     label: '我的訂單',

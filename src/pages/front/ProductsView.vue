@@ -5,6 +5,7 @@
   div.flex.q-ma-xs.justify-center.row
     q-card.flex.justify-center.q-pa-md.q-ma-sm.col-12.col-md-6.col-lg-3(v-for="product in filterData" :key="product._id" style="width:300px" )
       ProductCard(v-bind="product")
+
 </template>
 
 <script setup>
