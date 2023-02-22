@@ -17,7 +17,7 @@
             q-form(@submit="onSubmit" @reset="onReset")
               q-card-actions.row.flex.justify-between
                 .div(align="left" class="q-pa-md row" )
-                  .text-center {{ myInfo._id.length > 0 ? '編輯關於我們' : '新增關於我們' }}
+                  .text-center {{ myInfo._id.length > 0 ? '編輯我的資料' : '新增我的資料' }}
                 q-btn(dense flat icon='close' v-close-popup)
                   q-tooltip Close
               q-card-section.column.q-gutter-md

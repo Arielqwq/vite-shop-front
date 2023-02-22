@@ -107,16 +107,16 @@
           q-card-actions(align="center" class="bg-white text-accent")
             div.flex.column.q-pa-md
               h5.text-center.q-mt-md 請輸入您的回應
-              q-input(filled v-model="inputTitle" label='請輸入主旨' :rules="[rules.required]")
-              q-input( v-model="inputContent" type="textarea" label="請輸入您的回應" :rules="[rules.required]" )
+              q-input(filled v-model="form.title" label='請輸入主旨' :rules="[rules.required]")
+              q-input( v-model="form.description" type="textarea" label="請輸入您的回應" :rules="[rules.required]" )
               div(align="center")
                 q-btn(type="reset" color="red" flat label="reset")
-                q-btn(flat type='submit' label="submit"  @click="submit" )
+                q-btn(flat type='submit' label="submit"  @click="submit")
 
 </template>
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { api } from '@/boot/axios'
+import { api, apiAuth } from '@/boot/axios'
 import Swal from 'sweetalert2'
 import ProductCard from '@/components/ProductCard.vue'
 import EventCard from '@/components/EventCard.vue'
@@ -206,11 +206,18 @@ const swiperOptions = {
   loop: true
 }
 
+// 送出回應
 const submit = async (val) => {
   try {
     if (checkLogin()) return
-    console.log(form)
-    const data = ''
+    const { data } = apiAuth.post('/feedbacks', form)
+    Swal.fire({
+      icon: 'success',
+      title: '成功',
+      text: '提交回覆成功',
+      message: '已收到您的來信，我們將再盡快回覆您，謝謝。'
+    })
+    isDialogOpen.value = false
   } catch (error) {
     console.log(error)
     Swal.fire({

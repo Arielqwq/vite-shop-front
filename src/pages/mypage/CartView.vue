@@ -79,7 +79,6 @@
 </template>
 
 <script setup>
-
 import { ref, reactive, computed } from 'vue'
 import Swal from 'sweetalert2'
 import { apiAuth } from '@/boot/axios'
@@ -180,6 +179,7 @@ const updateCart = async (id, quantity, text) => {
   }
 }
 
+// submit
 const onCheckoutBtnClick = async (val) => {
   try {
     const { data } = await apiAuth.get('/users/me')
