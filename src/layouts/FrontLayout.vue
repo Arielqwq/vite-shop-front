@@ -12,12 +12,16 @@
           q-route-tab(to="/" bg-color="#630606")
             img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
         q-tabs.col-10.header-tabs.rounded-borders( indicator-color="transparent")
-          q-btn.text-h6(flat color="secondary"  to="/News" label="最新消息")
+          q-btn.btnNews.text-h6(flat color="secondary"  to="/News" label="最新消息")
+            q-tooltip NEWS
           q-btn.text-h6(flat color="secondary"  to="/Products" label="所有商品")
+            q-tooltip ALL PRODUCTS
           //- q-route-tab(to="/" indicator-color="none")
           //-   img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
           q-btn.text-h6(flat color="secondary" to="/Events" label="課程活動")
+            q-tooltip LECTURE & EVENTS
           q-btn.text-h6(flat color="secondary" to="/AboutUs" label="關於我們")
+            q-tooltip ABOUT US
 
         q-toolbar.col-1.q-toolbar.q-pa-md(align="right")
           q-btn(v-if="!isLogin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-user" @click="showLogin = true")

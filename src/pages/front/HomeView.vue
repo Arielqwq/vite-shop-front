@@ -1,7 +1,7 @@
 <template lang="pug">
 #home(style="height:100vh;" )
-  div(style="padding:35px")
-    q-carousel( style=" height:70vh" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
+  div( style="padding:35px")
+    q-carousel(style=" height:70vh" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
       q-carousel-slide(:name='1' :img-src='news[0]?.image')
         router-link(:to="'/newsPage/' + news[0]?._id")
           q-img(style="height:100%")
@@ -27,12 +27,13 @@
         .col-1
           #swiper-dj-next.swiper-button-next
 
-    .homeEvent-area1.flex.column.justify-around
+    .homeEvent-area1.flex.column.justify-around(data-aos="fade-up")
       .firstEvent
         .row.flex.justify-center(style="height:100%")
           .homeEventLeft.col-12.col-md-4.ml-auto.flex.column.justify-around
+            //- .even1Img(style=":background-image:events[0]?.image ; background-size:;")
             q-img(style="height:100%; mix-width:270px")
-              img(:src="events[0]?.image")
+              img(:src="events[0]?.image" style="width:100%")
           .homeEventRight.col-12.col-md-4.ml-auto.flex.column.justify-around
             .homeEventContent(style="height:75%").flex.column.no-wrap
               .contentTitle.q-mb-md
@@ -42,12 +43,12 @@
               .contentBtn
                 q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
-    .homeEvent-area2.flex.column.justify-around
+    .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up")
       .secondEvent
         .row.flex(style="height:100%")
           .homeEventLeft-2.col-12.col-md-7.ml-auto.flex.column
             q-img(style="height:100%;")
-              img(:src="events[1]?.image")
+              img(:src="events[1]?.image" style="width:100%")
           .homeEventRight-2.col-12.col-md-4.ml-auto
             .homeEventContent-2(style="height:75%").flex.column.no-wrap
               .contentTitle.q-mb-md
@@ -63,19 +64,19 @@
 
             .firstEvent
 
-    .homeFooter.flex.column.justify-around
-      .row(style="height:100%").q-pa-md
-        .col-3.q-pa-md
+    .homeFooter.flex.justify-star
+      .row
+        .col-4.q-pa-md.q-mb-sm
           q-list
             q-item(clickable v-ripple)
               q-item-section.text-h5 聯絡我們
             q-item(clickable v-ripple)
               q-item-section.text-h7 Main: 1-800-230-4321
             q-item
-              q-btn(icon="fa-brands fa-square-facebook")
-              q-btn(icon="fa-solid fa-envelope")
-              q-btn(icon="fa-brands fa-square-twitter")
-        .col-3.q-pa-md
+              q-btn(flat round icon="fa-brands fa-square-facebook")
+              q-btn(flat round icon="fa-solid fa-envelope")
+              q-btn(flat round icon="fa-brands fa-square-twitter")
+        .col-4.q-pa-md.q-mb-sm.flex.column.justify-center
           q-list
             q-item(clickable v-ripple)
               q-item-section.text-h5 客戶服務
@@ -88,7 +89,7 @@
             q-item(clickable v-ripple)
               q-item-section.text-h7 退換貨說明
 
-        .col-3.q-pa-md
+        .col-4.q-pa-md.q-mb-sm
           q-list
             q-item(clickable v-ripple)
               q-item-section.text-h5 相關政策
@@ -101,10 +102,11 @@
 
     //- 打開可移動icon
     q-page-sticky(position='bottom-right' :offset='fabPos' style="z-index:50")
-      q-fab(icon='add' direction='up' color='accent' :disable='draggingFab' v-touch-pan.mouse='moveFab')
-        q-fab-action(@click="openDialog" color="primary" icon="edit" )
+      q-fab(icon='fa-regular fa-envelope' direction='up' color='primary' :disable='draggingFab' v-touch-pan.mouse='moveFab')
+        q-fab-action(@click="openDialog" color="accent" icon="edit" )
         q-fab-action(@click="onClick" color="primary" icon="fa-solid fa-gift" )
 
+    //- 回應對話框
     q-dialog(v-model="isDialogOpen" title="Dialog Title" persistent)
       q-card(class="bg-accent text-white" style="width: 500px")
         q-form(@submit="submit" @reset="onReset")
@@ -122,13 +124,17 @@
 
 </template>
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, nextTick } from 'vue'
 import { api, apiAuth } from '@/boot/axios'
 import Swal from 'sweetalert2'
 import ProductCard from '@/components/ProductCard.vue'
 import EventCard from '@/components/EventCard.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+
+// aos
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 // swiper
 import { SwiperSlide, Swiper } from 'swiper/vue'
@@ -238,7 +244,8 @@ const submit = async (val) => {
 ;(async () => {
   try {
     const results = await Promise.all([api.get('/products'), api.get('/events/eventsforhome'), api.get('/news')])
-
+    await nextTick()
+    AOS.init()
     const productsdata = results[0].data
     products.push(...productsdata.result)
     console.log(products)
