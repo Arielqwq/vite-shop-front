@@ -8,11 +8,11 @@
       q-carousel-slide(:name='4' :img-src='news[3]?.image')
 
     .product-area
-      .row.align-content-center.justify-content-center
+      .row.align-items-center.justify-content-center
         .col-1
           #swiper-dj-prev.swiper-button-prev
         .col-10
-          swiper(v-bind='swiperOptions' @swiper='getSwiperRef')
+          swiper(v-bind='swiperOptions' @swiper='getSwiperRef' )
             swiper-slide( v-for="product in products" :key="product._id" :slidesPerView="4")
               .productCard.flex.justify-center.q-pa-lg.col-12.col-md-6.col-lg-3
                 ProductCard(v-bind="product")
@@ -92,6 +92,27 @@
             q-item(clickable v-ripple)
               q-item-section.text-h7 隱私權政策及法令宣告
 
+    //- 打開可移動icon
+    q-page-sticky(position='bottom-right' :offset='fabPos' style="z-index:50")
+      q-fab(icon='add' direction='up' color='accent' :disable='draggingFab' v-touch-pan.mouse='moveFab')
+        q-fab-action(@click="openDialog" color="primary" icon="edit" )
+        q-fab-action(@click="onClick" color="primary" icon="fa-solid fa-gift" )
+
+    q-dialog(v-model="isDialogOpen" title="Dialog Title" persistent)
+      q-card(class="bg-accent text-white" style="width: 500px")
+        q-form(@submit="submit" @reset="onReset")
+          q-card-section(align="right")
+            q-btn(dense flat icon='close' v-close-popup)
+                q-tooltip Close
+          q-card-actions(align="center" class="bg-white text-accent")
+            div.flex.column.q-pa-md
+              h5.text-center.q-mt-md 請輸入您的回應
+              q-input(filled v-model="inputTitle" label='請輸入主旨' :rules="[rules.required]")
+              q-input( v-model="inputContent" type="textarea" label="請輸入您的回應" :rules="[rules.required]" )
+              div(align="center")
+                q-btn(type="reset" color="red" flat label="reset")
+                q-btn(flat type='submit' label="submit"  @click="submit" )
+
 </template>
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
@@ -99,6 +120,8 @@ import { api } from '@/boot/axios'
 import Swal from 'sweetalert2'
 import ProductCard from '@/components/ProductCard.vue'
 import EventCard from '@/components/EventCard.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
 // swiper
 import { SwiperSlide, Swiper } from 'swiper/vue'
@@ -106,15 +129,52 @@ import { Navigation, Autoplay } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-// swiper
 
+// 取資訊
+const route = useRoute()
+const user = useUserStore()
+const { checkLogin } = user
+
+// 接近來的資料
 const products = reactive([])
 const events = reactive([])
 const news = reactive([])
 
 const slide = ref(1)
 const autoplay = ref(true)
+const isDialogOpen = ref(false)
+const openDialog = () => {
+  isDialogOpen.value = true
+}
+const inputTitle = ref('')
+const inputContent = ref('')
 
+const rules = {
+  required (value) {
+    return !!value || '欄位必填'
+  }
+}
+
+// 移動 icon
+const fabPos = ref([18, 18])
+const draggingFab = ref(false)
+// 移動 icon
+const moveFab = (ev) => {
+  draggingFab.value = ev.isFirst !== true && ev.isFinal !== true
+
+  fabPos.value = [
+    fabPos.value[0] - ev.delta.x,
+    fabPos.value[1] - ev.delta.y
+  ]
+}
+// 回應表單
+const form = reactive({
+  _id: '',
+  title: '',
+  description: ''
+})
+
+// swiper
 const swiperRef = ref(null)
 // Stop autoplay
 const getSwiperRef = (swiperInstance) => {
@@ -124,7 +184,7 @@ const getSwiperRef = (swiperInstance) => {
 
 const swiperOptions = {
   slidesPerView: 1,
-  spaceBetween: 10,
+  spaceBetween: 30,
   navigation: {
     prevEl: '#swiper-dj-prev',
     nextEl: '#swiper-dj-next'
@@ -137,16 +197,31 @@ const swiperOptions = {
     },
     992: {
       slidesPerView: 4,
-      spaceBetween: 20
+      spaceBetween: 30
     }
   },
   autoplay: {
     delay: 5000
   },
   loop: true
-};
+}
 
-(async () => {
+const submit = async (val) => {
+  try {
+    if (checkLogin()) return
+    console.log(form)
+    const data = ''
+  } catch (error) {
+    console.log(error)
+    Swal.fire({
+      icon: 'error',
+      title: '失敗',
+      text: '提交回覆失敗'
+    })
+  }
+}
+
+;(async () => {
   try {
     const results = await Promise.all([api.get('/products'), api.get('/events/eventsforhome'), api.get('/news')])
 
