@@ -251,34 +251,34 @@ export const useUserStore = defineStore('user', function () {
     }
   }
 
-  const userSubmitReply = async (id, form) => {
-    // 先判斷是否登入
-    console.log(form)
-    if (token.value.length === 0) {
-      Swal.fire({
-        icon: 'error',
-        title: '失敗',
-        text: '請先登入'
-      })
-      router.push('/login')
-    } try {
-      const { data } = await apiAuth.post('/feedbacks/' + id, { form })
-      cart.value = data.result
-      Swal.fire({
-        icon: 'success',
-        title: '成功',
-        text: '提交回覆成功',
-        message: '已收到您的來信，我們將再盡快回覆您，謝謝。'
-      })
-    } catch (error) {
-      console.log(error)
-      Swal.fire({
-        icon: 'error',
-        title: '失敗',
-        text: error?.response?.data?.message || '發生錯誤'
-      })
-    }
-  }
+  // const userSubmitReply = async (id, form) => {
+  //   // 先判斷是否登入
+  //   console.log(form)
+  //   if (token.value.length === 0) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: '失敗',
+  //       text: '請先登入'
+  //     })
+  //     router.push('/login')
+  //   } try {
+  //     const { data } = await apiAuth.post('/feedbacks/' + id, { form })
+  //     cart.value = data.result
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: '成功',
+  //       text: '提交回覆成功',
+  //       message: '已收到您的來信，我們將再盡快回覆您，謝謝。'
+  //     })
+  //   } catch (error) {
+  //     console.log(error)
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: '失敗',
+  //       text: error?.response?.data?.message || '發生錯誤'
+  //     })
+  //   }
+  // }
 
   return {
     token,
@@ -299,7 +299,7 @@ export const useUserStore = defineStore('user', function () {
     editEventParticipant,
     removeLove,
     editUser,
-    userSubmitReply,
+    // userSubmitReply,
     checkLogin
   }
 },

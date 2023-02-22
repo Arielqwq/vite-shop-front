@@ -78,20 +78,28 @@ const columns = [
     field: feedbacks => feedbacks.description,
     sortable: true
   },
-  // {
-  //   name: 'date',
-  //   required: true,
-  //   label: '來信時間',
-  //   align: 'left',
-  //   field: feedbacks => new Date(feedbacks.date).toLocaleDateString(),
-  //   sortable: true
-  // },
+  {
+    name: 'createDate',
+    required: true,
+    label: '來信時間',
+    align: 'left',
+    field: feedbacks => new Date(feedbacks.createDate).toLocaleDateString(),
+    sortable: true
+  },
   {
     name: ' reply',
     required: true,
     label: '管理員回應',
     align: 'left',
     field: feedbacks => feedbacks.reply,
+    sortable: true
+  },
+  {
+    name: 'replyDate',
+    required: true,
+    label: '回覆時間',
+    align: 'left',
+    field: feedbacks => new Date(feedbacks.replyDate).toLocaleDateString(),
     sortable: true
   },
   {
@@ -115,7 +123,8 @@ const form = reactive({
   u_id: '',
   title: '',
   description: '',
-  // 預設下架
+  createDate: '',
+  replyDate: '',
   status: '',
   dialog: false,
   reply: '',
