@@ -88,6 +88,15 @@ const routes = [
           login: false,
           admin: false
         }
+      }, {
+        path: 'NewsPage/:id',
+        name: 'NewsPage',
+        component: () => import('@/pages/front/NewsPageView.vue'),
+        meta: {
+          title: '購物網 | 商品',
+          login: false,
+          admin: false
+        }
       },
       {
         path: 'aboutus',

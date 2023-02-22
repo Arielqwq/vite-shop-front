@@ -3,9 +3,17 @@
   div(style="padding:35px")
     q-carousel( style=" height:70vh" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
       q-carousel-slide(:name='1' :img-src='news[0]?.image')
+        router-link(:to="'/newsPage/' + news[0]?._id")
+          q-img(style="height:100%")
       q-carousel-slide(:name='2' :img-src='news[1]?.image')
+        router-link(:to="'/newsPage/' + news[1]?._id")
+          q-img(style="height:100%")
       q-carousel-slide(:name='3' :img-src='news[2]?.image')
+        router-link(:to="'/newsPage/' + news[2]?._id")
+          q-img(style="height:100%")
       q-carousel-slide(:name='4' :img-src='news[3]?.image')
+        router-link(:to="'/newsPage/' + news[3]?._id")
+          q-img(style="height:100%")
 
     .product-area
       .row.align-items-center.justify-content-center
@@ -243,6 +251,7 @@ const submit = async (val) => {
     const newsdata = results[2].data
     news.push(...newsdata.result)
     console.log(news)
+    console.log(news[0]._id)
   } catch (error) {
     Swal.fire({
       icon: 'error',

@@ -66,7 +66,7 @@ import { reactive, ref, computed } from 'vue'
 import { api, apiAuth } from '@/boot/axios'
 import Swal from 'sweetalert2'
 import { storeToRefs, defineStore } from 'pinia'
-import EventCard from '@/components/EventCard.vue'
+// import EventCard from '@/components/EventCard.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import isMobilePhone from 'validator/es/lib/isMobilePhone'
@@ -80,7 +80,7 @@ const user = useUserStore()
 const { editCart, isLogin } = storeToRefs(user)
 const { editEventParticipant, editUser } = user
 
-// 打開輸入電話號碼dialog
+// 打開dialog，輸入電話號碼
 const addCart = ref(false)
 
 const text = ref('')

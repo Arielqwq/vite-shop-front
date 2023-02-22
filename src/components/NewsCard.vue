@@ -7,7 +7,7 @@ div.q-ma-md(style="width:85%")
     //- q-card-section.flex.justify-center.column.items-center.q-pa-none.q-ma-sm(style="height:50px;")
     //-   .text-h7.text-center.text-subtitle.items-center.lessWord {{ description }}
     q-card-section.q-pa-none.q-mt-lg(style="height:40px" align="right" )
-      router-link.text-h8.q-pa-md(:to="'/news/' + _id") (...繼續閱讀)
+      router-link.text-h8.q-pa-md(:to="'/newsPage/' + _id") (...繼續閱讀)
 
 </template>
 
