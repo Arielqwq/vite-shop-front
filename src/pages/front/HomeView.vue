@@ -20,10 +20,9 @@
         .col-1
           #swiper-dj-prev.swiper-button-prev
         .col-10
-          swiper(v-bind='swiperOptions' @swiper='getSwiperRef' )
-            swiper-slide( v-for="product in products" :key="product._id" :slidesPerView="4")
-              .productCard.flex.justify-center.q-pa-lg.col-12.col-md-6.col-lg-3
-                ProductCard(v-bind="product")
+          swiper(v-bind='swiperOptions' @swiper='getSwiperRef' style="height:100%;").flex
+            swiper-slide( v-for="product in products" :key="product._id" :slidesPerView="4" style="height:100%;")
+                ProductCard(v-bind="product" style="height:100% !important;")
         .col-1
           #swiper-dj-next.swiper-button-next
 

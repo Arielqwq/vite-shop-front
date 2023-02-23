@@ -22,7 +22,7 @@
         .text-h5 YOU MAY ALSO LIKE
       .col-7.row(style="margin:50px")
         div(v-for="recomProduct in recomProducts.slice(0, 4)" :key="recomProducts._id")
-          ProductCard(style="height:100px; width:250px" v-if="recomProduct._id !== product._id" v-bind="recomProduct")
+          ProductCard(style="width:250px" v-if="recomProduct._id !== product._id" v-bind="recomProduct")
 
   q-dialog(:v-model="!product.sell" persistent )
     q-card(class="bg-accent text-white" style="width: 300px")
