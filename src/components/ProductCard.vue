@@ -1,5 +1,5 @@
 <template lang="pug">
-.productcard(align="center" style=" width:300px")
+.productcard(align="center")
   q-img.productcardImg(:src="image" cover style="height: 300px; max-width: 150px")
   q-card-section.q-pa-none.q-mt-lg(style="height:40px")
     router-link.text-center.text-weight-bold.textUnderline-none(:to="'/product/' + _id") {{ name }}

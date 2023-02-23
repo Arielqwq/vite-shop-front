@@ -1,25 +1,29 @@
 <template lang="pug">
 #productView
-  div(style="height:500px; margin:110px 0").row.flex.justify-center
+  .showProduct.row.flex.justify-center
     .product-img.col-12.col-lg-3.flex.justify-center
-      q-img(:src="product.image" cover style="width:200px")
-    .flex.column.no-wrap.col-12.col-lg-7
-      h3 {{ product.name }}
-      p $ {{ product.price }}
-      p.pre {{ product.description }}
-
-      q-form(@submit="submitCart")
+      q-img(:src="product.image" style="width:200px")
+    .product-content.col-10.col-lg-5
+      h3.q-my-lg {{ product.name }}
+      h4.q-my-lg $ {{ product.price }}
+      p.pre.q-my-lg {{ product.description }}
+      q-form(@submit="submitCart").row.q-mt-md.flex.items-center
         //-v-model.number傳入數字，v-model 預設是文字
-        q-input(filled v-model.number="quantity" type="number" label="數量" :rules="[rules.required, rules.number]")
-        q-btn(type="submit" color="primary") 加入購物車
-        q-btn(flat round color='red' :icon=" love ? 'fa-solid fa-heart':'fa-regular fa-heart'" @click="editLove({_id:product._id})")
-    //- div
-    //-   .row.col-10(v-for="img in product.images" :key="img")
-    //-     img.col-3.q-mt-xl.justify-star(:src="img")
+        //- div.flex.items-center
+        q-input.col-5.col-lg-2.q-pr-md(filled v-model.number="quantity" type="number" label="數量" :rules="[rules.required, rules.number]" style="height:55px")
+        q-btn.col-5.col-lg-3.q-pr-md(type="submit" color="primary" style="height:55px") 加入購物車
+        q-btn.col-2.col-lg-1.q-pa-md(flat round color='red' size="xl" :icon=" love ? 'fa-solid fa-heart':'fa-regular fa-heart'" @click="editLove({_id:product._id})")
+      //- div 多圖顯示
+      //-   .row.col-10(v-for="img in product.images" :key="img")
+      //-     img.col-3.q-mt-xl.justify-star(:src="img")
 
-  div(style="height:400px").row.flex.justify-center
-    .col-8
-      .text-h5 YOU MAY ALSO LIKE
+  .recomProduct.row.flex.justify-center
+      .col-6
+        .text-h5 YOU MAY ALSO LIKE
+      .col-7.row(style="margin:50px")
+        div(v-for="recomProduct in recomProducts.slice(0, 4)" :key="recomProducts._id")
+          ProductCard(style="height:100px; width:250px" v-if="recomProduct._id !== product._id" v-bind="recomProduct")
+
   q-dialog(:v-model="!product.sell" persistent )
     q-card(class="bg-accent text-white" style="width: 300px")
       q-card-section
@@ -37,6 +41,47 @@ import { useRoute, useRouter } from 'vue-router'
 import Swal from 'sweetalert2'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
+
+import ProductCard from '@/components/ProductCard.vue'
+
+// swiper
+import { SwiperSlide, Swiper } from 'swiper/vue'
+import { Navigation, Autoplay } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+// swiper
+const swiperRef = ref(null)
+// Stop autoplay
+const getSwiperRef = (swiperInstance) => {
+  swiperRef.value = swiperInstance
+  swiperRef.value.autoplay.stop()
+}
+
+const swiperOptions = {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  navigation: {
+    prevEl: '#swiper-dj-prev',
+    nextEl: '#swiper-dj-next'
+  },
+  modules: [Navigation, Autoplay],
+  breakpoints: {
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 20
+    },
+    992: {
+      slidesPerView: 4,
+      spaceBetween: 30
+    }
+  },
+  autoplay: {
+    delay: 5000
+  },
+  loop: true
+}
 
 // 取資訊
 const route = useRoute()
@@ -60,7 +105,7 @@ const rules = {
     return value > 0 || '數量錯誤'
   }
 }
-
+// 本頁商品
 const product = reactive({
   _id: '',
   name: '',
@@ -72,7 +117,8 @@ const product = reactive({
   sell: true,
   category: ''
 })
-
+// 接推薦商品
+const recomProducts = reactive([])
 const submitCart = () => {
   // if (!valid.value) return
   editCart({ _id: product._id, quantity: quantity.value, text: '加入購物車' })
@@ -108,6 +154,7 @@ const editLove = async () => {
 
 (async () => {
   try {
+    // const results = await Promise.all([api.get('/products'),api.get('/products/' + route.params.id)])
     const { data } = await api.get('/products/' + route.params.id)
     // 不能直接 product.result 因為 product 是 const
     product._id = data.result._id
@@ -121,6 +168,12 @@ const editLove = async () => {
     // 對使用者來說，頁面標題有變化
     document.title = '購物網 | ' + product.name
     console.log(data.result.images)
+
+    // 推薦商品
+    const { data: recomProductsData } = await api.get('/products/')
+    recomProducts.push(...recomProductsData.result)
+
+    // 收藏
     if (isLogin.value) {
       const { data } = await apiAuth.get('/users/love/' + route.params.id)
       love.value = data.result

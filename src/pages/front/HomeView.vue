@@ -1,6 +1,6 @@
 <template lang="pug">
-#home(style="height:100vh;" )
-  div( style="padding:35px")
+#home
+  div( style="padding:35px 35px 0 35px")
     q-carousel(style=" height:70vh" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
       q-carousel-slide(:name='1' :img-src='news[0]?.image')
         router-link(:to="'/newsPage/' + news[0]?._id")
@@ -30,11 +30,11 @@
     .homeEvent-area1.flex.column.justify-around
       .firstEvent
         .row.flex.justify-center(style="height:100%")
-          .homeEventLeft.col-12.col-md-4.ml-auto.flex.column.justify-around
+          .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around
             //- .even1Img(style=":background-image:events[0]?.image ; background-size:;")
             q-img(style="height:100%; mix-width:270px")
               img(:src="events[0]?.image" style="width:100%")
-          .homeEventRight.col-12.col-md-4.ml-auto.flex.column.justify-around
+          .homeEventRight.col-12.col-md-5.ml-auto.flex.column.justify-around
             .homeEventContent(style="height:75%").flex.column.no-wrap
               .contentTitle.q-mb-md
                 .text-h3 {{ events[0]?.title }}
@@ -49,11 +49,11 @@
           .homeEventLeft-2.col-12.col-md-7.ml-auto.flex.column
             q-img(style="height:100%;")
               img(:src="events[1]?.image" style="width:100%")
-          .homeEventRight-2.col-12.col-md-4.ml-auto
-            .homeEventContent-2(style="height:75%").flex.column.no-wrap
+          .homeEventRight-2.col-12.col-md-5
+            .homeEventContent-2(style="height:70%").flex.column.no-wrap.justify-center.q-mr-xl
               .contentTitle.q-mb-md
-                .text-h3 {{ events[1]?.title }}
-              .contentText.q-mb-md
+                .text-h4 {{ events[1]?.title }}
+              .contentText.q-mb-md.q-mr-lg
                 p.lessWord {{ events[1]?.description }}
               .contentBtn
                 q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
@@ -170,7 +170,7 @@ const rules = {
 }
 
 // 移動 icon
-const fabPos = ref([18, 18])
+const fabPos = ref([60, 30])
 const draggingFab = ref(false)
 // 移動 icon
 const moveFab = (ev) => {
