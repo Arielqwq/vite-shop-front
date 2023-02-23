@@ -1,20 +1,22 @@
 <template lang="pug">
 #wishlist
-  h3.text-center 我的願望清單
-    .div(class="q-px-xl row")
-      .col-12
-        q-table(:columns="columns" :rows="loves" row-key="p_id" :filter="filter" )
+  .row
+    .q-pa-xl.col-12
+      h3.text-center 我的願望清單
+        .div(class="q-px-xl row")
+          .col-12
+            q-table(:columns="columns" :rows="loves" row-key="p_id" :filter="filter" )
 
-          //- 商品圖片
-          template( v-slot:body-cell-image="props")
-            q-td
-              img(:src='props.row.image' style='height: 100px;')
+              //- 商品圖片
+              template( v-slot:body-cell-image="props")
+                q-td
+                  img(:src='props.row.image' style='height: 100px;')
 
-          //- 刪除商品
-          template(#body-cell-edit="data")
-            q-td
-              //- span {{ data.row._id }}
-              q-btn(round color="red"  @click="removeFromWishlist(data.row._id)" icon="fa-solid fa-trash-can")
+              //- 刪除商品
+              template(#body-cell-edit="data")
+                q-td
+                  //- span {{ data.row._id }}
+                  q-btn(round color="red"  @click="removeFromWishlist(data.row._id)" icon="fa-solid fa-trash-can")
 </template>
 <script setup>
 import { ref, reactive, computed } from 'vue'

@@ -1,28 +1,39 @@
 <template lang="pug">
-q-layout(height="300" class="shadow-2 rounded-borders")
-  q-header(elevated style="background-color: #230b0b")
-    q-toolbar(style="height:100px")
-      q-btn(flat @click="drawer = !drawer" round dense icon="menu" )
-      q-toolbar-title 會員後台
+q-layout( class="shadow-2 rounded-borders")
+  //- q-header(elevated style="background-color: #230b0b")
+  //-   q-toolbar(style="height:100px")
+  //-     q-btn(flat @click="drawer = !drawer" round dense icon="menu" )
+  //-     q-toolbar-title 會員後台
       //- @mouseover="miniState = false" @mouseout="miniState = true"
-  q-drawer( show-if-above v-model="drawer"  :width="250" :breakpoint="500" bordered )
+      //- v-model="drawer"
+  q-drawer(style="background:#630606" show-if-above :width="450")
+    ul.q-ma-none.q-pa-none
+      .background(align="center" )
+          .bg-transparent
+            q-avatar( size="80px" class="q-mb-lg")
+              img(:src="avatar" style="height:100%")
+              //- {{  }}
+            .div(class="text-weight-bold")
+            .div Hi !  {{ account }}
+      div.col-12.flex.column.justfy-center.items-center
+        li.mypageIcon.q-pa-md.text-center.row(align="center" style="width:300px" v-for="menuItem in menuList" )
+            q-btn.q-pa-md(align="around" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
 
-    q-scroll-area(fit style="height: calc(100% - 150px); margin-top: 150px;")
-      q-list(padding class="menu-list")
-        template(v-for="(menuItem, index) in menuList" :key="index")
-          q-item.col-10(class="q-px-xl" clickable v-ripple :active="menuItem.label === 'Outbox'" :to="menuItem.route")
-            q-item-section.col-3
-              q-icon(:name="menuItem.icon" :color="menuItem.iconColor")
-            q-item-section {{ menuItem.label }}
-              q-separator
+      //- q-list(padding class="menu-list")
+      //-   template(v-for="(menuItem, index) in menuList" :key="index")
+      //-     q-item.col-10(class="q-px-xl" clickable v-ripple :active="menuItem.label === 'Outbox'" :to="menuItem.route")
+      //-       q-item-section.col-3
+      //-         q-icon(:name="menuItem.icon" :color="menuItem.iconColor")
+      //-       q-item-section {{ menuItem.label }}
+      //-         q-separator
 
-    q-img(class="absolute-top" src="@/assets/mypageimg.jpg"  style="height: 150px")
-      .div(class="absolute-bottom bg-transparent")
-        q-avatar( size="56px" class="q-mb-sm")
-          img(:src="avatar")
-          //- {{  }}
-        .div(class="text-weight-bold")
-        .div Hi !  {{ account }}
+      //- q-img(class="absolute-top" src="@/assets/mypageimg.jpg"  style="height: 150px")
+      //-   .div(class="absolute-bottom bg-transparent")
+      //-     q-avatar( size="56px" class="q-mb-sm")
+      //-       img(:src="avatar")
+      //-       //- {{  }}
+      //-     .div(class="text-weight-bold")
+      //-     .div Hi !  {{ account }}
 
   q-page-container
     q-page
@@ -37,7 +48,7 @@ import { ref } from 'vue'
 
 const user = useUserStore()
 const { avatar, account } = storeToRefs(user)
-const drawer = ref(false)
+// const drawer = ref(false)
 const miniState = ref(true)
 
 const menuList = [

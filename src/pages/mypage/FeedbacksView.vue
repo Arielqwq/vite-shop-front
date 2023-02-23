@@ -1,9 +1,11 @@
 <template lang="pug">
 #myfeedback
-  h3.text-center 我的回應
-    div.q-ma-md(class="q-px-xl row")
-      .col-12
-        q-table(:columns="columns" :rows="feedbacks" row-key="p_id"  :filter="filter")
+  .row
+    .q-pa-xl.col-12
+      h3.text-center 我的回應
+        div.q-ma-md(class="q-px-xl row")
+          .col-12
+            q-table(:columns="columns" :rows="feedbacks" row-key="p_id"  :filter="filter")
 </template>
 
 <script setup>

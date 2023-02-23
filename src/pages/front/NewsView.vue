@@ -1,10 +1,8 @@
 <template lang="pug">
-#front-news.q-ma-md
+#front-news
   div.flex.justify-center.row
-    .col-4
-    .col-8
-      .flex.justify-center.q-pa-lg.col-12(v-for="newscard in news" :key="newscard._id")
-        NewsCard(v-bind="newscard")
+    .cardinNewsView.flex.justify-center.col-4(style="margin-bottom:60px;" v-for="newscard in news" :key="newscard._id")
+      NewsCard(v-bind="newscard")
 
 </template>
 

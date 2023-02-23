@@ -1,9 +1,15 @@
 <template lang="pug">
-
-q-card.my-eventCard
-  q-img.rounded-borders(:src='image' cover)
-    .absolute-bottom.text-subtitle2.text-center
-      router-link.text-h6.q-mt-sm.q-mb-xs(:to="'/event/' + _id" style="color:white;") {{title}}
+.eventCard(align="left")
+  router-link(:to="'/event/' + _id" ).notextUnderline
+    q-card-section.row
+      .col-12.col-lg-5
+        q-img.eventCardImg.rounded-borders(:src='image')
+      .col-12.col-lg-6
+        q-card-section.eventCardContent
+          .eventCardtitle.q-my-md.q-mb-xs {{title}}
+          .q-my-md.q-mb-xs
+            .eventCardP # {{category}} || 費用 ${{price}}
+            .eventCardP 活動期間：{{ daysfrom }} - {{ daysto }}
 
 </template>
 
@@ -56,8 +62,5 @@ defineProps({
 </script>
 
 <style lang="sass">
-.my-eventCard
-  width: 100%
-  max-width: 500px
 
 </style>

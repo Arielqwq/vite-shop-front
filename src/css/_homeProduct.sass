@@ -8,7 +8,7 @@
   text-decoration: none
 
 .product-area
-  height: 75vh
+  // height: 75vh
   // width: 100vw
   margin:100px 0px
   // padding:80px 0
@@ -34,14 +34,18 @@
   #swiper-dj-next:hover
     --swiper-theme-color:#182747
 
+
+  .productcardinHomeview
+    transform: scale(.9)
   .productcardinHomeview:hover .q-img
-    -webkit-transform: scale(1.1)
+    -webkit-transform: scale(1)
+    
   .productcardinHomeview:hover .q-btn
     background-color:#F89D13 !important
     color: $secondary !important
   .productcardinHomeview:hover
-    transform: scale(1.1)
-  
+    transform: scale(1)
+    transition: all 0.5s ease-out
     // box-shadow: 3px 3px 5px #e6dec9
   // @media (min-width: 576px)
   //   margin: 20px 0px
