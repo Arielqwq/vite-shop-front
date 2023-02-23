@@ -15,7 +15,7 @@
         router-link(:to="'/newsPage/' + news[3]?._id")
           q-img(style="height:100%")
 
-    .product-area
+    .product-area(data-aos="flip-down" )
       .row.align-items-center.justify-content-center
         .col-1
           #swiper-dj-prev.swiper-button-prev
@@ -27,7 +27,7 @@
         .col-1
           #swiper-dj-next.swiper-button-next
 
-    .homeEvent-area1.flex.column.justify-around(data-aos="fade-up")
+    .homeEvent-area1.flex.column.justify-around
       .firstEvent
         .row.flex.justify-center(style="height:100%")
           .homeEventLeft.col-12.col-md-4.ml-auto.flex.column.justify-around
@@ -43,9 +43,9 @@
               .contentBtn
                 q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
-    .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up")
+    .homeEvent-area2.flex.column.justify-around.q-ma-md
       .secondEvent
-        .row.flex(style="height:100%")
+        .row.flex(style="height:100%" )
           .homeEventLeft-2.col-12.col-md-7.ml-auto.flex.column
             q-img(style="height:100%;")
               img(:src="events[1]?.image" style="width:100%")
@@ -134,6 +134,7 @@ import { useUserStore } from '@/stores/user'
 
 // aos
 import AOS from 'aos'
+// 改到config
 import 'aos/dist/aos.css'
 
 // swiper
@@ -244,8 +245,6 @@ const submit = async (val) => {
 ;(async () => {
   try {
     const results = await Promise.all([api.get('/products'), api.get('/events/eventsforhome'), api.get('/news')])
-    await nextTick()
-    AOS.init()
     const productsdata = results[0].data
     products.push(...productsdata.result)
     console.log(products)
@@ -258,6 +257,10 @@ const submit = async (val) => {
     news.push(...newsdata.result)
     console.log(news)
     console.log(news[0]._id)
+    // await nextTick()
+    // setTimeout(() => {
+    //   AOS.init()
+    // }, 1000)
   } catch (error) {
     Swal.fire({
       icon: 'error',
@@ -267,6 +270,11 @@ const submit = async (val) => {
   }
 })()
 
+onMounted(() => {
+  setTimeout(() => {
+    AOS.init()
+  }, 1000)
+})
 </script>
 <style lang="sass">
 

@@ -1,7 +1,22 @@
-#productView
-  height: 1000px
+#front-ProductsView
+  // height: 1000px
   // width: 100vw
-  margin: auto
-  padding: 50px
+  padding: 30px
+@media screen and (min-width: 556px) 
+  #front-ProductsView
+    margin:0 150px
+
+
 .product-img
   height: 100%
+
+.productCard
+  magin:50px 30px
+
+.productCard:hover .q-img
+  -webkit-transform: scale(1.1)
+.productCard:hover .q-btn
+  background-color:#F89D13 !important
+  color: $secondary !important
+.productCard:hover
+  transform: scale(1.1)

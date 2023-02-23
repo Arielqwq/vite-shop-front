@@ -1,20 +1,24 @@
 <template lang="pug">
 #productView
-  div(style="height:500px; margin:0 0 110px 0").row.flex.justify-center
+  div(style="height:500px; margin:110px 0").row.flex.justify-center
     .product-img.col-12.col-lg-3.flex.justify-center
       q-img(:src="product.image" cover style="width:200px")
     .flex.column.no-wrap.col-12.col-lg-7
       h3 {{ product.name }}
       p $ {{ product.price }}
       p.pre {{ product.description }}
+
       q-form(@submit="submitCart")
         //-v-model.number傳入數字，v-model 預設是文字
         q-input(filled v-model.number="quantity" type="number" label="數量" :rules="[rules.required, rules.number]")
         q-btn(type="submit" color="primary") 加入購物車
         q-btn(flat round color='red' :icon=" love ? 'fa-solid fa-heart':'fa-regular fa-heart'" @click="editLove({_id:product._id})")
+    //- div
+    //-   .row.col-10(v-for="img in product.images" :key="img")
+    //-     img.col-3.q-mt-xl.justify-star(:src="img")
 
   div(style="height:400px").row.flex.justify-center
-    .col-10
+    .col-8
       .text-h5 YOU MAY ALSO LIKE
   q-dialog(:v-model="!product.sell" persistent )
     q-card(class="bg-accent text-white" style="width: 300px")
@@ -116,7 +120,7 @@ const editLove = async () => {
     product.category = data.result.category
     // 對使用者來說，頁面標題有變化
     document.title = '購物網 | ' + product.name
-
+    console.log(data.result.images)
     if (isLogin.value) {
       const { data } = await apiAuth.get('/users/love/' + route.params.id)
       love.value = data.result
