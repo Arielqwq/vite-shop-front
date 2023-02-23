@@ -1,9 +1,10 @@
 <template lang="pug">
-.productcard(align="center").flex.column
-  q-img.productcardImg(:src="image" cover fit="contain")
-  q-card-section.q-pa-none.q-mt-lg
+.productcard(align="center" style="height:250px")
+  //- q-img.productcardImg(:src="image" fit="contain")
+  q-img.productcardImg(:src="image" )
+  q-card-section.q-pa-none.q-mt-lg(style="height:40px")
     router-link.text-center.text-weight-bold.textUnderline-none(:to="'/product/' + _id" style="padding:0 20px") {{ name }}
-  q-card-section.flex.justify-center.column.items-center.q-pa-sm
+  q-card-section.text-center.q-pa-sm(style="height:50px")
     .text-h5.text-center.text-subtitle.items-center ${{ price }}
   q-card-actions(align="center")
     //- q-btn(flat round color='red' icon='favorite')

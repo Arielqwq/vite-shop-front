@@ -16,7 +16,7 @@ import ProductCard from '@/components/ProductCard.vue'
 
 // aos
 import AOS from 'aos'
-// 改到config
+// 或是改到config
 import 'aos/dist/aos.css'
 
 const products = reactive([])

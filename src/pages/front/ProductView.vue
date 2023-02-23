@@ -21,8 +21,8 @@
       .col-6
         .text-h5 YOU MAY ALSO LIKE
       .col-7.row(style="margin:50px")
-        div(v-for="recomProduct in recomProducts.slice(0, 4)" :key="recomProducts._id")
-          ProductCard(style="width:250px" v-if="recomProduct._id !== product._id" v-bind="recomProduct")
+        div(v-for="recomProduct in recomProducts" :key="recomProducts._id")
+          ProductCard(style="width:250px" v-bind="recomProduct")
 
   q-dialog(:v-model="!product.sell" persistent )
     q-card(class="bg-accent text-white" style="width: 300px")
@@ -170,7 +170,7 @@ const editLove = async () => {
     console.log(data.result.images)
 
     // 推薦商品
-    const { data: recomProductsData } = await api.get('/products/')
+    const { data: recomProductsData } = await api.get('/products/' + route.params.id + '/recom')
     recomProducts.push(...recomProductsData.result)
 
     // 收藏
@@ -179,6 +179,7 @@ const editLove = async () => {
       love.value = data.result
     }
   } catch (error) {
+    console.log(error)
     Swal.fire({
       icon: 'error',
       title: '失敗',

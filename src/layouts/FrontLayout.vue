@@ -91,7 +91,7 @@
       //-   q-toolbar-title(align="left") ~快樂的地方~
 
     q-page-container
-      router-view
+      router-view(:key="$route.fullPath")
 
     q-footer.q-footer(fixed)
       q-img(src="@/assets/drinkdontdrive.jpg")

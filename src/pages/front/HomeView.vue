@@ -1,6 +1,7 @@
 <template lang="pug">
 #home
   div( style="padding:35px 35px 0 35px")
+    //-最新消息輪播圖
     q-carousel(style=" height:70vh" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
       q-carousel-slide(:name='1' :img-src='news[0]?.image')
         router-link(:to="'/newsPage/' + news[0]?._id")
@@ -15,18 +16,21 @@
         router-link(:to="'/newsPage/' + news[3]?._id")
           q-img(style="height:100%")
 
-    .product-area(data-aos="flip-down" )
+    //- 商品swiper
+    .product-area
       .row.align-items-center.justify-content-center
         .col-1
           #swiper-dj-prev.swiper-button-prev
-        .col-10
+        .col-10(data-aos="flip-down" )
           swiper(v-bind='swiperOptions' @swiper='getSwiperRef' style="height:100%;").flex
-            swiper-slide( v-for="product in products" :key="product._id" :slidesPerView="4" style="height:100%;")
+            swiper-slide(v-for="product in products" :key="product._id" :slidesPerView="4" style="height:100%;")
+              .productcardinHomeview
                 ProductCard(v-bind="product" style="height:100% !important;")
         .col-1
           #swiper-dj-next.swiper-button-next
 
-    .homeEvent-area1.flex.column.justify-around
+    //- 第一則最新活動
+    .homeEvent-area1.flex.column.justify-around(data-aos="flip-down" )
       .firstEvent
         .row.flex.justify-center(style="height:100%")
           .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around
@@ -42,6 +46,7 @@
               .contentBtn
                 q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
+    //- 第二則最新活動
     .homeEvent-area2.flex.column.justify-around.q-ma-md
       .secondEvent
         .row.flex(style="height:100%" )
@@ -61,8 +66,7 @@
         //-   q-card(style="width:250px").flex.justify-center.q-pa-lg.col-12.col-md-6.col-lg-3
             //- EventCard(v-bind="event")
 
-            .firstEvent
-
+    //- footer
     .homeFooter.flex.justify-star
       .row
         .col-4.q-pa-md.q-mb-sm
@@ -133,7 +137,7 @@ import { useUserStore } from '@/stores/user'
 
 // aos
 import AOS from 'aos'
-// 改到config
+// 或是改到config
 import 'aos/dist/aos.css'
 
 // swiper
@@ -241,40 +245,38 @@ const submit = async (val) => {
   }
 }
 
-;(async () => {
-  try {
-    const results = await Promise.all([api.get('/products'), api.get('/events/eventsforhome'), api.get('/news')])
-    const productsdata = results[0].data
-    products.push(...productsdata.result)
-    console.log(products)
+onMounted(() => {
+  (async () => {
+    try {
+      const results = await Promise.all([api.get('/products'), api.get('/events/eventsforhome'), api.get('/news')])
+      const productsdata = results[0].data
+      products.push(...productsdata.result)
+      console.log(products)
 
-    const eventsforhomedata = results[1].data
-    events.push(...eventsforhomedata.result)
-    console.log(events)
+      const eventsforhomedata = results[1].data
+      events.push(...eventsforhomedata.result)
+      console.log(events)
 
-    const newsdata = results[2].data
-    news.push(...newsdata.result)
-    console.log(news)
-    console.log(news[0]._id)
-    // await nextTick()
+      const newsdata = results[2].data
+      news.push(...newsdata.result)
+      console.log(news)
+      console.log(news[0]._id)
+      await nextTick()
+      AOS.init()
     // setTimeout(() => {
     //   AOS.init()
     // }, 1000)
-  } catch (error) {
-    Swal.fire({
-      icon: 'error',
-      title: '失敗',
-      text: error?.response?.data?.message || '發生錯誤'
-    })
-  }
-})()
-
-onMounted(() => {
-  setTimeout(() => {
-    AOS.init()
-  }, 1000)
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: '失敗',
+        text: error?.response?.data?.message || '發生錯誤'
+      })
+    }
+  })()
 })
 </script>
+
 <style lang="sass">
 
 </style>
