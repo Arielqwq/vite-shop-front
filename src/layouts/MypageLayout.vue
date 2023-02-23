@@ -7,17 +7,18 @@ q-layout( class="shadow-2 rounded-borders")
       //- @mouseover="miniState = false" @mouseout="miniState = true"
       //- v-model="drawer"
   q-drawer(style="background:#630606" show-if-above :width="450")
-    ul.q-ma-none.q-pa-none
-      .background(align="center" )
-          .bg-transparent
-            q-avatar( size="80px" class="q-mb-lg")
-              img(:src="avatar" style="height:100%")
-              //- {{  }}
-            .div(class="text-weight-bold")
-            .div Hi !  {{ account }}
-      div.col-12.flex.column.justfy-center.items-center
-        li.mypageIcon.q-pa-md.text-center.row(align="center" style="width:300px" v-for="menuItem in menuList" )
-            q-btn.q-pa-md(align="around" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
+    q-scroll-area.fit
+      ul.q-ma-none.q-pa-none
+        .background(align="center" )
+            .bg-transparent
+              q-avatar( size="80px" class="q-mb-lg")
+                img(:src="avatar" style="height:100%")
+                //- {{  }}
+              .div(class="text-weight-bold")
+              .div Hi !  {{ account }}
+        div.col-12.flex.column.justfy-center.items-center
+          li.mypageIcon.q-pa-md.text-center.row(align="center" style="width:300px" v-for="menuItem in menuList" )
+              q-btn.q-pa-md(align="around" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
 
       //- q-list(padding class="menu-list")
       //-   template(v-for="(menuItem, index) in menuList" :key="index")
