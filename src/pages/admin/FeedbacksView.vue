@@ -13,6 +13,8 @@
           template(v-slot:body-cell-edit="data")
             q-td(class="q-pa-md q-gutter-sm")
               q-btn(size="md" round color="primary" text-color="white" icon="edit"  @click="openDialog(feedbacks.findIndex((feedback)=> feedback._id === data.row._id))")
+          template(v-slot:body-cell-replyDate="props")
+            q-td {{ isNaN(new Date(props.row.replyDate)) ? '未回覆' : new Date(props.row.replyDate).toLocaleDateString() }}
 
     q-dialog(align="center" v-model="form.dialog" persistent)
       q-card( class="column" style="width: 700px; max-width: 80vw;")

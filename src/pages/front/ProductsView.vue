@@ -1,6 +1,6 @@
 <template lang="pug">
 #front-ProductsView.text-center.q-pa-sm
-  div.q-mt-lg.row.justify-center
+  div.filterBtninProductsView.q-mt-lg.row.justify-center
     q-btn.q-ml-lg.q-mb-lg(v-for="(name, i) in filterName" :key="i" :label="name" @click="filterCategory = name" push rounded style="background:#630606;color:white")
   div.flex.q-ma-xs.justify-center.row
     .CardinProductsView.flex.justify-center.q-ma-lg.q-pt-xl.col-12.col-md-6.col-lg-3(v-for="product in filterData" :key="product._id" style="width:300px ; magin:50px 30px" )

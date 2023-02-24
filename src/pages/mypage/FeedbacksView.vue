@@ -31,11 +31,25 @@ const columns = [
     field: feedbacks => feedbacks.description
   },
   {
+    name: 'createDate',
+    required: true,
+    label: '寄件時間',
+    align: 'left',
+    field: feedbacks => feedbacks.createDate
+  },
+  {
     name: 'reply',
     required: true,
     label: '管理員回覆',
     align: 'left',
     field: feedbacks => feedbacks.reply
+  },
+  {
+    name: 'replyDate',
+    required: true,
+    label: '回應時間',
+    align: 'left',
+    field: feedbacks => feedbacks.replyDate
   },
   {
     name: 'status',
