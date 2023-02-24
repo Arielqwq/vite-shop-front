@@ -173,7 +173,7 @@ const rules = {
 }
 
 // 移動 icon
-const fabPos = ref([60, 30])
+const fabPos = ref([120, 30])
 const draggingFab = ref(false)
 // 移動 icon
 const moveFab = (ev) => {

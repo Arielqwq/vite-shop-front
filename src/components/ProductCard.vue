@@ -1,14 +1,14 @@
 <template lang="pug">
-.productcard(align="center" style="height:250px")
+.productcard(align="center" )
   //- q-img.productcardImg(:src="image" fit="contain")
   q-img.productcardImg(:src="image" )
-  q-card-section.q-pa-none.q-mt-lg(style="height:40px")
-    router-link.text-center.text-weight-bold.textUnderline-none(:to="'/product/' + _id" style="padding:0 20px") {{ name }}
+  q-card-section.q-pa-none.q-my-lg(style="height:50px")
+    router-link.text-center.text-weight-bold.textUnderline-none(:to="'/product/' + _id" style="padding:0 20px;") {{ name }}
   q-card-section.text-center.q-pa-sm(style="height:50px")
     .text-h5.text-center.text-subtitle.items-center ${{ price }}
   q-card-actions(align="center")
     //- q-btn(flat round color='red' icon='favorite')
-  q-btn.q-mt-auto(size="sm" icon="fa-solid fa-cart-plus" color="primary" text-color="white" label="加入購物車" @click="editCart({_id, quantity: 1, text:'加入成功'})")
+  q-btn.q-mt-auto(icon="fa-solid fa-cart-plus" color="primary" text-color="white" label="加入購物車" @click="editCart({_id, quantity: 1, text:'加入成功'})")
     //- q-btn(flat round color='primary' icon='share').
 
 </template>

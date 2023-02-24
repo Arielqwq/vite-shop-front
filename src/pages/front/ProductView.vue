@@ -18,11 +18,11 @@
       //-     img.col-3.q-mt-xl.justify-star(:src="img")
 
   .recomProduct.row.flex.justify-center
-      .col-6
-        .text-h5 YOU MAY ALSO LIKE
-      .col-7.row(style="margin:50px")
-        div(v-for="recomProduct in recomProducts" :key="recomProducts._id")
-          ProductCard(style="width:250px" v-bind="recomProduct")
+    .col-6
+      .text-h5 YOU MAY ALSO LIKE
+    .col-12.row.justify-center(style="margin:50px")
+      div(v-for="recomProduct in recomProducts" :key="recomProducts._id")
+        ProductCard(style="width:250px" v-bind="recomProduct")
 
   q-dialog(:v-model="!product.sell" persistent )
     q-card(class="bg-accent text-white" style="width: 300px")
