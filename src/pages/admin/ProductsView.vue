@@ -26,7 +26,7 @@
 
     //- 新增編輯商品
     q-dialog(align="center" v-model="form.dialog" persistent)
-      q-card( class="column" style="width: 700px; max-width: 80vw;")
+      q-card( class="column" style="width: 700px; max-width: 80%;")
         q-form(@submit="onSubmit" @reset="onReset")
           q-card-actions.row.flex.justify-between
             .div(align="left" class="q-pa-md row" )

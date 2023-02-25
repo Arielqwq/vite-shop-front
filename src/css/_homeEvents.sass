@@ -1,5 +1,5 @@
 .homeEvent-area1
-  height: 60vh
+  height: 90%
   margin: 170px 0px
   display: flex
   flex-direction: column
@@ -7,16 +7,20 @@
   // background: #777
 .firstEvent
   position: relative
+  display: flex
+  align-items: center
+  justify-content: flex-start
+
 @media screen and (min-width: 992px) 
   .firstEvent::after
     content: ""
     position: absolute
-    display: inline-block
-    width: 360px
-    height: 60vh
-    /* top: 10px; */
-    // left: 514px
-    bottom: -82px
+    display: block
+    width: 400px
+    height: 150%
+    vertical-align: middle
+    top:-30%    
+    bottom: 0
     background: $primary
     z-index: -1
 
@@ -40,30 +44,41 @@
   margin:130px 0px
 .secondEvent
   position: relative
+  // height: 100%
+  display: flex
+  align-items: center
+  justify-content: flex-start
 
 @media screen and (min-width: 992px) 
   .secondEvent::after
     content: " "
     position: absolute
-    display: inline-block
+    display: block
     width: 100%
-    height: 40vh
-    top: 39px
+    height: 80%
+    top: 10%
+    // bottom: 0
     background: $positive
     z-index: -1
   
-.homeEventLeft-2
-  display: flex
-  align-items: center
 .homeEventRight-2
+  display: flex
+  align-items: star
+.homeEventLeft-2
+  height: 100%
   display: flex
   flex-direction: column
   justify-content: center
+  align-items: right
 .homeEventContent-2
   display: flex
+  flex-direction: column
+  flex-wrap: no-wrap
+  justify-content: center
+
 
 @media screen and (min-width: 992px)
-  .homeEventLeft-2 .q-img
+  .homeEventRight-2 .q-img
     width:80%
 
   

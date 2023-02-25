@@ -1,5 +1,5 @@
 <template lang="pug">
-#front-layout
+#front-layout(style="overflow-x:hidden")
   q-layout
     q-header.q-header(elevated height-hint="98")
       //- shadow-2 整欄下底線
@@ -91,10 +91,11 @@
       //-   q-toolbar-title(align="left") ~快樂的地方~
 
     q-page-container
+      //- 按商品時路徑正確
       router-view(:key="$route.fullPath")
 
     q-footer.q-footer(fixed)
-      q-img(src="@/assets/drinkdontdrive.jpg")
+      q-img(style="width:100%" src="@/assets/drinkdontdrive.jpg")
 
 </template>
 

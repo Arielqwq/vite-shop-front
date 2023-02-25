@@ -9,26 +9,25 @@
 
 .product-area
   // height: 75vh
-  // width: 100vw
+  // width: 100%
   margin:100px 0px
   // padding:80px 0
   // vertical-align: middle
   // top: 50%
   // left: 50%
   // transform: translate(-50%,-50%)
-  position: relative
+  // position: relative
 
   // .swiper
   //   width: 100%
   #swiper-dj-prev
     position: absolute
-    left:30px
     --swiper-navigation-size:35px
     --swiper-theme-color:#E6DEDD
   #swiper-dj-prev:hover
     --swiper-theme-color:#182747
   #swiper-dj-next
-    right:5px
+    position: absolute
     --swiper-navigation-size:35px
     --swiper-theme-color:#E6DEDD
   #swiper-dj-next:hover
@@ -39,11 +38,10 @@
     transform: scale(.9)
     // 字體
   .productcardinHomeview a
-    font-size: 23px
+    font-size: calc(1.3vw + 2px)
   .productcardinHomeview .text-h5
     font-size: 30px
   .productcardinHomeview button
-    
     height: 43px
     font-size: 16px !important
     
@@ -59,6 +57,9 @@
     // box-shadow: 3px 3px 5px #e6dec9
   // @media (min-width: 576px)
   //   margin: 20px 0px
+  .productcardinHomeview button
+    margin-top: -10px
+
 
 #product-img
   height: 300px

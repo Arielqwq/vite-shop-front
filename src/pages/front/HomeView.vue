@@ -1,8 +1,8 @@
 <template lang="pug">
 #home
-  div( style="padding:35px 35px 0 35px")
+  div(style="padding:35px 35px 0 35px")
     //-最新消息輪播圖
-    q-carousel(style=" height:70vh" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
+    q-carousel(style="width:100%;height:450px" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
       q-carousel-slide(:name='1' :img-src='news[0]?.image')
         router-link(:to="'/newsPage/' + news[0]?._id")
           q-img(style="height:100%")
@@ -18,15 +18,15 @@
 
     //- 商品swiper
     .product-area
-      .row.align-items-center.justify-content-center
-        .col-1
+      .row.items-center.justify-center
+        .col-1(style="position:relative")
           #swiper-dj-prev.swiper-button-prev
         .col-10(data-aos="flip-down" )
           swiper(v-bind='swiperOptions' @swiper='getSwiperRef' style="height:100%;").flex
             swiper-slide(v-for="product in products" :key="product._id" :slidesPerView="4" style="height:100%;")
               .productcardinHomeview
                 ProductCard(v-bind="product" style="height:100% !important;")
-        .col-1
+        .col-1(style="position:relative")
           #swiper-dj-next.swiper-button-next
 
     //- 第一則最新活動
@@ -35,7 +35,7 @@
         .row.flex.justify-center(style="height:100%")
           .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around
             //- .even1Img(style=":background-image:events[0]?.image ; background-size:;")
-            q-img(style="height:100%; mix-width:270px")
+            q-img(style=" mix-width:270px")
               img(:src="events[0]?.image" style="width:100%")
           .homeEventRight.col-12.col-md-5.ml-auto.flex.column.justify-around
             .homeEventContent(style="height:75%").flex.column.no-wrap
@@ -50,18 +50,18 @@
     .homeEvent-area2.flex.column.justify-around.q-ma-md
       .secondEvent
         .row.flex(style="height:100%" )
-          .homeEventLeft-2.col-12.col-md-7.ml-auto.flex.column
-            q-img(style="height:100%;")
-              img(:src="events[1]?.image" style="width:100%")
-          .homeEventRight-2.col-12.col-md-5
-            .homeEventContent-2(style="height:70%").flex.column.no-wrap.justify-center.q-mr-xl
+          .homeEventLeft-2.col-12.col-md-5
+            .homeEventContent-2(style="height:100%").q-mx-xl
               .contentTitle.q-mb-md
                 .text-h4 {{ events[1]?.title }}
-              .contentText.q-mb-md.q-mr-lg
+              .contentText.q-mb-md.q-ml-lg
                 p.lessWord {{ events[1]?.description }}
               .contentBtn
                 q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
+          .homeEventRight-2.col-12.col-md-7.ml-auto.flex.column.justify-centent
+            q-img(style="height:100%;")
+              img(:src="events[1]?.image" style="width:100%")
         //- div.flex.row.wrap(v-for="event in events" :key="event._id")
         //-   q-card(style="width:250px").flex.justify-center.q-pa-lg.col-12.col-md-6.col-lg-3
             //- EventCard(v-bind="event")
