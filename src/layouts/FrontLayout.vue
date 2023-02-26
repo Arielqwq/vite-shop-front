@@ -83,7 +83,7 @@
           LoginShow(v-if="!showRegister")
           .q-pa-lg.flex.justify-content
             q-btn(:label='showRegister ? "登入" : "註冊"' @click="showRegister = !showRegister")
-            p.flex.space-around.q-ma-none {{ showRegister ?"已經有帳號了" : "還沒有帳號嗎?"}}
+            p.flex.items-center.q-ma-sm {{ showRegister ?"已經有帳號了!" : "還沒有帳號嗎?"}}
 
     //- q-btn(dense flat round icon="menu" @click="toggleLeftDrawer")
       //-   q-avatar
@@ -93,6 +93,8 @@
     q-page-container
       //- 按商品時路徑正確
       router-view(:key="$route.fullPath")
+      q-page-scroller(position='bottom-right' :scroll-offset='150' :offset='[23, 110]')
+        q-btn(fab icon='fa-solid fa-chevron-up' color='accent').
 
     q-footer.q-footer(fixed)
       q-img(style="width:100%" src="@/assets/drinkdontdrive.jpg")

@@ -1,7 +1,7 @@
 <template lang="pug">
 #front-events(align="center")
-  div
-    .cardinEventView.q-pa-lg.col-12(style="width:85%; margin-bottom:30px" v-for="event in events" :key="event._id" )
+  div.row
+    .cardinEventView.q-pa-lg.col-6(style=" margin-bottom:30px" v-for="event in events" :key="event._id" )
       EventCard(v-bind="event")
   </template>
 

@@ -1,10 +1,10 @@
 <template lang="pug">
-.eventCard(align="left")
-  router-link(:to="'/event/' + _id" ).notextUnderline
-    q-card-section.row
-      .col-12.col-lg-5
+.eventCard
+  router-link(:to="'/event/' + _id").notextUnderline
+    .row
+      .col-6(style="margin:auto;")
         q-img.eventCardImg.rounded-borders(:src='image')
-      .col-12.col-lg-6
+      .col-6
         q-card-section.eventCardContent
           .eventCardtitle.q-my-md.q-mb-xs {{title}}
           .q-my-md.q-mb-xs

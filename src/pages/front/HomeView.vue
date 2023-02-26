@@ -44,10 +44,10 @@
               .contentText.q-mb-md
                 p.lessWord {{ events[0]?.description }}
               .contentBtn
-                q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
+                q-btn(:to="'/event/' + events[0]?._id" style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
     //- 第二則最新活動
-    .homeEvent-area2.flex.column.justify-around.q-ma-md
+    .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up")
       .secondEvent
         .row.flex(style="height:100%" )
           .homeEventLeft-2.col-12.col-md-5
@@ -57,7 +57,7 @@
               .contentText.q-mb-md.q-ml-lg
                 p.lessWord {{ events[1]?.description }}
               .contentBtn
-                q-btn(style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
+                q-btn(:to="'/event/' + events[1]?._id" style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
           .homeEventRight-2.col-12.col-md-7.ml-auto.flex.column.justify-centent
             q-img(style="height:100%;")
@@ -104,7 +104,7 @@
               q-item-section.text-h7 隱私權政策及法令宣告
 
     //- 打開可移動icon
-    q-page-sticky(position='bottom-right' :offset='fabPos' style="z-index:50")
+    q-page-sticky(position='bottom-right' :offset='fabPos' style="z-index:50;")
       q-fab(icon='fa-regular fa-envelope' direction='up' color='primary' :disable='draggingFab' v-touch-pan.mouse='moveFab')
         q-fab-action(@click="openDialog" color="accent" icon="edit" )
         q-fab-action(@click="onClick" color="primary" icon="fa-solid fa-gift" )
@@ -112,18 +112,18 @@
     //- 回應對話框
     q-dialog(v-model="isDialogOpen" title="Dialog Title" persistent)
       q-card(class="bg-accent text-white" style="width: 500px")
-        q-form(@submit="submit" @reset="onReset")
-          q-card-section(align="right")
+        q-form(@submit="submit" @reset="onReset" style="width:100%")
+          q-card-section(align="right" )
             q-btn(dense flat icon='close' v-close-popup)
                 q-tooltip Close
-          q-card-actions(align="center" class="bg-white text-accent")
-            div.flex.column.q-pa-md
-              h5.text-center.q-mt-md 請輸入您的回應
+          q-card-actions( style="width:100%" align="center" class="bg-white text-accent")
+            div.flex.column.q-pa-md(style="width:100%")
+              h5.text-center.q-mt-md.text-primary 請輸入您的回應
               q-input(filled v-model="form.title" label='請輸入主旨' :rules="[rules.required]")
               q-input( v-model="form.description" type="textarea" label="請輸入您的回應" :rules="[rules.required]" )
               div(align="center")
                 q-btn(type="reset" color="red" flat label="reset")
-                q-btn(flat type='submit' label="submit"  @click="submit")
+                q-btn.text-primary(flat type='submit' label="submit" @click="submit")
 
 </template>
 <script setup>
@@ -173,7 +173,7 @@ const rules = {
 }
 
 // 移動 icon
-const fabPos = ref([120, 30])
+const fabPos = ref([80, 110])
 const draggingFab = ref(false)
 // 移動 icon
 const moveFab = (ev) => {

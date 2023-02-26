@@ -6,7 +6,7 @@ q-layout( class="shadow-2 rounded-borders")
   //-     q-toolbar-title 會員後台
       //- @mouseover="miniState = false" @mouseout="miniState = true"
       //- v-model="drawer"
-  q-drawer(style="background:#630606" show-if-above :width="450")
+  q-drawer(style="background:#630606" show-if-above :width="300")
     q-scroll-area.fit
       ul.q-ma-none.q-pa-none
         .background(align="center" )
