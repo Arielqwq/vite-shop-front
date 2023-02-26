@@ -1,7 +1,7 @@
 <template lang="pug">
 #front-layout(style="overflow-x:hidden")
   q-layout
-    q-header.q-header(elevated height-hint="98")
+    q-header.q-header(elevated height-hint="98" )
       //- shadow-2 整欄下底線
       .header-top.row.justify-center.items-center(indicator-color="transparent" active-color="white" class="text-grey-5")
         .text-h7 Get Free Shipping Now !

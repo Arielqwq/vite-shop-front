@@ -5,7 +5,9 @@
       h3.text-center
       div.flex.q-px-xl.q-mt-md
         div(align="left" style="width:80% ;height:500px ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")
-          h3 帳號 : {{ myInfo.account }}
+          .col-12.row
+            .text-h5 帳號 :&nbsp;
+            .text-h5.bg-gray {{ myInfo.account }}
           //- p 密碼 : {{ myInfo.password }}
           h3 信箱 :{{  myInfo.email }}
           h3 姓名 :{{ myInfo.username }}

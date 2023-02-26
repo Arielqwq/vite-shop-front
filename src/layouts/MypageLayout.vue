@@ -16,9 +16,9 @@ q-layout( class="shadow-2 rounded-borders")
                 //- {{  }}
               .div(class="text-weight-bold")
               .div Hi !  {{ account }}
-        div.col-12.flex.column.justfy-center.items-center
-          li.mypageIcon.q-pa-md.text-center.row(align="center" style="width:300px" v-for="menuItem in menuList" )
-              q-btn.q-pa-md(align="around" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
+        div.col-12.flex.column.q-ma-auto.items-center
+          li.mypageIcon.q-pa-md.text-center.row(align="center" v-for="menuItem in menuList" )
+            q-btn.mypageIconBtn.q-pa-md(align="left" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
 
       //- q-list(padding class="menu-list")
       //-   template(v-for="(menuItem, index) in menuList" :key="index")
