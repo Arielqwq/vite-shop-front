@@ -3,7 +3,7 @@
   .row
     .col-12
       h4.text-center 購物車
-        .div(class="q-px-xl row")
+        .div.q-px-xl.q-ma-md.row
           .col-12
             q-table(:columns="columns" :rows="cart" row-key="p_id"  :filter="filter"  )
 
