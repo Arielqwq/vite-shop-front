@@ -1,8 +1,8 @@
 <template lang="pug">
 #wishlist
   .row
-    .q-pa-xl.col-12
-      h3.text-center 我的願望清單
+    .col-12
+      h4.text-center 我的收藏
         .div(class="q-px-xl row")
           .col-12
             q-table(:columns="columns" :rows="loves" row-key="p_id" :filter="filter" )

@@ -1,8 +1,8 @@
 <template lang="pug">
 #myfeedback
   .row
-    .q-pa-xl.col-12
-      h3.text-center 我的回應
+    .col-12
+      h4.text-center 我的回應
         div.q-ma-md(class="q-px-xl row")
           .col-12
             q-table(:columns="columns" :rows="feedbacks" row-key="p_id"  :filter="filter")
@@ -19,7 +19,7 @@ const columns = [
   {
     name: 'title',
     required: true,
-    label: '名稱',
+    label: '主旨',
     align: 'left',
     field: feedbacks => feedbacks.title
   },
@@ -35,7 +35,7 @@ const columns = [
     required: true,
     label: '寄件時間',
     align: 'left',
-    field: feedbacks => feedbacks.createDate
+    field: feedbacks => new Date(feedbacks.createDate).toLocaleDateString()
   },
   {
     name: 'reply',
@@ -49,7 +49,7 @@ const columns = [
     required: true,
     label: '回應時間',
     align: 'left',
-    field: feedbacks => feedbacks.replyDate
+    field: feedbacks => new Date(feedbacks.replyDate).toLocaleDateString()
   },
   {
     name: 'status',

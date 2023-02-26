@@ -1,18 +1,34 @@
 <template lang="pug">
 #Mypage-info
-  .row
+  .row(style="height:100%")
     .col-12
       h3.text-center
-      div.flex.q-px-xl.q-mt-md
-        div(align="left" style="width:80% ;height:500px ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")
-          .col-12.row
-            .text-h5 帳號 :&nbsp;
-            .text-h5.bg-gray {{ myInfo.account }}
+      div.flex.q-px-xl.q-mt-md.justify-center.items-center
+        div(align="left" style="width:80% ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")
+          .col-12(style="max-width:300px;").row.items-center.q-ma-md
+            q-icon(name="fa-solid fa-user" size="sm").q-mx-md
+            .text-h5(style="border-bottom: 1px solid #999") 帳號 :&nbsp;
+            .text-h5(style="border-bottom: 1px solid #999") &nbsp; {{ myInfo.account }} &nbsp;
           //- p 密碼 : {{ myInfo.password }}
-          h3 信箱 :{{  myInfo.email }}
-          h3 姓名 :{{ myInfo.username }}
-          h3 電話 :{{  myInfo.phone }}
-          h3 生日 :{{ myInfo.birth }}
+          .col-12.row.items-center.q-ma-md
+            q-icon(name="fa-solid fa-envelope"  size="sm").q-mx-md
+            .text-h5(style="border-bottom: 1px solid #999") 信箱 :&nbsp;
+            .text-h5(style="border-bottom: 1px solid #999;") &nbsp; {{  myInfo.email }}  &nbsp;
+          .col-12.row.items-center.q-ma-md
+            q-icon(name="fa-regular fa-address-card"  size="sm").q-mx-md
+            .text-h5(style="border-bottom: 1px solid #999") 姓名 :&nbsp;
+            .text-h5(style="border-bottom: 1px solid #999;") &nbsp;  {{ myInfo.username }}  &nbsp;
+          .col-12.row.items-center.q-ma-md
+            q-icon(name="fa-solid fa-phone"  size="sm").q-mx-md
+            .text-h5(style="border-bottom: 1px solid #999") 電話 :&nbsp;
+            .text-h5(style="border-bottom: 1px solid #999")  &nbsp;  {{  myInfo.phone }}  &nbsp;
+          .col-12.row.items-center.q-ma-md
+            q-icon(name="fa-solid fa-cake-candles"  size="sm").q-mx-md
+            .text-h5(style="border-bottom: 1px solid #999")  生日 :&nbsp;
+            .text-h5(style="border-bottom: 1px solid #999;") &nbsp;  {{ myInfo.birth }}  &nbsp;
+
+          .col-12.row.flex.justify-center.items-center.q-ma-md
+            q-btn(@click="openDialog(myInfo._id.length > 0 ? 0 : -1)" color="primary" label="資料修改")
 
         q-dialog(align="center" v-model="form.dialog" persistent)
           q-card( class="column" style="width: 700px; max-width: 80vw;")
@@ -40,9 +56,9 @@
                 q-btn(:disabled="form.loading" flat label='reset' type="reset" color='red')
                 q-btn(:disabled="form.loading" flat label='submit' type="submit" color='green')
 
-      div.q-px-xl.row
-        .col-12.justify-center
-          q-btn(@click="openDialog(myInfo._id.length > 0 ? 0 : -1)" color="primary" label="資料修改")
+      //- div.q-px-xl.row
+      //-   .col-12.justify-center
+      //-     q-btn(@click="openDialog(myInfo._id.length > 0 ? 0 : -1)" color="primary" label="資料修改")
 
   </template>
 
