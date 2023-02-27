@@ -1,17 +1,21 @@
 <template lang="pug">
-#admin-events
+#admin-events.q-pa-md
   h3.text-center 活動管理
   div(class="q-px-xl row")
     .col-12
       q-btn( @click="openDialog(-1)" color="primary" label="新增活動")
   div(class="q-px-xl q-mt-md")
-    q-table(align="center" title="活動資訊" :columns="columns" :rows="events" row-key="_id" :filter="filter")
+    q-table(align="center"  :columns="columns" :rows="events" row-key="_id" :filter="filter")
 
       //- 搜尋
       template( v-slot:top-right)
-          q-input( borderless dense debounce="300" v-model="filter" placeholder="Search")
+          q-input( outlined debounce="300" v-model="filter" placeholder="Search")
             template( v-slot:append)
               q-icon( name="search")
+      //- 狀態
+      template(v-slot:body-cell-sell="props")
+        q-td.text-center
+          q-icon(size="md" :color="props.row.sell ? 'positive':'negative'" :name="props.row.sell ? 'fa-solid fa-square-check':'fa-solid fa-square-xmark' ")
 
       //- 活動名稱顯示
       template(v-slot:body-cell-title="props")
@@ -31,7 +35,7 @@
 
       //- 圖片顯示
       template( v-slot:body-cell-image="props")
-        q-td
+        q-td.text-center
           img(:src='props.row.image' style='height: 100px;')
 
       //- 編輯按鈕
@@ -216,49 +220,49 @@ const columns = [
     name: 'title',
     required: true,
     label: '名稱',
-    align: 'left',
+    align: 'center',
     field: events => events.title
   },
   {
     name: 'daysfrom',
     required: true,
     label: '開始日期',
-    align: 'left',
+    align: 'center',
     field: events => events.daysfrom
   },
   {
     name: 'daysto',
     required: true,
     label: '結束日期',
-    align: 'left',
+    align: 'center',
     field: events => events.daysto
   },
   // {
   //   name: 'description',
   //   required: true,
   //   label: '簡介',
-  //   align: 'left',
+  //   align: 'center',
   //   field: events => events.description
   // },
   {
     name: 'lecturer',
     required: true,
     label: '講者',
-    align: 'left',
+    align: 'center',
     field: events => events.lecturer
   },
   // {
   //   name: 'lecturerInfo',
   //   required: true,
   //   label: '講者簡介',
-  //   align: 'left',
+  //   align: 'center',
   //   field: events => events.lecturerInfo
   // },
   {
     name: 'pplNum',
     required: true,
     label: '人數上限',
-    align: 'left',
+    align: 'center',
     field: events => events.pplNum
   },
 
@@ -266,7 +270,7 @@ const columns = [
     name: 'price',
     required: true,
     label: '費用',
-    align: 'left',
+    align: 'center',
     field: events => events.price,
     format: val => `${val}`,
     sortable: true
@@ -275,20 +279,20 @@ const columns = [
     name: 'image',
     required: true,
     label: '圖片',
-    align: 'left',
+    align: 'center',
     field: events => events.image
   },
   {
     name: 'sell',
     required: true,
     label: '狀態',
-    align: 'left',
+    align: 'center',
     field: events => events.sell
   },
   {
     name: 'edit',
     label: '編輯',
-    align: 'left'
+    align: 'center'
   }]
 
 const columnsOfEventParti = [

@@ -1,23 +1,27 @@
 <template lang="pug">
-#admin-products
+#admin-products.q-pa-md
   h3.text-center 商品管理
   div(class="q-px-xl row")
     .col-12
       q-btn( @click="openDialog(-1)" color="primary" label="新增商品")
   div(class="q-px-xl q-mt-md")
-    q-table(title="商品資訊" :columns="columns" :rows="products" row-key="_id" :filter="filter" )
+    q-table( :columns="columns" :rows="products" row-key="_id" :filter="filter" )
       template( v-slot:body-cell-image="props")
-        q-td
+        q-td.text-center
           img(:src='props.row.image' style='height: 100px;')
 
       template( v-slot:top-right)
-        q-input( borderless dense debounce="300" v-model="filter" placeholder="Search")
+        q-input( outlined  debounce="300" v-model="filter" placeholder="Search")
           template( v-slot:append)
             q-icon( name="search")
+      //- 狀態
+      template(v-slot:body-cell-sell="props")
+        q-td.text-center
+          q-icon(size="md" :color="props.row.sell ? 'positive':'negative'" :name="props.row.sell ? 'fa-solid fa-square-check':'fa-solid fa-square-xmark' ")
 
-        //- 編輯
+      //- 編輯
       template(#body-cell-edit="data")
-        q-td(class="q-pa-md q-gutter-sm")
+        q-td.text-center
           q-btn( round color="primary" text-color="white" icon="edit" @click="openDialog(products.findIndex((product)=> product._id === data.row._id))")
           //- 編輯商品按鈕的另一種寫法
           //- q-btn( round color="primary" text-color="white" icon="edit" @click="openDialog(products.indexOf(data.row))")
@@ -154,7 +158,7 @@ const columns = [
     name: 'name',
     required: true,
     label: '商品名稱',
-    align: 'left',
+    align: 'center',
     field: products => products.name,
     format: val => `${val}`,
     sortable: true
@@ -163,7 +167,7 @@ const columns = [
     name: 'image',
     required: true,
     label: '商品圖片',
-    align: 'left',
+    align: 'center',
     field: row => row.image,
     format: val => `${val}`,
     sortable: true
@@ -172,7 +176,7 @@ const columns = [
     name: 'price',
     required: true,
     label: '商品價格',
-    align: 'left',
+    align: 'center',
     field: row => row.price,
     format: val => `${val}`,
     sortable: true
@@ -181,16 +185,15 @@ const columns = [
     name: 'sell',
     required: true,
     label: '上架狀態',
-    align: 'left',
+    align: 'center',
     field: row => row.sell,
-    format: val => `${val}`,
     sortable: true
   },
   {
     name: 'edit',
     required: true,
     label: '編輯',
-    align: 'left'
+    align: 'center'
   }
 ]
 

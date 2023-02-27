@@ -1,5 +1,5 @@
 <template lang="pug">
-#feedbackview
+#feedbackview.q-pa-md
   h3.text-center 回應管理
     .div(class="q-px-xl row")
       .col-12

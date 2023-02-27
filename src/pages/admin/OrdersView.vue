@@ -1,20 +1,26 @@
 <template lang="pug">
-#orders
+#orders.q-pa-md
   h3.text-center 訂單管理
-      .div(class="q-px-xl row")
-        .col-12
-          q-table(:columns="columns" :rows="orders")
-            //- 商品內容
-            template(v-slot:body-cell-content='data')
-              q-td
-                ul
-                  li(v-for="product in data.row.products")
-                    p {{product.quantity + ' 個 ' + product.p_id.name}}
+  div(class="q-px-xl q-mt-md")
+    q-table(:columns="columns" :rows="orders")
 
-            //- 刪除
-            template(v-slot:body-cell-delete='data')
-              q-td
-                q-btn(@click="deleteOrder(data.row._id)" round icon="fa-solid fa-trash-can")
+      //- 查詢
+      template( v-slot:top-right)
+        q-input(  outlined debounce="300" v-model="filter" placeholder="Search")
+          template( v-slot:append)
+            q-icon( name="search")
+
+      //- 商品內容
+      template(v-slot:body-cell-content='data')
+        q-td
+          ul
+            li(v-for="product in data.row.products")
+              p {{product.quantity + ' 個 ' + product.p_id.name}}
+
+      //- 刪除
+      template(v-slot:body-cell-delete='data')
+        q-td
+          q-btn(@click="deleteOrder(data.row._id)" round icon="fa-solid fa-trash-can")
 </template>
 
 <script setup>
@@ -29,7 +35,7 @@ const columns = [
     name: 'name',
     required: true,
     label: '訂單編號',
-    align: 'left',
+    align: 'center',
     field: orders => orders._id,
     sortable: true
   },
@@ -37,7 +43,7 @@ const columns = [
     name: 'ID',
     required: true,
     label: '消費者 ID',
-    align: 'left',
+    align: 'center',
     field: orders => orders.u_id.account,
     sortable: true
   },
@@ -45,7 +51,7 @@ const columns = [
     name: 'date',
     required: true,
     label: '訂單日期',
-    align: 'left',
+    align: 'center',
     field: orders => new Date(orders.date).toLocaleDateString(),
     sortable: true
   },
@@ -53,19 +59,19 @@ const columns = [
     name: 'price',
     required: true,
     label: '訂單金額',
-    align: 'left',
+    align: 'center',
     field: orders => orders.totalPrice,
     sortable: true
   },
   {
     name: 'content',
     label: '訂單內容',
-    align: 'left'
+    align: 'center'
   },
   {
     name: 'delete',
     label: '刪除',
-    align: 'left'
+    align: 'center'
   }
 ]
 

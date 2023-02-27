@@ -54,7 +54,7 @@ const menuList = [
   },
   {
     icon: 'send',
-    label: '貼文管理',
+    label: '新聞管理',
     route: '/admin/news',
     separator: false
   },
@@ -78,7 +78,7 @@ const menuList = [
   },
   {
     icon: 'error',
-    label: '關於我們管理',
+    label: '關於管理',
     route: '/admin/aboutus',
     separator: false
   },

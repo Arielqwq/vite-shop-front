@@ -1,19 +1,23 @@
 <template lang="pug">
-#admin-news.text-center
-  h3 最新消息管理
+#admin-news.q-pa-md
+  h3.text-center 新聞管理
   div(class="q-px-xl row")
     .col-12
       q-btn( @click="openDialog(-1)" color="primary" label="新增貼文")
   div(class="q-px-xl q-mt-md")
-    q-table(align="center" title="貼文資訊" :columns="columns" :rows="news" row-key="_id" :filter="filter")
+    q-table(align="center" :columns="columns" :rows="news" row-key="_id" :filter="filter")
       //- 圖片
       template( v-slot:body-cell-image="props")
         q-td
           img(:src='props.row.image' style='height: 100px;')
+      //- 狀態
+      template(v-slot:body-cell-sell="props")
+        q-td.text-center
+          q-icon(size="md" :color="props.row.sell ? 'positive':'negative'" :name="props.row.sell ? 'fa-solid fa-square-check':'fa-solid fa-square-xmark' ")
 
       //- 搜尋
       template( v-slot:top-right)
-          q-input( borderless dense debounce="300" v-model="filter" placeholder="Search")
+          q-input( outlined  debounce="300" v-model="filter" placeholder="Search")
             template( v-slot:append)
               q-icon( name="search")
 
@@ -105,28 +109,28 @@ const columns = [
     name: 'title',
     required: true,
     label: '名稱',
-    align: 'left',
+    align: 'center',
     field: news => news.title
   },
   {
     name: 'description',
     required: true,
     label: '內容',
-    align: 'left',
+    align: 'center',
     field: news => news.description
   },
   {
     name: 'image',
     required: true,
     label: '圖片',
-    align: 'left',
+    align: 'center',
     field: news => news.image
   },
   {
     name: 'sell',
     required: true,
     label: '上架狀態',
-    align: 'left',
+    align: 'center',
     field: news => news.sell,
     sortable: true
   },
@@ -134,7 +138,7 @@ const columns = [
     name: 'edit',
     required: true,
     label: '編輯',
-    align: 'left'
+    align: 'center'
   }
 ]
 
