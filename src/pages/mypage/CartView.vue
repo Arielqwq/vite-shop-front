@@ -3,7 +3,7 @@
   .row
     .col-12
       h4.text-center 購物車
-        .div.q-px-xl.q-ma-md.row
+        div.q-ma-md.q-px-xl.row
           .col-12
             q-table(:columns="columns" :rows="cart" row-key="p_id"  :filter="filter"  )
 
@@ -37,12 +37,19 @@
                   p {{props.row.p_id.price}}
 
               //- 增減商品數量
-              template(#body-cell-quantity="props")
-                q-td
-                  div.flex
-                    q-btn(color="primary" @click="updateCart(props.row._id, -1,'修改成功')" label="-")
-                    p &nbsp;{{ props.row.quantity }}&nbsp;
-                    q-btn(color="primary" @click="updateCart(props.row._id, +1,'修改成功')" label="+")
+              //- template(#body-cell-quantity="props")
+              //-   q-td
+              //-     div.flex
+              //-       q-btn(color="primary" @click="updateCart(props.row._id, -1,'修改成功')" label="-")
+              //-       p &nbsp;{{ props.row.quantity }}&nbsp;
+              //-       q-btn(color="primary" @click="updateCart(props.row._id, +1,'修改成功')" label="+")
+
+              template(v-slot:body-cell-minus="props")
+                q-td.text-center
+                  q-btn(@click="updateCart(props.row._id, -1,'修改成功')"  icon="fa-solid fa-minus" push round )
+              template(v-slot:body-cell-plus="props")
+                q-td.text-center
+                  q-btn(@click="updateCart(props.row._id, +1,'修改成功')" icon="fa-solid fa-plus"  push round  color="pink")
 
               //- 商品小計
               template(v-slot:body-cell-happy="props")
@@ -76,7 +83,7 @@
             q-checkbox.checkbox(v-model="checkbox" :rules="[rules.requiredCheckbox]") 我真的是成年人!!
             div(align="center")
               q-btn(type="reset" color="red" flat label="reset")
-              q-btn(flat type='submit' label="submit" :disabled="!checkbox" @click="onCheckoutBtnClick" )
+              q-btn(flat type='submit' label="submit" :disabled="!checkbox" )
 
 </template>
 
@@ -127,7 +134,7 @@ const columns = [
     name: 'name',
     required: true,
     label: '商品名稱',
-    align: 'left',
+    align: 'center',
     field: cart => cart.p_id.name,
     sortable: true
   },
@@ -135,7 +142,7 @@ const columns = [
     name: 'image',
     required: true,
     label: '商品圖片',
-    align: 'left',
+    align: 'center',
     field: row => row.p_id.image,
     sortable: true
   },
@@ -143,23 +150,37 @@ const columns = [
     name: 'price',
     required: true,
     label: '商品價格',
-    align: 'left',
+    align: 'center',
     field: row => row.p_id.price,
     sortable: true
   },
+  //
+  {
+    name: 'minus',
+    label: '',
+    align: 'center'
+  },
+  //
   {
     name: 'quantity',
     required: true,
-    label: '商品數量',
-    align: 'left',
+    label: '數量',
+    align: 'center',
     field: row => row.quantity,
     sortable: true
   },
+  //
+  {
+    name: 'plus',
+    label: '',
+    align: 'center'
+  },
+  //
   {
     name: 'happy',
     required: true,
     label: '小計',
-    align: 'left',
+    align: 'center',
     field: row => row.quantity * row.p_id.price,
     sortable: true
   },
@@ -167,7 +188,7 @@ const columns = [
     name: 'edit',
     required: true,
     label: '編輯',
-    align: 'left'
+    align: 'center'
   }
 ]
 
@@ -214,11 +235,6 @@ const onCheckoutBtnClick = async (val) => {
     })
   }
 }
-
-// const onCheckoutBtnClick = async () => {
-//   await checkout()
-//   router.push('/orders')
-// }
 
 const totalPrice = computed(() => {
   return cart.reduce((total, current) => {
