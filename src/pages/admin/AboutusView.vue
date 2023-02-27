@@ -1,5 +1,5 @@
 <template lang="pug">
-#admin-aboutUs
+#admin-aboutUs.q-pa-md
   h3.text-center 關於我們管理
   .div(class="q-px-xl row")
     .col-12
@@ -40,7 +40,7 @@
 
 <script setup>
 import { apiAuth } from '@/boot/axios'
-import { log } from 'console'
+// import { log } from 'console'
 import Swal from 'sweetalert2'
 import { ref, reactive } from 'vue'
 

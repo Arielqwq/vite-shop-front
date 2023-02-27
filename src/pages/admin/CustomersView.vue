@@ -1,22 +1,28 @@
 <template lang="pug">
-#customersview
+#customersview.q-pa-md
   h3.text-center 會員管理
-  .div(class="q-px-xl row")
+  //- .div(class="q-px-xl row")
     //- .col-12
     //-   q-btn( @click="openDialog(-1)" color="primary" label="新增會員")
-  .div(class="q-px-xl q-mt-md")
+  div(class="q-px-xl q-mx-md")
     q-table(:columns="columns" :rows="customers" row-key="_id" :filter="filter" :rows-per-page-options="[5]")
+      //- 查詢
       template( v-slot:top-right)
-        q-input( borderless dense debounce="300" v-model="filter" placeholder="Search")
+        q-input(  outlined debounce="300" v-model="filter" placeholder="Search")
           template( v-slot:append)
             q-icon( name="search")
 
+      //- 身分別顯示
+      template(v-slot:body-cell-role="props")
+        q-td.text-center
+          q-icon(size="md"  :name="props.row.role == 1 ? 'fa-solid fa-user-gear':'fa-solid fa-user' ")
+
       //- 編輯
       template(#body-cell-edit="data")
-        q-td(class="q-pa-md q-gutter-sm")
+        q-td.text-center
           q-btn( round color="primary" text-color="white" icon="edit" @click="openDialog(customers.findIndex((customer)=> customer._id === data.row._id))")
 
-    //- 新增編輯商品
+    //- 新增編輯
     q-dialog(align="center" v-model="form.dialog" persistent)
       q-card( class="column" style="width: 700px; max-width: 80vw;")
         q-form(@submit="onSubmit" @reset="onReset")
@@ -103,14 +109,14 @@ const columns = [
     name: 'account',
     required: true,
     label: '帳號',
-    align: 'left',
+    align: 'center',
     field: customers => customers.account
   },
   {
     name: 'email',
     required: true,
     label: '信箱',
-    align: 'left',
+    align: 'center',
     field: customers => customers.email,
     format: val => `${val}`,
     sortable: true
@@ -118,26 +124,26 @@ const columns = [
   {
     name: 'username',
     label: '會員姓名',
-    align: 'left',
+    align: 'center',
     field: customers => customers.username
   },
   {
     name: 'phone',
     label: '連絡電話',
-    align: 'left',
+    align: 'center',
     field: customers => customers.phone
   },
-  // {
-  //   name: 'sell',
-  //   required: true,
-  //   label: '狀態',
-  //   align: 'left',
-  //   field: customers => customers.sell
-  // },
+  {
+    name: 'role',
+    required: true,
+    label: '身分別',
+    align: 'center',
+    field: customers => customers.role
+  },
   {
     name: 'edit',
     label: '編輯',
-    align: 'left'
+    align: 'center'
   }]
 
 const onReset = () => {
