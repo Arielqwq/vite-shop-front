@@ -35,13 +35,15 @@
             .col-12
               q-input(square filled v-model="form.account" label="帳號" :rules="[rules.required]")
             .col-12
-              q-input(square filled v-model="form.password" type="number" label="密碼" :rules="[rules.required]")
+              q-input(square filled v-model="form.password" type="password" label="密碼" :rules="[rules.required]")
             .col-12
               q-input(square filled v-model="form.email" type="email" label="信箱" :rules="[rules.required]")
             .col-12
-              q-input(square filled v-model="form.name" type="text" label="姓名")
-            .col-2
-              q-checkbox(v-model="form.sell" label="狀態")
+              q-input(square filled v-model="form.username" type="text" label="姓名")
+            .col-12
+              q-input(square filled v-model="form.phone" type="phone" label="手機" )
+            .col-12
+              q-input(square filled v-model="form.birth" type="birth" label="出生年月日" )
 
           q-card-actions(align='right')
             q-btn(:disabled="form.loading" flat label='reset' type="reset" color='red')
@@ -68,9 +70,10 @@ const form = reactive({
   _id: '',
   account: '',
   password: '',
-  email: 0,
-  name: '',
+  email: '',
+  username: '',
   phone: '',
+  birth: '',
   sell: '',
   loading: false,
   dialog: false,
@@ -83,7 +86,8 @@ const openDialog = (idx) => {
     form.account = ''
     form.password = ''
     form.email = ''
-    form.name = ''
+    form.username = ''
+    form.birth = ''
     form.phone = ''
     form.sell = ''
     form.loading = false
@@ -94,7 +98,8 @@ const openDialog = (idx) => {
     form.account = customers[idx].account
     form.password = customers[idx].password
     form.email = customers[idx].email
-    form.name = customers[idx].name
+    form.username = customers[idx].username
+    form.birth = customers[idx].birth
     form.phone = customers[idx].phone
     form.sell = customers[idx].sell
     form.loading = customers[idx].loading
@@ -149,7 +154,8 @@ const columns = [
 const onReset = () => {
   form.account = null
   form.email = null
-  form.name = null
+  form.username = null
+  form.birth = null
   form.phone = null
   form.sell = false
   form.image = undefined
@@ -159,28 +165,16 @@ const onSubmit = async () => {
   form.loading = true
   // 建立一個新的 formdata 物件
   // fd.append(key, value)
-  const fd = new FormData()
-  fd.append('title', form.title)
+  // const fd = new FormData()
+  // fd.append('title', form.title)
   try {
-    // 當id長度為 0，新增
-    if (form._id.length === 0) {
-      const { data } = await apiAuth.post('/users', fd)
-      customers.push(data.result)
-      Swal.fire({
-        icon: 'success',
-        title: '成功',
-        text: '新增活動成功'
-      })
-      console.log(customers)
-    } else {
-      const { data } = await apiAuth.patch('/users/' + form._id, fd)
-      customers[form.idx] = data.result
-      Swal.fire({
-        icon: 'success',
-        title: '成功',
-        text: '編輯會員資料成功'
-      })
-    }
+    const { data } = await apiAuth.patch('/users/edituser/', form)
+    customers[form.idx] = data.result
+    Swal.fire({
+      icon: 'success',
+      title: '成功',
+      text: '編輯會員資料成功'
+    })
     form.dialog = false
   } catch (error) {
     Swal.fire({
@@ -188,6 +182,9 @@ const onSubmit = async () => {
       title: '失敗',
       text: error?.response?.data?.message || '發生錯誤'
     })
+    //
+    form.dialog = false
+    //
   }
   form.loading = false
 };

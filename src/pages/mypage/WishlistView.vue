@@ -1,22 +1,23 @@
 <template lang="pug">
-#wishlist
-  .row
-    .col-12
-      h4.text-center 我的收藏
-        .div(class="q-px-xl row")
-          .col-12
-            q-table(:columns="columns" :rows="loves" row-key="p_id" :filter="filter" )
+#wishlist.q-pa-md
+  h4.text-center 我的收藏
+  div(class="q-px-xl q-mt-md")
+    q-table(:columns="columns" :rows="loves" row-key="p_id" :filter="filter" )
 
-              //- 商品圖片
-              template( v-slot:body-cell-image="props")
-                q-td
-                  img(:src='props.row.image' style='height: 100px;')
+      //- 商品圖片
+      template( v-slot:body-cell-image="props")
+        q-td.text-center
+          img(:src='props.row.image' style='height: 100px;')
 
-              //- 刪除商品
-              template(#body-cell-edit="data")
-                q-td
-                  //- span {{ data.row._id }}
-                  q-btn(round color="red"  @click="removeFromWishlist(data.row._id)" icon="fa-solid fa-trash-can")
+      //- 刪除商品
+      template(#body-cell-edit="data")
+        q-td.text-center
+          //- span {{ data.row._id }}
+          q-btn(round color="accent"  @click="removeFromWishlist(data.row._id)" icon="fa-solid fa-trash-can")
+      //- goPage
+      template( v-slot:body-cell-go="props")
+        q-td.text-center
+          q-btn.q-ml-md(size="12px" icon="fa-brands fa-golang" :to="'../product/' + props.row._id" round color="primary")
 </template>
 <script setup>
 import { ref, reactive, computed } from 'vue'
@@ -64,7 +65,7 @@ const columns = [
     name: 'name',
     required: true,
     label: '商品名稱',
-    align: 'left',
+    align: 'center',
     field: row => row.name,
     sortable: true
   },
@@ -72,7 +73,7 @@ const columns = [
     name: 'image',
     required: true,
     label: '商品圖片',
-    align: 'left',
+    align: 'center',
     field: row => row.image,
     sortable: true
   },
@@ -80,16 +81,21 @@ const columns = [
     name: 'price',
     required: true,
     label: '商品價格',
-    align: 'left',
+    align: 'center',
     field: row => row.price,
     sortable: true
   },
-
   {
     name: 'edit',
     required: true,
     label: '編輯',
-    align: 'left'
+    align: 'center'
+  },
+  {
+    name: 'go',
+    required: true,
+    label: '編輯',
+    align: 'center'
   }
 ];
 

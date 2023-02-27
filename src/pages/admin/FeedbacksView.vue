@@ -1,20 +1,26 @@
 <template lang="pug">
 #feedbackview.q-pa-md
   h3.text-center 回應管理
-    .div(class="q-px-xl row")
-      .col-12
-        q-table(:columns="columns" :rows="feedbacks")
-          //- 狀態圖案顯示
-          template(v-slot:body-cell-status="props")
-            q-td
-              q-icon(size="md" :name="props.row.status== 0 ?'fa-regular fa-envelope' :'fa-solid fa-envelope-circle-check'")
+  div(class="q-px-xl q-mt-md")
+    q-table(:columns="columns" :rows="feedbacks")
+      //- 查詢
+      template( v-slot:top-right)
+        q-input(  outlined debounce="300" v-model="filter" placeholder="Search")
+          template( v-slot:append)
+            q-icon( name="search")
+      //- 狀態圖案顯示
+      template(v-slot:body-cell-status="props")
+        q-td.text-center
+          q-icon(size="md" :name="props.row.status== 0 ?'fa-regular fa-envelope' :'fa-solid fa-envelope-circle-check'")
 
-          //- 編輯
-          template(v-slot:body-cell-edit="data")
-            q-td(class="q-pa-md q-gutter-sm")
-              q-btn(size="md" round color="primary" text-color="white" icon="edit"  @click="openDialog(feedbacks.findIndex((feedback)=> feedback._id === data.row._id))")
-          template(v-slot:body-cell-replyDate="props")
-            q-td {{ isNaN(new Date(props.row.replyDate)) ? '未回覆' : new Date(props.row.replyDate).toLocaleDateString() }}
+      //- 編輯
+      template(v-slot:body-cell-edit="data")
+        q-td(class="q-pa-md q-gutter-sm")
+          q-btn(size="md" round color="primary" text-color="white" icon="edit"  @click="openDialog(feedbacks.findIndex((feedback)=> feedback._id === data.row._id))")
+
+      //- Invalid Date 修改
+      template(v-slot:body-cell-replyDate="props")
+        q-td.text-center {{ isNaN(new Date(props.row.replyDate)) ? '未回覆' : new Date(props.row.replyDate).toLocaleDateString() }}
 
     q-dialog(align="center" v-model="form.dialog" persistent)
       q-card( class="column" style="width: 700px; max-width: 80vw;")
@@ -60,7 +66,7 @@ const columns = [
     name: 'username',
     required: true,
     label: '使用者名稱',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.u_id.username,
     sortable: true
   },
@@ -68,7 +74,7 @@ const columns = [
     name: 'title',
     required: true,
     label: '回應主旨',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.title,
     sortable: true
   },
@@ -76,7 +82,7 @@ const columns = [
     name: 'description',
     required: true,
     label: '來信內容',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.description,
     sortable: true
   },
@@ -84,7 +90,7 @@ const columns = [
     name: 'createDate',
     required: true,
     label: '來信時間',
-    align: 'left',
+    align: 'center',
     field: feedbacks => new Date(feedbacks.createDate).toLocaleDateString(),
     sortable: true
   },
@@ -92,7 +98,7 @@ const columns = [
     name: ' reply',
     required: true,
     label: '管理員回應',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.reply,
     sortable: true
   },
@@ -100,7 +106,7 @@ const columns = [
     name: 'replyDate',
     required: true,
     label: '回覆時間',
-    align: 'left',
+    align: 'center',
     field: feedbacks => new Date(feedbacks.replyDate).toLocaleDateString(),
     sortable: true
   },
@@ -108,14 +114,14 @@ const columns = [
     name: 'status',
     required: true,
     label: '狀態',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.status,
     sortable: true
   },
   {
     name: 'edit',
     label: '編輯',
-    align: 'left'
+    align: 'center'
   }
 ]
 

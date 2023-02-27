@@ -7,21 +7,22 @@ q-layout(class="shadow-2 rounded-borders")
       //- @mouseover="miniState = false" @mouseout="miniState = true"
   q-drawer( show-if-above v-model="drawer"  :width="250" :breakpoint="500" bordered )
 
-    q-scroll-area(fit style="height: calc(100% - 150px); margin-top: 150px; border-top:1px solid #999;")
-      q-list.q-pl-sm( class="menu-list")
+    q-scroll-area(fit style="height: calc(100% - 200px); margin-top: 200px; border-top:1px solid #999;")
+      q-list( class="menu-list")
         template(v-for="(menuItem, index) in menuList" :key="index")
           q-item.col-10(class="q-px-xl" clickable v-ripple :active="menuItem.label === 'Outbox'" :to="menuItem.route")
             q-item-section.col-3.q-ma-sm
               q-icon(:name="menuItem.icon" size="sm" :color="menuItem.iconColor")
             q-item-section.text-h6 {{ menuItem.label }}
 
-    div.top(class="absolute-top" color="white" style="height: 150px; background: brown;")
-      div.q-pa-md(class="absolute-bottom bg-transparent")
+    div.top(class="absolute-top" color="white" style="height: 200px; background: brown;")
+      div.q-pa-md.text-center(class="absolute-center bg-transparent" style="width:100%")
         q-avatar( size="56px" class="q-mb-sm")
           img(:src="avatar")
-        div(class="text-weight-bold")
-        div
-          .text-h5 Hi ! {{ account }}
+        //- div(class="text-weight-bold")
+        div.q-ma-sm.flex.row.justify-center(style="color:#fff")
+          .text-h6 Hi ! 管理員 &nbsp;
+          .text-h6 {{ account }}
 
   q-page-container
     q-page

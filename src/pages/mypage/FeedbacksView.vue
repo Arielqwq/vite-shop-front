@@ -1,11 +1,16 @@
 <template lang="pug">
-#myfeedback
-  .row
-    .col-12
-      h4.text-center 我的回應
-        div.q-ma-md.q-px-xl.row
-          .col-12
-            q-table(:columns="columns" :rows="feedbacks" row-key="p_id"  :filter="filter")
+#myfeedback.q-pa-md
+  h4.text-center 我的回應
+  div(class="q-px-xl q-mt-md")
+    q-table(:columns="columns" :rows="feedbacks" row-key="p_id"  :filter="filter")
+      //- 狀態圖案顯示
+      template(v-slot:body-cell-status="props")
+        q-td.text-center
+          q-icon(size="md" :name="props.row.status== 0 ?'fa-regular fa-envelope' :'fa-solid fa-envelope-circle-check'")
+      //- Invalid Date 修改
+      template(v-slot:body-cell-replyDate="props")
+        q-td.text-center {{ isNaN(new Date(props.row.replyDate)) ? '未回覆' : new Date(props.row.replyDate).toLocaleDateString() }}
+
 </template>
 
 <script setup>
@@ -20,42 +25,42 @@ const columns = [
     name: 'title',
     required: true,
     label: '主旨',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.title
   },
   {
     name: 'description',
     required: true,
     label: '我的訊息',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.description
   },
   {
     name: 'createDate',
     required: true,
     label: '寄件時間',
-    align: 'left',
+    align: 'center',
     field: feedbacks => new Date(feedbacks.createDate).toLocaleDateString()
   },
   {
     name: 'reply',
     required: true,
     label: '管理員回覆',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.reply
   },
   {
     name: 'replyDate',
     required: true,
-    label: '回應時間',
-    align: 'left',
+    label: '回信時間',
+    align: 'center',
     field: feedbacks => new Date(feedbacks.replyDate).toLocaleDateString()
   },
   {
     name: 'status',
     required: true,
     label: '狀態',
-    align: 'left',
+    align: 'center',
     field: feedbacks => feedbacks.status
   }
 ]

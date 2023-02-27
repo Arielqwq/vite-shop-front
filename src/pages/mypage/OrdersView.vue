@@ -9,26 +9,21 @@
         q-separator
         q-tab-panels(v-model='tab' animated)
           q-tab-panel(name='productsOrder')
-              //- .text-h6.text-center 我的商品訂單
-              .div(class="q-px-xl row")
-                .col-12
-                  q-table(:columns="columns" :rows="orders")
-                    //- 商品內容
-                    template(v-slot:body-cell-content='data')
-                      q-td
-                        ul
-                          li(v-for="product in data.row.products")
-                            p {{product.quantity + ' 個 ' + product.p_id.name}}
+            .col-12
+              q-table(:columns="columns" :rows="orders" style="overflow-x:scroll")
+                //- 訂單內容
+                template(v-slot:body-cell-content='data')
+                  q-td.text-center
+                    template(v-for="product in data.row.products")
+                      p {{product.quantity + ' 個 ' + product.p_id.name}}
 
           q-tab-panel(name='eventsOrder')
-            .div(class="q-px-x l row")
-              .col-12
-                q-table(:columns="columnsOfEvents" :rows="events")
+            q-table(:columns="columnsOfEvents" :rows="events")
 
-                  //- 商品圖片
-                  template( v-slot:body-cell-image="props")
-                    q-td
-                      img(:src='props.row.image' style='height: 100px;')
+                //- 商品圖片
+                template( v-slot:body-cell-image="props")
+                  q-td
+                    img(:src='props.row.image' style='height: 100px;')
 
         //- h3.text-center 我的商品訂單
         //-   .div(class="q-px-xl row")
@@ -67,7 +62,7 @@ const columns = [
     name: 'name',
     required: true,
     label: '訂單編號',
-    align: 'left',
+    align: 'center',
     field: orders => orders._id,
     sortable: true
   },
@@ -75,7 +70,7 @@ const columns = [
     name: 'date',
     required: true,
     label: '訂單日期',
-    align: 'left',
+    align: 'center',
     field: orders => new Date(orders.date).toLocaleDateString(),
     sortable: true
   },
@@ -83,14 +78,14 @@ const columns = [
     name: 'price',
     required: true,
     label: '訂單金額',
-    align: 'left',
+    align: 'center',
     field: orders => orders.totalPrice,
     sortable: true
   },
   {
     name: 'content',
     label: '訂單內容',
-    align: 'left'
+    align: 'center'
   }
 ]
 
@@ -99,14 +94,14 @@ const columnsOfEvents = [
     name: 'title',
     required: true,
     label: '名稱',
-    align: 'left',
+    align: 'center',
     field: events => events.title
   },
   {
     name: 'price',
     required: true,
     label: '費用',
-    align: 'left',
+    align: 'center',
     field: events => events.price,
     format: val => `${val}`,
     sortable: true
@@ -115,35 +110,35 @@ const columnsOfEvents = [
     name: 'daysfrom',
     required: true,
     label: '開始日期',
-    align: 'left',
+    align: 'center',
     field: events => events.daysfrom
   },
   {
     name: 'daysto',
     required: true,
     label: '結束日期',
-    align: 'left',
+    align: 'center',
     field: events => events.daysto
   },
   {
     name: 'description',
     required: true,
     label: '簡介',
-    align: 'left',
+    align: 'center',
     field: events => events.description
   },
   {
     name: 'lecturer',
     required: true,
     label: '講者',
-    align: 'left',
+    align: 'center',
     field: events => events.lecturer
   },
   {
     name: 'image',
     required: true,
     label: '圖片',
-    align: 'left',
+    align: 'center',
     field: events => events.image
   }];
 

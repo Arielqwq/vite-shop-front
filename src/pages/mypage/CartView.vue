@@ -1,71 +1,65 @@
 <template lang="pug">
-#cart
-  .row
-    .col-12
-      h4.text-center 購物車
-        div.q-ma-md.q-px-xl.row
-          .col-12
-            q-table(:columns="columns" :rows="cart" row-key="p_id"  :filter="filter"  )
+#cart.q-pa-md
+  h4.text-center 購物車
+  div(class="q-px-xl q-mt-md")
+    q-table(:columns="columns" :rows="cart" row-key="p_id"  :filter="filter"  )
 
-              //- 下架商品出現在購物車，要變紅色，且不能結帳
-              //- template(v-slot:body-cell='props')
-              //-   q-td( :class="{'bg-red': !props.row.p_id.sell}")
+      //- 過濾
+      template(v-slot:top-right)
+        q-input(borderless dense debounce="300" v-model="filter" placeholder="Search")
+          template( v-slot:append)
+            q-icon( name="search")
+      //- 商品名稱
+        <template v-slot:body="props">
+      template(v-slot:body-cell-name='props')
+        q-td
+          p {{props.row.p_id.name}}
+      //- template(v-slot:body-cell-body='props.row.name')
+        q-tr(:props="props")
+          q-td( key="name" :props="props")
+            p {{props.row.p_id.name}}
 
-                //- 過濾
-              template(v-slot:top-right)
-                q-input(borderless dense debounce="300" v-model="filter" placeholder="Search")
-                  template( v-slot:append)
-                    q-icon( name="search")
-              //- 商品名稱
-                <template v-slot:body="props">
-              template(v-slot:body-cell-name='props')
-                q-td
-                  p {{props.row.p_id.name}}
-              //- template(v-slot:body-cell-body='props.row.name')
-                q-tr(:props="props")
-                  q-td( key="name" :props="props")
-                    p {{props.row.p_id.name}}
+      //- 商品圖片
+      template( v-slot:body-cell-image="props")
+        q-td.text-center
+          img(:src='props.row.p_id.image' style='height: 100px;')
 
-              //- 商品圖片
-              template( v-slot:body-cell-image="props")
-                q-td
-                  img(:src='props.row.p_id.image' style='height: 100px;')
+      //- 商品價格
+      template(v-slot:body-cell-price='props')
+        q-td.text-center
+          p {{props.row.p_id.price}}
 
-              //- 商品價格
-              template(v-slot:body-cell-price='props')
-                q-td
-                  p {{props.row.p_id.price}}
+      //- 增減商品數量
+      template(#body-cell-quantity="props")
+        q-td.text-center
+          div.flex.justify-center.items-center
+            q-btn( style="border:1px solid #999" flat size="md" @click="updateCart(props.row._id, -1,'修改成功')" label="-")
+            .text-h7.q-ma-sm &nbsp;{{ props.row.quantity }}&nbsp;
+            q-btn( style="border:1px solid #999" flat size="md" @click="updateCart(props.row._id, +1,'修改成功')" label="+")
 
-              //- 增減商品數量
-              //- template(#body-cell-quantity="props")
-              //-   q-td
-              //-     div.flex
-              //-       q-btn(color="primary" @click="updateCart(props.row._id, -1,'修改成功')" label="-")
-              //-       p &nbsp;{{ props.row.quantity }}&nbsp;
-              //-       q-btn(color="primary" @click="updateCart(props.row._id, +1,'修改成功')" label="+")
+      //- template(v-slot:body-cell-minus="props")
+      //-   q-td.text-center
+      //-     q-btn(@click="updateCart(props.row._id, -1,'修改成功')"  icon="fa-solid fa-minus" push round )
+      //- template(v-slot:body-cell-plus="props")
+      //-   q-td.text-center
+      //-     q-btn(@click="updateCart(props.row._id, +1,'修改成功')" icon="fa-solid fa-plus"  push round  color="pink")
 
-              template(v-slot:body-cell-minus="props")
-                q-td.text-center
-                  q-btn(@click="updateCart(props.row._id, -1,'修改成功')"  icon="fa-solid fa-minus" push round )
-              template(v-slot:body-cell-plus="props")
-                q-td.text-center
-                  q-btn(@click="updateCart(props.row._id, +1,'修改成功')" icon="fa-solid fa-plus"  push round  color="pink")
+      //- 商品小計
+      template(v-slot:body-cell-happy="props")
+        q-td.text-center
+          p {{ props.value }}
 
-              //- 商品小計
-              template(v-slot:body-cell-happy="props")
-                q-td
-                  p {{ props.value }}
+      //-刪除商品
+      template(#body-cell-edit="data")
+        q-td.text-center
+          //- span {{ data.row._id }}
+          q-btn(round color="red" @click="updateCart(data.row._id, data.row.quantity*-1 ,'刪除商品')" icon="fa-solid fa-trash-can")
 
-              //-刪除商品
-              template(#body-cell-edit="data")
-                q-td
-                  //- span {{ data.row._id }}
-                  q-btn(round color="red" @click="updateCart(data.row._id, data.row.quantity*-1 ,'刪除商品')" icon="fa-solid fa-trash-can")
-
-        .col-12
-          p 總金額 {{ totalPrice }}
-          //- q-btn(color="green" :disabled="!canCheckout" @click="onCheckoutBtnClick" label="結帳")
-          q-btn(color="green" :disabled="!canCheckout" @click="addCart = true" label="結帳")
+  div(class="q-px-xl q-mt-md")
+    .col-12(align="center")
+      p 總金額 {{ totalPrice }}
+      //- q-btn(color="green" :disabled="!canCheckout" @click="onCheckoutBtnClick" label="結帳")
+      q-btn(color="green" :disabled="!canCheckout" @click="addCart = true" label="結帳")
 
   q-dialog(v-model="addCart" persistent)
     q-card(class="bg-accent text-white" style="width: 500px")
@@ -73,14 +67,15 @@
         q-card-section(align="right")
           q-btn(dense flat icon='close' v-close-popup)
               q-tooltip Close
-        q-card-actions(align="center" class="bg-white text-accent")
-          div.flex.column.q-pa-md
+        q-card-actions(align="center" class="bg-white text-primary")
+          div.flex.column.q-pa-xl
             h6.q-pa-none.q-ma-none 為確認您已是成年人，
             h6.q-pa-none.q-ma-none 請輸入您真實的出生年月日及姓名。
-            p.q-mt-md 請輸入姓名
+            p.q-mt-md 請輸入正確的姓名
             q-input(filled v-model="inputUsername" label='請輸入您的真實姓名' :rules="[rules.required,rules.maxLength]")
-            q-input(type="date" v-model="birthday" label="請輸入您的出生年月日" :rules="[rules.required,rules.countyYears]" )
-            q-checkbox.checkbox(v-model="checkbox" :rules="[rules.requiredCheckbox]") 我真的是成年人!!
+            p.q-mt-md 請輸入正確的出生年月日
+            q-input(type="date" v-model="birthday"  :rules="[rules.required,rules.countyYears]" )
+            q-checkbox.checkbox(v-model="checkbox" :rules="[rules.requiredCheckbox]") 我已是成年人。
             div(align="center")
               q-btn(type="reset" color="red" flat label="reset")
               q-btn(flat type='submit' label="submit" :disabled="!checkbox" )
@@ -155,11 +150,11 @@ const columns = [
     sortable: true
   },
   //
-  {
-    name: 'minus',
-    label: '',
-    align: 'center'
-  },
+  // {
+  //   name: 'minus',
+  //   label: '',
+  //   align: 'center'
+  // },
   //
   {
     name: 'quantity',
@@ -170,11 +165,11 @@ const columns = [
     sortable: true
   },
   //
-  {
-    name: 'plus',
-    label: '',
-    align: 'center'
-  },
+  // {
+  //   name: 'plus',
+  //   label: '',
+  //   align: 'center'
+  // },
   //
   {
     name: 'happy',

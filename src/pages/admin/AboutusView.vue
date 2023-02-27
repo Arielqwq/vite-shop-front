@@ -1,11 +1,11 @@
 <template lang="pug">
 #admin-aboutUs.q-pa-md
-  h3.text-center 關於我們管理
-  .div(class="q-px-xl row")
+  h3.text-center 關於管理
+  div(class="q-px-xl row")
     .col-12
-      q-btn(@click="openDialog(form._id.length > 0 ? 0 : -1)" color="primary" label="編輯")
+      q-btn(@click="openDialog(form._id.length > 0 ? 0 : -1)" color="primary" label="編輯內容")
   div(class="q-px-xl q-mt-md " )
-    div( style="width:80% ;height:500px ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")
+    div( style="width:100% ;height:500px ;border-radius: 10px; background-color:rgb(255, 245, 238); padding:20px ")
       h5 標題： {{ aboutus[0]?.title}}
       h6 內容： {{ aboutus[0]?.description }}
       h6 圖片：
@@ -16,14 +16,14 @@
         q-form(@submit="onSubmit" @reset="onReset")
           q-card-actions.row.flex.justify-between
             .div(align="left" class="q-pa-md row" )
-              .text-center {{ form._id.length > 0 ? '編輯關於我們' : '新增關於我們' }}
+              .text-center {{ form._id.length > 0 ? '編輯關於' : '新增關於' }}
             q-btn(dense flat icon='close' v-close-popup)
               q-tooltip Close
           q-card-section.column.q-gutter-md
             .col-12
-              q-input(square filled v-model="form.title" label="關於我們標題" :rules="[rules.required]")
+              q-input(square filled v-model="form.title" label="標題" :rules="[rules.required]")
             .col-12
-              q-input(square filled v-model="form.description" type="textarea" label="關於我們內容" :rules="[rules.required]")
+              q-input(square filled v-model="form.description" type="textarea" label="內容" :rules="[rules.required]")
             .col-5
               .row
                   //- .col-3( v-for="i in aboutus[form.idx]?.image" :key="i")

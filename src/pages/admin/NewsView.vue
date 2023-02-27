@@ -1,15 +1,20 @@
 <template lang="pug">
 #admin-news.q-pa-md
   h3.text-center 新聞管理
-  div(class="q-px-xl row")
-    .col-12
-      q-btn( @click="openDialog(-1)" color="primary" label="新增貼文")
+  //- div(class="q-px-xl row")
+  //-   .col-12
+  //-     q-btn( @click="openDialog(-1)" color="primary" label="新增貼文")
   div(class="q-px-xl q-mt-md")
     q-table(align="center" :columns="columns" :rows="news" row-key="_id" :filter="filter")
+      //- 新增按鈕
+      template(v-slot:top-left)
+        .col-12
+          q-btn(size="lg" @click="openDialog(-1)" color="primary" label="新增商品")
+
       //- 圖片
       template( v-slot:body-cell-image="props")
-        q-td
-          img(:src='props.row.image' style='height: 100px;')
+        q-td.text-center
+          img.absolute-center(:src='props.row.image' style='width: 130px;')
       //- 狀態
       template(v-slot:body-cell-sell="props")
         q-td.text-center

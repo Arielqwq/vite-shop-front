@@ -71,12 +71,7 @@ const menuList = [
   //   route: '/Mypage/Paymentcards',
   //   separator: false
   // },
-  {
-    icon: 'delete',
-    label: '我的訂單',
-    route: '/Mypage/MypageOrders',
-    separator: false
-  },
+
   {
     icon: 'fa-solid fa-user-group',
     label: '我的收藏',
@@ -87,6 +82,12 @@ const menuList = [
     icon: 'send',
     label: '我的回應',
     route: '/Mypage/Feedbacks',
+    separator: false
+  },
+  {
+    icon: 'delete',
+    label: '我的訂單',
+    route: '/Mypage/MypageOrders',
     separator: false
   },
   {

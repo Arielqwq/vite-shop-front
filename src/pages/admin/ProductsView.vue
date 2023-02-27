@@ -1,14 +1,20 @@
 <template lang="pug">
 #admin-products.q-pa-md
   h3.text-center 商品管理
-  div(class="q-px-xl row")
-    .col-12
-      q-btn( @click="openDialog(-1)" color="primary" label="新增商品")
+  //- div(class="q-px-xl row")
+  //-   .col-12
+  //-     q-btn( @click="openDialog(-1)" color="primary" label="新增商品")
   div(class="q-px-xl q-mt-md")
     q-table( :columns="columns" :rows="products" row-key="_id" :filter="filter" )
+      //- 新增按鈕
+      template(v-slot:top-left)
+        .col-12
+          q-btn(size="lg" @click="openDialog(-1)" color="primary" label="新增商品")
+
+      //- 圖片顯示
       template( v-slot:body-cell-image="props")
         q-td.text-center
-          img(:src='props.row.image' style='height: 100px;')
+          img(:src='props.row.image' style='width: 100px;')
 
       template( v-slot:top-right)
         q-input( outlined  debounce="300" v-model="filter" placeholder="Search")
@@ -157,7 +163,7 @@ const columns = [
   {
     name: 'name',
     required: true,
-    label: '商品名稱',
+    label: '名稱',
     align: 'center',
     field: products => products.name,
     format: val => `${val}`,
@@ -166,7 +172,7 @@ const columns = [
   {
     name: 'image',
     required: true,
-    label: '商品圖片',
+    label: '圖片',
     align: 'center',
     field: row => row.image,
     format: val => `${val}`,
@@ -175,7 +181,7 @@ const columns = [
   {
     name: 'price',
     required: true,
-    label: '商品價格',
+    label: '價格',
     align: 'center',
     field: row => row.price,
     format: val => `${val}`,

@@ -1,12 +1,15 @@
 <template lang="pug">
 #admin-events.q-pa-md
   h3.text-center 活動管理
-  div(class="q-px-xl row")
-    .col-12
-      q-btn( @click="openDialog(-1)" color="primary" label="新增活動")
+  //- div(class="q-px-xl row")
+  //-   .col-12
+  //-     q-btn( @click="openDialog(-1)" color="primary" label="新增活動")
   div(class="q-px-xl q-mt-md")
     q-table(align="center"  :columns="columns" :rows="events" row-key="_id" :filter="filter")
-
+      //- 新增按鈕
+      template(v-slot:top-left)
+        .col-12
+          q-btn(size="lg" @click="openDialog(-1)" color="primary" label="新增商品")
       //- 搜尋
       template( v-slot:top-right)
           q-input( outlined debounce="300" v-model="filter" placeholder="Search")
@@ -36,7 +39,7 @@
       //- 圖片顯示
       template( v-slot:body-cell-image="props")
         q-td.text-center
-          img(:src='props.row.image' style='height: 100px;')
+          img.absolute-center(:src='props.row.image' style='width: 120px;')
 
       //- 編輯按鈕
       template(#body-cell-edit="data")
