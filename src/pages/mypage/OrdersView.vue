@@ -7,16 +7,17 @@
           q-tab.text-h3(name='productsOrder' label='我的商品訂單')
           q-tab(name='eventsOrder' label='我的課程活動資訊 ')
         q-separator
-        q-tab-panels(v-model='tab' animated)
+        //- 商品訂單
+        q-tab-panels(v-model='tab' animated style="width:100%")
           q-tab-panel(name='productsOrder')
             .col-12
-              q-table(:columns="columns" :rows="orders" style="overflow-x:scroll")
+              q-table(:columns="columns" :rows="orders")
                 //- 訂單內容
                 template(v-slot:body-cell-content='data')
-                  q-td.text-center
+                  q-td.text-left()
                     template(v-for="product in data.row.products")
-                      p {{product.quantity + ' 個 ' + product.p_id.name}}
-
+                      p.q-ma-none(style="font-size:.78vw") {{product.quantity + ' 個 ' + product.p_id.name}}
+          //- 活動資訊
           q-tab-panel(name='eventsOrder')
             q-table(:columns="columnsOfEvents" :rows="events")
 
@@ -69,7 +70,7 @@ const columns = [
   {
     name: 'date',
     required: true,
-    label: '訂單日期',
+    label: '下單日期',
     align: 'center',
     field: orders => new Date(orders.date).toLocaleDateString(),
     sortable: true
@@ -77,14 +78,14 @@ const columns = [
   {
     name: 'price',
     required: true,
-    label: '訂單金額',
+    label: '金額',
     align: 'center',
     field: orders => orders.totalPrice,
     sortable: true
   },
   {
     name: 'content',
-    label: '訂單內容',
+    label: '內容',
     align: 'center'
   }
 ]

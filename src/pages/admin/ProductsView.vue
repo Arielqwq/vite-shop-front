@@ -52,26 +52,29 @@
               q-input(square filled v-model="form.description" type="textarea" label="商品說明" :rules="[rules.required]")
             .col-12
               q-select(filled v-model="form.category" :options="categories" label="分類" :rules="[rules.required]")
-            .col-2
+            .col-12
               q-checkbox(v-model="form.sell" label="上架")
-            .col-5
-              .row
-                  //- .col-3( v-for="i in products[form.idx]?.image" :key="i")
-                  q-img(:src="products[form.idx]?.image" style="height:100px")
-                  q-file(filled v-model="form.image" label="請上傳主圖片" style="max-height: 50px")
-                    template(v-slot:append)
-                      q-icon(name="close" @click="clear")
+            .col-12
+              //- .col-3( v-for="i in products[form.idx]?.image" :key="i")
+              q-file(filled v-model="form.image" label="請上傳主圖片" style="max-height: 50px")
+                template(v-slot:append)
+                  q-icon(name="close" @click="clear")
+              q-img(:src="products[form.idx]?.image" style="width:100px")
 
-            .col-5
+            .col-12
               .row
+                .col-12
+                  q-file(v-model="form.images" label="請上傳補充圖片" filled multiple )
+                    template(v-slot:append)
+                      q-icon(name="close" @click="clears")
                 .col-3(v-if="form.idx >= 0" v-for="img in products[form.idx]?.images" :key="img")
                   q-img.fullwidth(:src="img")
                     .absolute-full.flex.flex-center(v-if="form.delImages.includes(img)")
                       q-icon(name="delete")
                   q-checkbox(v-model="form.delImages" :val="img")
-              q-file(v-model="form.images" label="請上傳補充圖片" filled multiple style="max-width: 300px")
-                template(v-slot:append)
-                  q-icon(name="close" @click="clears")
+                //- q-file(v-model="form.images" label="請上傳補充圖片" filled multiple style="max-width: 300px")
+                //-   template(v-slot:append)
+                //-     q-icon(name="close" @click="clears")
 
           q-card-actions(align='right')
             q-btn(:disabled="form.loading" flat label='reset' type="reset" color='red')

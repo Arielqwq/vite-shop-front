@@ -23,6 +23,7 @@ q-layout(class="shadow-2 rounded-borders")
         div.q-ma-sm.flex.row.justify-center(style="color:#fff")
           .text-h6 Hi ! 管理員 &nbsp;
           .text-h6 {{ account }}
+          .text-h6 {{ email }}
 
   q-page-container
     q-page
@@ -36,7 +37,7 @@ import { useUserStore } from '@/stores/user'
 import { ref } from 'vue'
 
 const user = useUserStore()
-const { avatar, account } = storeToRefs(user)
+const { avatar, account, email } = storeToRefs(user)
 const drawer = ref(false)
 const miniState = ref(true)
 
