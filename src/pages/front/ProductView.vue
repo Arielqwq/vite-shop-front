@@ -12,7 +12,7 @@
         //- div.flex.items-center
         .text-h5 Qty：
         q-input.col-5.col-lg-2.q-pr-md(filled v-model.number="quantity" type="number" :rules="[rules.required, rules.number]" style="height:55px; font-size:20px")
-        q-btn.addCartBtn.col-5.col-lg-3.q-pr-md(type="submit" color="primary" style="height:55px") 加入購物車
+        q-btn.addCartBtn.col-5.col-lg-3.q-pr-md(type="submit" color="primary" style="height:55px" label="加入購物車")
         q-btn.col-2.col-lg-1.q-pa-md(flat round color='red' size="xl" :icon=" love ? 'fa-solid fa-heart':'fa-regular fa-heart'" @click="editLove({_id:product._id})")
       //- div 多圖顯示
       //-   .row.col-10(v-for="img in product.images" :key="img")
@@ -90,7 +90,8 @@ const route = useRoute()
 const router = useRouter()
 
 const user = useUserStore()
-const { editCart, isLogin } = storeToRefs(user)
+const { editCart } = user
+const { isLogin } = storeToRefs(user)
 
 // const valid = ref(false)
 const quantity = ref(0)
