@@ -79,12 +79,12 @@ const menuList = [
     route: '/admin/feedbacks',
     separator: false
   },
-  {
-    icon: 'error',
-    label: '關於管理',
-    route: '/admin/aboutus',
-    separator: false
-  },
+  // {
+  //   icon: 'error',
+  //   label: '關於管理',
+  //   route: '/admin/aboutus',
+  //   separator: false
+  // },
   {
     icon: 'fa-solid fa-house',
     iconColor: 'primary',

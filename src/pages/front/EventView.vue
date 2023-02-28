@@ -2,31 +2,37 @@
 #front-event
   .eventContent.flex.justify-center.row
     .col-12.q-pl-xl(align="left")
-      .text-h3 {{ event.daysfrom }}
-      .text-h3 {{ event.daysto }}
+      .text-h3 {{ event.title }}
+      //- .text-h3 {{ event.daysfrom }}
+      //- .text-h3 {{ event.daysto }}
     div.row.justify-evenly
       .eventLeft.col-2.q-ma-md
-        .text-h7 參加人數上限：{{event.pplNum}}
-        .text-h6 費用： $ {{ event.price }}
-        .text-h7.q-mt-lg 活動分類：{{ event.category }}
-        div.q-mt-lg
-          .text-h7 講師：{{ event. lecturer }}
-          q-expansion-item(expand-separator label='講師介紹')
+        .text-h7 活動時間:
+        .text-h7.q-ml-md {{ event.daysfrom }} ~
+        .text-h7.q-ml-md {{ event.daysto }}
+        .text-h7.q-mt-md 參加人數上限：{{event.pplNum}}
+        .text-h7.q-mt-md 費用： $ {{ event.price }}
+        .text-h7.q-mt-md 活動分類：{{ event.category }}
+        div.q-mt-md
+          .text-h7.q-mt-md 講師：{{ event. lecturer }}
+          q-expansion-item( label='講師介紹' )
             q-card
-              q-card-section.q-pl-none
+              q-card-section
                 p {{ event. lecturerInfo }}
+        .col-3.q-mt-md
+            q-btn(@click="addCart=true" color="primary" ) 參加活動
 
       .eventRight.col-8.q-ma-sm
-        .text-h4  {{ event.title }}
+        //- .text-h4  {{ event.title }}
         #event-img.q-pt-md(style="width:450px;height:300px;").col-12.col-lg-12.flex.justify-center
           q-img(:src="event.image" style="border-radius:20px" cover )
-        p.pre.q-mt-lg 活動簡介：{{ event.description }} 講師簡介：
+        p.pre.eventInfo 活動簡介：{{ event.description }}
       //-v-model.number傳入數字，v-model 預設是文字
       //- q-input(filled v-model.number="quantity" type="number" label="數量" :rules="[rules.required, rules.number]" min="1")
       //- q-btn(type="submit" color="primary") 參加活動
       //- :disabled="quantity < 1"
-    .col-3
-      q-btn(@click="addCart=true" color="primary" ) 參加活動
+    //- .col-3
+    //-   q-btn(@click="addCart=true" color="primary" ) 參加活動
 
   //-參加活動的彈跳視窗
   q-dialog(v-model="addCart" persistent )
@@ -36,7 +42,7 @@
           //- h5.text-white.text-weight-bold
           q-btn( dense flat icon='close' v-close-popup)
               q-tooltip Close
-        q-card-actions(align="center" class="bg-white text-accent")
+        q-card-actions(align="center" class="bg-white text-primary" )
           div.flex.column
             p 活動名稱：{{ event.title }}
             p 活動期間：{{ event.daysfrom }} ~ {{ event.daysto }}
@@ -49,7 +55,7 @@
             q-checkbox.checkbox(v-model="checkbox" :rules="[rules.requiredCheckbox]") 請勾選同意參加活動
             div(align="center")
               q-btn(type="reset" color="red" flat label="reset")
-              q-btn(flat type='submit' label="submit"  :disabled="!checkbox" )
+              q-btn(flat type='submit' label="submit" :disabled="!checkbox" )
 
   //-下架通知
   q-dialog(:v-model="!event.sell" persistent )

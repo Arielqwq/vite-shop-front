@@ -3,7 +3,7 @@
   div(style="padding:35px 35px 0 35px")
     //-最新消息輪播圖
     .qcarousel-area
-      q-carousel(style="width:100%; height:100%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
+      q-carousel(style="width:100%; height:90%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
         q-carousel-slide(:name='1' :img-src='news[0]?.image')
           router-link(:to="'/newsPage/' + news[0]?._id")
             q-img(style="height:100%")
@@ -177,7 +177,7 @@ const rules = {
 }
 
 // 移動 icon
-const fabPos = ref([120, 170])
+const fabPos = ref([45, 130])
 const draggingFab = ref(false)
 // 移動 icon
 const moveFab = (ev) => {

@@ -20,8 +20,8 @@
           //-   img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
           q-btn.text-h6(flat color="secondary" to="/Events" label="課程活動")
             q-tooltip LECTURE & EVENTS
-          q-btn.text-h6(flat color="secondary" to="/AboutUs" label="關於我們")
-            q-tooltip ABOUT US
+          //- q-btn.text-h6(flat color="secondary" to="/AboutUs" label="關於我們")
+          //-   q-tooltip ABOUT US
 
         q-toolbar.col-2.q-toolbar.q-pa-md(align="right")
           q-btn(v-if="!isLogin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-user" @click="showLogin = true")
@@ -93,7 +93,7 @@
     q-page-container
       //- 按商品時路徑正確
       router-view(:key="$route.fullPath")
-      q-page-scroller(position='bottom-right' :scroll-offset='150' :offset='[120, 230]')
+      q-page-scroller(position='bottom-right' :scroll-offset='150' :offset='[45, 200]')
         q-btn(fab icon='fa-solid fa-chevron-up' color='primary').
 
     q-footer.q-footer(fixed)

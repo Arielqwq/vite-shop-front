@@ -1,12 +1,12 @@
 <template lang="pug">
 #productView
   .showProduct.row.flex.justify-center
-    .product-img.col-12.col-lg-3.flex.justify-center
-      q-img(:src="product.image" style="width:200px")
-    .product-content.col-10.col-lg-5
+    .product-img.col-12.col-md-3.flex.justify-center
+      q-img(:src="product.image" style="width:200px; max-height:650px")
+    .product-content.col-10.col-md-5
       h3.q-my-lg {{ product.name }}
       h4.q-my-lg $ {{ product.price }}
-      h5.pre.q-my-lg {{ product.description }}
+      h6.pre.q-my-lg {{ product.description }}
       q-form(@submit="submitCart").row.q-mt-md.flex.items-center
         //-v-model.number傳入數字，v-model 預設是文字
         //- div.flex.items-center
