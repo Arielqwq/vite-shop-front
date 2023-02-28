@@ -6,12 +6,13 @@
     .product-content.col-10.col-lg-5
       h3.q-my-lg {{ product.name }}
       h4.q-my-lg $ {{ product.price }}
-      p.pre.q-my-lg {{ product.description }}
+      h5.pre.q-my-lg {{ product.description }}
       q-form(@submit="submitCart").row.q-mt-md.flex.items-center
         //-v-model.number傳入數字，v-model 預設是文字
         //- div.flex.items-center
-        q-input.col-5.col-lg-2.q-pr-md(filled v-model.number="quantity" type="number" label="數量" :rules="[rules.required, rules.number]" style="height:55px")
-        q-btn.col-5.col-lg-3.q-pr-md(type="submit" color="primary" style="height:55px") 加入購物車
+        .text-h5 Qty：
+        q-input.col-5.col-lg-2.q-pr-md(filled v-model.number="quantity" type="number" :rules="[rules.required, rules.number]" style="height:55px; font-size:20px")
+        q-btn.addCartBtn.col-5.col-lg-3.q-pr-md(type="submit" color="primary" style="height:55px") 加入購物車
         q-btn.col-2.col-lg-1.q-pa-md(flat round color='red' size="xl" :icon=" love ? 'fa-solid fa-heart':'fa-regular fa-heart'" @click="editLove({_id:product._id})")
       //- div 多圖顯示
       //-   .row.col-10(v-for="img in product.images" :key="img")
@@ -22,7 +23,7 @@
       .text-h5 YOU MAY ALSO LIKE
     .col-12.row.justify-center(style="margin:50px")
       div(v-for="recomProduct in recomProducts" :key="recomProducts._id")
-        ProductCard(style="width:250px" v-bind="recomProduct")
+        ProductCard.cardinRecomProduct(style="width:250px" v-bind="recomProduct")
 
   q-dialog(:v-model="!product.sell" persistent )
     q-card(class="bg-accent text-white" style="width: 300px")
@@ -131,19 +132,19 @@ const editLove = async () => {
     if (love.value === true) {
       Swal.fire({
         title: '加入收藏',
-        color: 'pink'
+        color: '#630606'
       })
     } else {
       Swal.fire({
         title: '移除收藏',
-        color: 'pink'
+        color: '#630606'
       })
     }
   } catch (error) {
     Swal.fire({
       message: '失敗',
       caption: error?.response?.data?.message || '發生錯誤',
-      color: 'pink'
+      color: 'red'
     })
   }
 }

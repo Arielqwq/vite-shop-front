@@ -1,17 +1,37 @@
 #productView
   .product-content
-    height:100%
+    margin: 60px 0 0 0
+    height: 100%
+    display: flex
+    flex-direction: column
+  .addCartBtn
+    font-size: 20px
+  // .showProduct
+  //   height:800px
+  //   margin:110px 0
 
+  // .recomProduct
+  //   height: 450px
+  //   margin: 0px 0 120px 0
+  //   padding: 12px 0 10px 0
+  // .addCartBtn
+  //   font-size: 20px
+
+.recomProduct a
+    color: #000
+.recomProduct button
+  font-size:18px
+.cardinRecomProduct:hover .q-img
+  -webkit-transform: scale(0.9)
+  transition: all 0.4s ease-out
+.cardinRecomProduct:hover .q-btn
+  background-color:#F89D13 !important
+  color: $secondary !important
+
+@media screen and (min-width: 992px) 
   .showProduct
-    height:800px
+    height:600px
     margin:110px 0
+  .recomProduct .q-img
+    width: 170px
 
-  .recomProduct
-    height: 450px
-    margin: 0px 0 120px 0
-    padding: 12px 0 10px 0
-  @media screen and (min-width: 992px) 
-    .showProduct
-      height:500px
-    .recomProduct .q-img
-      width: 170px

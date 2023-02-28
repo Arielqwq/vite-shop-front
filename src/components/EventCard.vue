@@ -4,7 +4,7 @@
     .row
       .col-6(style="margin:auto;")
         q-img.eventCardImg.rounded-borders(:src='image')
-      .col-6
+      .col-6.flex.items-center
         q-card-section.eventCardContent
           .eventCardtitle.q-my-md.q-mb-xs {{title}}
           .q-my-md.q-mb-xs

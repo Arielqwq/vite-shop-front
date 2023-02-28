@@ -2,7 +2,7 @@
 #front-events(align="center")
   div.row
     .cardinEventView.q-pa-lg.col-6(style=" margin-bottom:30px" v-for="event in events" :key="event._id" )
-      EventCard(v-bind="event")
+      EventCard.eventCard(v-bind="event")
   </template>
 
 <script setup>
