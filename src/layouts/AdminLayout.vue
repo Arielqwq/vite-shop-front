@@ -56,13 +56,13 @@ const menuList = [
     separator: true
   },
   {
-    icon: 'send',
+    icon: 'fa-solid fa-newspaper',
     label: '新聞管理',
     route: '/admin/news',
     separator: false
   },
   {
-    icon: 'delete',
+    icon: 'fa-solid fa-clipboard-list',
     label: '訂單管理',
     route: '/admin/orders',
     separator: false

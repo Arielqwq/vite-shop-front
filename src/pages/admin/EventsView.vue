@@ -9,7 +9,7 @@
       //- 新增按鈕
       template(v-slot:top-left)
         .col-12
-          q-btn(size="lg" @click="openDialog(-1)" color="primary" label="新增商品")
+          q-btn(size="lg" @click="openDialog(-1)" color="primary" label="新增活動")
       //- 搜尋
       template( v-slot:top-right)
           q-input( outlined debounce="300" v-model="filter" placeholder="Search")
@@ -64,11 +64,13 @@
             .col-6
               q-checkbox(v-model="form.sell" label="上架")
             .col-12
-              q-input.daysfrom(square filled v-model="form.daysfrom" type="date"  label="活動開始日期" :rules="[rules.required, rules.daysfrom]" @update:model-value="form.daysto = ''")
+              .text-h7.text-left 活動開始日期
+              q-input.daysfrom(square filled v-model="form.daysfrom" type="date"  :rules="[rules.required, rules.daysfrom]" @update:model-value="form.daysto = ''")
               //-   p 活動開始日期： {{ days }}
               //- q-date(v-model='form.days' range multiple)
             .col-12
-              q-input.daysfrom(square filled v-model="form.daysto" type="date"  label="活動結束日期" :rules="[rules.required, rules.daysto]" :disable="form.daysfrom.length === 0")
+              .text-h7.text-left 活動結束日期
+              q-input.daysto(square filled v-model="form.daysto" type="date"  :rules="[rules.required, rules.daysto]" :disable="form.daysfrom.length === 0")
             .col-12
               q-input.daysto(square filled v-model="form.description" type="textarea" label="活動說明" :rules="[rules.required]")
             .col-12

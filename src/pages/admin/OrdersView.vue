@@ -20,7 +20,7 @@
       //- 刪除
       template(v-slot:body-cell-delete='data')
         q-td.text-center
-          q-btn(@click="deleteOrder(data.row._id)" round icon="fa-solid fa-trash-can")
+          q-btn(@click="deleteOrder(data.row._id)" round icon="fa-solid fa-trash-can" color="red")
 </template>
 
 <script setup>

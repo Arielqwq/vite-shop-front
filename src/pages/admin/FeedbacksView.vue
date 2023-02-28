@@ -32,14 +32,15 @@
               q-tooltip Close
           q-card-section(align='left').column.q-gutter-md
             .col-12.q-pa-md
-              .text-h5 主旨
+              .text-h5 主旨：
               .text-h6 {{ form.title }}
             .col-12.q-pa-md
-              .text-h5 內文
+              .text-h5 內文：
               .text-h6 {{ form.description }}
-            .col-12
-              q-input(square filled v-model="form.reply" label="管理者回應" :rules="[rules.required]")
-            .col-2
+            .col-12.q-pa-md
+              .text-h5 管理者回應：
+              q-input(square filled v-model="form.reply" :rules="[rules.required]")
+            .col-2.q-pa-md
               .text-h6 請勾選確定回應
               q-checkbox(v-model="form.status")
           q-card-actions(align='right')

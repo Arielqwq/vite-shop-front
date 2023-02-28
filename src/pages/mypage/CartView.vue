@@ -55,11 +55,11 @@
           //- span {{ data.row._id }}
           q-btn(round color="red" @click="updateCart(data.row._id, data.row.quantity*-1 ,'刪除商品')" icon="fa-solid fa-trash-can")
 
-  div(class="q-px-xl q-mt-md")
+  div(class="q-px-xl q-mt-xl")
     .col-12(align="center")
-      p 總金額 {{ totalPrice }}
+      .text-h5.q-ma-md 總金額 {{ totalPrice }}
       //- q-btn(color="green" :disabled="!canCheckout" @click="onCheckoutBtnClick" label="結帳")
-      q-btn(color="green" :disabled="!canCheckout" @click="addCart = true" label="結帳")
+      q-btn(size="md" color="green" :disabled="!canCheckout" @click="addCart = true" label="結帳")
 
   q-dialog(v-model="addCart" persistent)
     q-card(class="bg-accent text-white" style="width: 500px")
