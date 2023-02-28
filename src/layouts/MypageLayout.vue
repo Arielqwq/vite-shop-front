@@ -16,7 +16,7 @@ q-layout( class="shadow-2 rounded-borders")
                 //- {{  }}
               .div(class="text-weight-bold")
               .div Hi !  {{ account }}
-        div.col-12.flex.column.q-ma-auto.items-center
+        div.col-12.flex.column.q-ma-auto.q-ml-xl
           li.mypageIcon.q-pa-md.text-center.row(align="center" v-for="menuItem in menuList" )
             q-btn.mypageIconBtn.q-pa-md(align="left" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
 
@@ -54,13 +54,13 @@ const miniState = ref(true)
 
 const menuList = [
   {
-    icon: 'fa-solid fa-bag-shopping',
+    icon: 'fa-regular fa-address-card',
     label: '會員資料',
     route: '/Mypage',
     separator: true
   },
   {
-    icon: 'fa-solid fa-martini-glass-citrus',
+    icon: 'fa-solid fa-cart-shopping',
     label: '我的購物車',
     route: '/Mypage/Mypagecart',
     separator: true
@@ -73,21 +73,21 @@ const menuList = [
   // },
 
   {
-    icon: 'fa-solid fa-user-group',
+    icon: 'fa-regular fa-heart',
     label: '我的收藏',
     route: '/Mypage/Wishlist',
     separator: true
   },
   {
-    icon: 'send',
-    label: '我的回應',
-    route: '/Mypage/Feedbacks',
+    icon: 'fa-solid fa-receipt',
+    label: '我的訂單',
+    route: '/Mypage/MypageOrders',
     separator: false
   },
   {
-    icon: 'delete',
-    label: '我的訂單',
-    route: '/Mypage/MypageOrders',
+    icon: 'fa-regular fa-envelope',
+    label: '我的回應',
+    route: '/Mypage/Feedbacks',
     separator: false
   },
   {

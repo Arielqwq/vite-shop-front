@@ -2,7 +2,7 @@
 .productcard(align="center" )
   //- q-img.productcardImg(:src="image" fit="contain")
   q-img.productcardImg(:src="image" )
-  q-card-section.q-pa-none.q-my-lg(style="height:50px")
+  q-card-section.nameinProductCard.q-pa-none.q-my-lg
     router-link.text-center.text-weight-bold.textUnderline-none(:to="'/product/' + _id" style="padding:0 20px;") {{ name }}
   q-card-section.text-center.q-pa-sm(style="height:50px")
     .text-h5.text-center.text-subtitle.items-center ${{ price }}

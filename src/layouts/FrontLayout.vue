@@ -8,10 +8,10 @@
         q-btn.text-h7(to="/Products" flat style="color: #FFf" label=" Star Shopping")
 
       .header-toolbar.row(style="background: white;")
-        q-tabs.col-1
+        q-tabs.col-2
           q-route-tab(to="/" bg-color="#630606")
             img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
-        q-tabs.col-10.header-tabs.rounded-borders( indicator-color="transparent")
+        q-tabs.col-8.header-tabs.rounded-borders( indicator-color="transparent")
           q-btn.btnNews.text-h6(flat color="secondary"  to="/News" label="最新消息")
             q-tooltip NEWS
           q-btn.text-h6(flat color="secondary"  to="/Products" label="所有商品")
@@ -23,16 +23,16 @@
           q-btn.text-h6(flat color="secondary" to="/AboutUs" label="關於我們")
             q-tooltip ABOUT US
 
-        q-toolbar.col-1.q-toolbar.q-pa-md(align="right")
+        q-toolbar.col-2.q-toolbar.q-pa-md(align="right")
           q-btn(v-if="!isLogin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-user" @click="showLogin = true")
           //- <q-btn v-if="!isLogin" font-awesome-icon icon="fa-solid fa-user" to="/register" label="註冊"/>
           //- <q-btn v-if="!isLogin" font-awesome-icon icon="fa-solid fa-right-to-bracket" to="/login" label="登入"/>
           //- 購物車及數量
-          q-btn(v-if="isLogin && !isAdmin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-cart-shopping" to="/Mypage/Mypagecart")
+          q-btn(v-if="isLogin && !isAdmin" text-color="secondary" flat rounded size="md" icon="fa-solid fa-cart-shopping" to="/Mypage/Mypagecart")
             q-badge( size="xs" color="red" :label="cart" rounded floating)
 
           //- 會員登入後的下拉選單
-          q-btn-dropdown(v-if="isLogin && !isAdmin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-user-gear")
+          q-btn-dropdown(v-if="isLogin && !isAdmin" text-color="secondary" flat rounded size="md" icon="fa-solid fa-user")
             q-list
               q-item(clickable v-close-popup to="/Mypage" )
                 q-item-section(avatar)
@@ -74,8 +74,8 @@
                 q-item-section
                   q-item-label 登出
 
-          q-btn(v-if="isLogin && isAdmin" flat rounded text-color="secondary" size="sm" icon="fa-solid fa-hammer" to="/admin" label="管理")
-          q-btn#logoutBtn(v-if="isLogin && isAdmin" text-color="secondary" flat rounded size="sm" icon="fa-solid fa-right-from-bracket" @click="logout" label="登出")
+          q-btn(v-if="isLogin && isAdmin" flat rounded text-color="secondary" size="md" icon="fa-solid fa-hammer" to="/admin" label="管理")
+          q-btn#logoutBtn(v-if="isLogin && isAdmin" text-color="secondary" flat rounded size="md" icon="fa-solid fa-right-from-bracket" @click="logout" label="登出")
 
       q-dialog( v-if="showLogin" v-model="showLogin")
         q-card(class="q-dialog-plugin")
@@ -93,8 +93,8 @@
     q-page-container
       //- 按商品時路徑正確
       router-view(:key="$route.fullPath")
-      q-page-scroller(position='bottom-right' :scroll-offset='150' :offset='[23, 110]')
-        q-btn(fab icon='fa-solid fa-chevron-up' color='accent').
+      q-page-scroller(position='bottom-right' :scroll-offset='150' :offset='[120, 230]')
+        q-btn(fab icon='fa-solid fa-chevron-up' color='primary').
 
     q-footer.q-footer(fixed)
       q-img(style="width:100%" src="@/assets/drinkdontdrive.jpg")

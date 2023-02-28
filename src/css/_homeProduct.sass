@@ -38,7 +38,7 @@
     transform: scale(.9)
     // 字體
   .productcardinHomeview a
-    font-size: calc(1.3vw + 2px)
+    font-size: calc(1vw + 5px)
   .productcardinHomeview .text-h5
     font-size: 30px
   .productcardinHomeview button
@@ -60,7 +60,13 @@
   .productcardinHomeview button
     margin-top: -10px
 
-
 #product-img
   height: 300px
   width: 300px
+
+@media screen and (min-width: 768px)
+  .productcardinHomeview  .nameinProductCard
+    height: 80px
+  .product-area
+    height: 750px
+    margin: 170px 0px

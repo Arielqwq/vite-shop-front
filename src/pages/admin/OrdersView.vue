@@ -19,7 +19,7 @@
 
       //- 刪除
       template(v-slot:body-cell-delete='data')
-        q-td
+        q-td.text-center
           q-btn(@click="deleteOrder(data.row._id)" round icon="fa-solid fa-trash-can")
 </template>
 

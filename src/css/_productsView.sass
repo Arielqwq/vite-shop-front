@@ -1,13 +1,7 @@
 #front-ProductsView
   padding: 30px
   margin:0 30px
-@media screen and (min-width: 768px)
-  #front-ProductsView
-    margin:0 150px
-  #front-ProductsView .filterBtninProductsView button
-    font-size: 20px
-  .CardinProductsView .q-img
-    width: 200px
+
 
 
 .product-img
@@ -19,6 +13,7 @@
 
 .CardinProductsView a
   font-size: 20px
+  color: #000
 
 
 .CardinProductsView:hover .q-img
@@ -28,3 +23,17 @@
   color: $secondary !important
 .CardinProductsView:hover
   transform: scale(1.1)
+  transition: all 0.5s ease-out
+.CardinProductsView:hover a
+  color: #000
+
+@media screen and (min-width: 768px)
+  #front-ProductsView
+    margin:0 300px
+  .CardinProductsView ProductCard.productCard
+    magin:50px 30px
+    width: 300px
+  #front-ProductsView .filterBtninProductsView button
+    font-size: 20px
+  .CardinProductsView .q-img
+    width: 200px

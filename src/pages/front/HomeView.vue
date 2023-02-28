@@ -2,19 +2,20 @@
 #home
   div(style="padding:35px 35px 0 35px")
     //-最新消息輪播圖
-    q-carousel(style="width:100%;height:450px" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
-      q-carousel-slide(:name='1' :img-src='news[0]?.image')
-        router-link(:to="'/newsPage/' + news[0]?._id")
-          q-img(style="height:100%")
-      q-carousel-slide(:name='2' :img-src='news[1]?.image')
-        router-link(:to="'/newsPage/' + news[1]?._id")
-          q-img(style="height:100%")
-      q-carousel-slide(:name='3' :img-src='news[2]?.image')
-        router-link(:to="'/newsPage/' + news[2]?._id")
-          q-img(style="height:100%")
-      q-carousel-slide(:name='4' :img-src='news[3]?.image')
-        router-link(:to="'/newsPage/' + news[3]?._id")
-          q-img(style="height:100%")
+    .qcarousel-area
+      q-carousel(style="width:100%; height:100%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
+        q-carousel-slide(:name='1' :img-src='news[0]?.image')
+          router-link(:to="'/newsPage/' + news[0]?._id")
+            q-img(style="height:100%")
+        q-carousel-slide(:name='2' :img-src='news[1]?.image')
+          router-link(:to="'/newsPage/' + news[1]?._id")
+            q-img(style="height:100%")
+        q-carousel-slide(:name='3' :img-src='news[2]?.image')
+          router-link(:to="'/newsPage/' + news[2]?._id")
+            q-img(style="height:100%")
+        q-carousel-slide(:name='4' :img-src='news[3]?.image')
+          router-link(:to="'/newsPage/' + news[3]?._id")
+            q-img(style="height:100%")
 
     //- 商品swiper
     .product-area
@@ -105,25 +106,28 @@
 
     //- 打開可移動icon
     q-page-sticky(position='bottom-right' :offset='fabPos' style="z-index:50;")
-      q-fab(icon='fa-regular fa-envelope' direction='up' color='primary' :disable='draggingFab' v-touch-pan.mouse='moveFab')
+      q-fab(icon='fa-regular fa-envelope' direction="left" color='primary' :disable='draggingFab' v-touch-pan.mouse='moveFab')
         q-fab-action(@click="openDialog" color="accent" icon="edit" )
         q-fab-action(@click="onClick" color="primary" icon="fa-solid fa-gift" )
 
     //- 回應對話框
-    q-dialog(v-model="isDialogOpen" title="Dialog Title" persistent)
-      q-card(class="bg-accent text-white" style="width: 500px")
-        q-form(@submit="submit" @reset="onReset" style="width:100%")
-          q-card-section(align="right" )
-            q-btn(dense flat icon='close' v-close-popup)
-                q-tooltip Close
-          q-card-actions( style="width:100%" align="center" class="bg-white text-accent")
-            div.flex.column.q-pa-md(style="width:100%")
-              h5.text-center.q-mt-md.text-primary 請輸入您的回應
-              q-input(filled v-model="form.title" label='請輸入主旨' :rules="[rules.required]")
-              q-input( v-model="form.description" type="textarea" label="請輸入您的回應" :rules="[rules.required]" )
-              div(align="center")
-                q-btn(type="reset" color="red" flat label="reset")
-                q-btn.text-primary(flat type='submit' label="submit" @click="submit")
+    .feedbackDialog
+      q-dialog(v-model="isDialogOpen" title="Dialog Title" persistent)
+        q-card(class="bg-accent text-white" style="width: 800px")
+          q-form(@submit="submit" @reset="onReset" style="width:100%")
+            q-card-section(align="right" )
+              q-btn(dense flat icon='close' v-close-popup)
+                  q-tooltip Close
+            q-card-actions( style="width:100%" align="center" class="bg-white text-accent")
+              div.flex.column.q-pa-md(style="width:100%").text-primary
+                h4.text-center.q-mt-md 請輸入您的回應
+                .text-h6 請輸入主旨
+                q-input.feedbackTitle(filled v-model="form.title" :rules="[rules.required]" style="font-size:24px")
+                .text-h6 請輸入您的回應
+                q-input( v-model="form.description" filled type="textarea"  :rules="[rules.required]" style="font-size:24px" )
+                div(align="center")
+                  q-btn(type="reset" color="red" flat label="reset")
+                  q-btn(flat type='submit' label="submit")
 
 </template>
 <script setup>
@@ -173,7 +177,7 @@ const rules = {
 }
 
 // 移動 icon
-const fabPos = ref([80, 110])
+const fabPos = ref([120, 170])
 const draggingFab = ref(false)
 // 移動 icon
 const moveFab = (ev) => {
