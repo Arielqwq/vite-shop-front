@@ -86,7 +86,7 @@ const menuList = [
   },
   {
     icon: 'fa-solid fa-comments',
-    label: '回應管理',
+    label: '訊息管理',
     route: '/admin/feedbacks',
     separator: false
   },

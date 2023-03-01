@@ -1,6 +1,6 @@
 <template lang="pug">
 #feedbackview.q-pa-md
-  h3.text-center 回應管理
+  h3.text-center 訊息管理
   div(class="q-px-xl q-mt-md")
     q-table(:columns="columns" :rows="feedbacks")
       //- 查詢
