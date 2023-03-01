@@ -3,22 +3,23 @@ q-layout( class="shadow-2 rounded-borders")
   //- q-header(elevated style="background-color: #230b0b")
   //-   q-toolbar(style="height:100px")
   //-     q-btn(flat @click="drawer = !drawer" round dense icon="menu" )
-  //-     q-toolbar-title 會員後台
-      //- @mouseover="miniState = false" @mouseout="miniState = true"
-      //- v-model="drawer"
-  q-drawer(style="background:#630606" show-if-above :width="300")
+  //-     q-toolbar-title(@mouseover="miniState = false" @mouseout="miniState = true") 會員後台
+  //-     v-model="drawer"
+  q-drawer.bg-accent( show-if-above :width="300")
     q-scroll-area.fit
       ul.q-ma-none.q-pa-none
-        .background(align="center" )
-            .bg-transparent
-              q-avatar( size="80px" class="q-mb-lg")
-                img(:src="avatar" style="height:100%")
-                //- {{  }}
-              .div(class="text-weight-bold")
-              .div Hi !  {{ account }}
+        .background.bg-primary(align="center")
+          div.q-my-md
+            img(src="../assets/logoicons/logo&name.png" style="width:150px;filter: brightness(100);")
+          .bg-transparent
+            q-avatar( size="80px" class="q-mb-lg")
+              img(:src="avatar" style="height:100%")
+              //- {{  }}
+            .div(class="text-weight-bold")
+            .div.text-white.q-mb-sm Hi !  {{ account }}
         div.col-12.flex.column.q-ma-auto.q-ml-xl
           li.mypageIcon.q-pa-md.text-center.row(align="center" v-for="menuItem in menuList" )
-            q-btn.mypageIconBtn.q-pa-md(align="left" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="white") {{ menuItem.label}}
+            q-btn.mypageIconBtn.q-pa-md(align="left" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="#182747") {{ menuItem.label}}
 
       //- q-list(padding class="menu-list")
       //-   template(v-for="(menuItem, index) in menuList" :key="index")
@@ -51,6 +52,7 @@ const user = useUserStore()
 const { avatar, account } = storeToRefs(user)
 // const drawer = ref(false)
 const miniState = ref(true)
+const { logout } = user
 
 const menuList = [
   {
@@ -61,7 +63,7 @@ const menuList = [
   },
   {
     icon: 'fa-solid fa-cart-shopping',
-    label: '我的購物車',
+    label: '購物清單',
     route: '/Mypage/Mypagecart',
     separator: true
   },
@@ -86,7 +88,7 @@ const menuList = [
   },
   {
     icon: 'fa-regular fa-envelope',
-    label: '我的回應',
+    label: '我的訊息',
     route: '/Mypage/Feedbacks',
     separator: false
   },
@@ -95,6 +97,13 @@ const menuList = [
     iconColor: 'primary',
     label: '回首頁',
     route: '/',
+    separator: false
+  },
+  {
+    icon: 'fa-solid fa-person-running',
+    iconColor: 'primary',
+    label: '登出',
+    route: 'logout',
     separator: false
   }
 ]

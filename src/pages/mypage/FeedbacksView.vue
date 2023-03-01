@@ -1,6 +1,6 @@
 <template lang="pug">
 #myfeedback.q-pa-md
-  h4.text-center 我的回應
+  h4.text-center 我的訊息
   div(class="q-px-xl q-mt-md")
     q-table(:columns="columns" :rows="feedbacks" row-key="p_id"  :filter="filter")
 

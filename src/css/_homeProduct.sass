@@ -35,7 +35,13 @@
 
 
   .productcardinHomeview
+    padding: 16px
     transform: scale(.9)
+    transition-duration: 0.5s
+    border: 1px solid #630606
+    border-radius: 8px
+
+
     // 字體
   .productcardinHomeview a
     font-size: calc(1vw + 5px)
@@ -53,7 +59,9 @@
     color: $secondary !important
   .productcardinHomeview:hover
     transform: scale(1)
-    transition: all 0.5s ease-out
+    // transition: all 0.5s ease-in-out
+    transition-duration: 0.5s
+    // border: 1px solid #F89D13
     // box-shadow: 3px 3px 5px #e6dec9
   // @media (min-width: 576px)
   //   margin: 20px 0px

@@ -1,6 +1,6 @@
 <template lang="pug">
 #cart.q-pa-md
-  h4.text-center 購物車
+  h4.text-center 購物清單
   div(class="q-px-xl q-mt-md")
     q-table(:columns="columns" :rows="cart" row-key="p_id"  :filter="filter"  )
 

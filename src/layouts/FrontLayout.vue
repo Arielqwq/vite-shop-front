@@ -3,23 +3,23 @@
   q-layout
     q-header.q-header(elevated height-hint="98" )
       //- shadow-2 整欄下底線
-      .header-top.row.justify-center.items-center(indicator-color="transparent" active-color="white" class="text-grey-5")
+      .header-top.row.justify-center.items-center.bg-secondary(indicator-color="transparent" active-color="white" class="text-white")
         .text-h7 Get Free Shipping Now !
         q-btn.text-h7(to="/Products" flat style="color: #FFf" label=" Star Shopping")
 
       .header-toolbar.row(style="background: white;")
         q-tabs.col-2
-          q-route-tab(to="/" bg-color="#630606")
-            img(src="../assets/logoicons/logo_glass.png" style="width:10%;")
+          q-route-tab.flex.row.align-left.items-start(to="/")
+            img(src="../assets/logoicons/logo&name.png" style="width:50%;")
         q-tabs.col-8.header-tabs.rounded-borders( indicator-color="transparent")
           q-btn.btnNews.text-h6(flat color="secondary"  to="/News" label="最新消息")
-            q-tooltip NEWS
+            q-tooltip.bg-warning NEWS
           q-btn.text-h6(flat color="secondary"  to="/Products" label="所有商品")
-            q-tooltip ALL PRODUCTS
+            q-tooltip.bg-warning ALL PRODUCTS
           //- q-route-tab(to="/" indicator-color="none")
           //-   img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
           q-btn.text-h6(flat color="secondary" to="/Events" label="課程活動")
-            q-tooltip LECTURE & EVENTS
+            q-tooltip.bg-warning LECTURE & EVENTS
           //- q-btn.text-h6(flat color="secondary" to="/AboutUs" label="關於我們")
           //-   q-tooltip ABOUT US
 

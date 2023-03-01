@@ -1,33 +1,33 @@
 <template lang="pug">
-#Mypage-info
-  .row
+#Mypage-info.q-pa-md
+  h4.text-center 會員資料
     .col-12
       div.flex.q-px-xl.justify-center.items-center(style="margin-top:10vw")
-        div(align="left" style="width:80% ;border-radius: 30px; background-color:rgb(255, 245, 238); padding:20px ")
-          .col-12(style="max-width:300px;").row.items-center.q-ma-md.q-py-sm
+        div(align="center" style="width:45% ;border-radius: 16px; padding:20px ; border: 1px solid #630645; ")
+          .col-12(style="max-width:600px;background-color:#E6DEDD;padding:10px ").row.items-center.q-ma-md
             q-icon(name="fa-solid fa-user" size="sm").q-mx-md
-            .text-h5(style="border-bottom: 1px solid #999") 帳號 :&nbsp;
+            .text-h5(style="border-bottom: 1px solid #999; ") 帳號 :&nbsp;
             .text-h5(style="border-bottom: 1px solid #999") &nbsp; {{ myInfo.account }} &nbsp;
           //- p 密碼 : {{ myInfo.password }}
-          .col-12.row.items-center.q-ma-md
+          .col-12.row.items-center.q-ma-md(style="max-width:600px;background-color:#E6DEDD;padding:10px")
             q-icon(name="fa-solid fa-envelope"  size="sm").q-mx-md.q-py-sm
             .text-h5(style="border-bottom: 1px solid #999") 信箱 :&nbsp;
             .text-h5(style="border-bottom: 1px solid #999;") &nbsp; {{  myInfo.email }}  &nbsp;
-          .col-12.row.items-center.q-ma-md
+          .col-12.row.items-center.q-ma-md(style="max-width:600px;background-color:#E6DEDD;padding:10px")
             q-icon(name="fa-regular fa-address-card"  size="sm").q-mx-md.q-py-sm
             .text-h5(style="border-bottom: 1px solid #999") 姓名 :&nbsp;
             .text-h5(style="border-bottom: 1px solid #999;") &nbsp;  {{ myInfo.username }}  &nbsp;
-          .col-12.row.items-center.q-ma-md
+          .col-12.row.items-center.q-ma-md(style="max-width:600px;background-color:#E6DEDD;padding:10px")
             q-icon(name="fa-solid fa-phone"  size="sm").q-mx-md.q-py-sm
             .text-h5(style="border-bottom: 1px solid #999") 電話 :&nbsp;
             .text-h5(style="border-bottom: 1px solid #999")  &nbsp;  {{  myInfo.phone }}  &nbsp;
-          .col-12.row.items-center.q-ma-md
+          .col-12.row.items-center.q-ma-md(style="max-width:600px;background-color:#E6DEDD;padding:10px")
             q-icon(name="fa-solid fa-cake-candles"  size="sm").q-mx-md.q-py-sm
             .text-h5(style="border-bottom: 1px solid #999")  生日 :&nbsp;
             .text-h5(style="border-bottom: 1px solid #999;") &nbsp;  {{ myInfo.birth }}  &nbsp;
 
-          .col-12.row.flex.justify-center.items-center.q-ma-md.q-py-sm
-            q-btn(@click="openDialog(myInfo._id.length > 0 ? 0 : -1)" color="primary" label="資料修改")
+          .col-12.row.flex.justify-center.items-center.q-mt-md.q-pa-sm
+            q-btn(@click="openDialog(myInfo._id.length > 0 ? 0 : -1)" color="primary" label="資料修改" size="lg")
 
         q-dialog(align="center" v-model="form.dialog" persistent)
           q-card( class="column" style="width: 700px; max-width: 80vw;")
