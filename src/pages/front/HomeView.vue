@@ -13,7 +13,7 @@
 
     //-最新消息輪播圖
     .qcarousel-area
-      q-carousel(style="width:100%; height:90%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
+      q-carousel(data-aos="fade-up" data-aos-anchor-placement="top-center" style="width:100%; height:90%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
         q-carousel-slide(:name='1' :img-src='news[0]?.image')
           router-link(:to="'/newsPage/' + news[0]?._id")
             q-img(style="height:100%")

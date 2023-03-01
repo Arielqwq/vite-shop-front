@@ -10,7 +10,7 @@
       .header-toolbar.row(style="background: white;")
         q-tabs.col-2
           q-route-tab.flex.row.align-left.items-start(to="/")
-            img(src="../assets/logoicons/logo&name.png" style="width:85%;")
+            img(src="../assets/logoicons/logo&name.png" style="width:85%;" data-aos="zoom-out-up" data-aos-duration="1500"  data-aos-anchor-placement="top-bottom")
         q-tabs.col-8.header-tabs.rounded-borders( indicator-color="transparent")
           q-btn.btnNews.text-h6(flat color="secondary"  to="/News" label="最新消息")
             q-tooltip.bg-warning NEWS
@@ -102,7 +102,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores/user'
 import LoginShow from '@/components/LoginShow.vue'
@@ -111,6 +111,11 @@ import RegisterShow from 'components/RegisterShow.vue'
 // quasar-swiper
 // const slide = ref(1)
 // const autoplay = ref(true)
+
+// aos
+import AOS from 'aos'
+// 或是改到config
+import 'aos/dist/aos.css'
 
 const user = useUserStore()
 const { isLogin, isAdmin, cart, showLogin } = storeToRefs(user)
@@ -123,7 +128,10 @@ const leftDrawerOpen = ref(false)
 function onItemClick () {
   console.log('Clicked on an Item')
 }
-
+onMounted(() => {
+  nextTick()
+  AOS.init()
+})
 // const toggleLeftDrawer = () => {
 //   leftDrawerOpen.value = !leftDrawerOpen.value
 // }
