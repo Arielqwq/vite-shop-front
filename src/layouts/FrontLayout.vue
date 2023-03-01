@@ -70,7 +70,7 @@
 
               q-item(clickable v-close-popup @click="logout")
                 q-item-section.q-pa-none(avatar)
-                  q-icon(name="fa-solid fa-person-running")
+                  q-icon(name="fa-solid fa-person-running" color="primary")
                 q-item-section
                   q-item-label 登出
 
