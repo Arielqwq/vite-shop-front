@@ -1,14 +1,16 @@
 <template lang="pug">
 #admin-layout
   q-layout(class="shadow-2 rounded-borders")
-    q-header(elevated style="background-color: #230b0b")
-      q-toolbar(style="height:100px")
-        q-btn(flat @click="drawer = !drawer" round dense icon="menu" )
-        q-toolbar-title.text-h5 管理者後台
+    //- q-header(elevated style="background-color: #230b0b")
+    //-   q-toolbar(style="height:100px")
+    //-     q-btn(flat @click="drawer = !drawer" round dense icon="menu" )
+    //-     q-toolbar-title.text-h5 管理者後台
         //- @mouseover="miniState = false" @mouseout="miniState = true"
-    q-drawer( show-if-above v-model="drawer"  :width="250" :breakpoint="500" bordered )
+    //- q-drawer.bg-accent( show-if-above v-model="drawer"  :width="250" :breakpoint="500" bordered )
+          q-scroll-area(fit style="height: calc(100% - 200px); margin-top: 200px; border-top:1px solid #999;")
 
-      q-scroll-area(fit style="height: calc(100% - 200px); margin-top: 200px; border-top:1px solid #999;")
+    q-drawer.bg-accent( show-if-above :width="300" :breakpoint="500" bordered )
+      q-scroll-area.fit(style="height: calc(100% - 200px);margin-top: 200px; ")
         q-list( class="menu-list")
           template(v-for="(menuItem, index) in menuList" :key="index")
             q-item.col-10(class="q-px-xl" clickable v-ripple :active="menuItem.label === 'Outbox'" :to="menuItem.route")
@@ -16,15 +18,17 @@
                 q-icon(:name="menuItem.icon" size="sm" :color="menuItem.iconColor")
               q-item-section.text-h6 {{ menuItem.label }}
 
-      div.top(class="absolute-top" color="white" style="height: 200px; background: brown;")
+      div.top(class="absolute-top" color="white" style="height: 200px; background:#630606;")
         div.q-pa-md.text-center(class="absolute-center bg-transparent" style="width:100%")
+          div.q-my-md
+            img(src="../assets/logoicons/logo&name.png" style="width:150px;filter: brightness(100);")
           q-avatar( size="56px" class="q-mb-sm")
             img(:src="avatar")
           //- div(class="text-weight-bold")
           div.q-ma-sm.flex.row.justify-center(style="color:#fff")
             .text-h6 Hi ! 管理員 &nbsp;
             .text-h6 {{ account }}
-            .text-h6 {{ email }}
+            //- .text-h6 {{ email }}
 
     q-page-container
       q-page

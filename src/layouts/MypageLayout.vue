@@ -12,14 +12,14 @@ q-layout( class="shadow-2 rounded-borders")
           div.q-my-md
             img(src="../assets/logoicons/logo&name.png" style="width:150px;filter: brightness(100);")
           .bg-transparent
-            q-avatar( size="80px" class="q-mb-lg")
+            q-avatar( size="80px" )
               img(:src="avatar" style="height:100%")
               //- {{  }}
             .div(class="text-weight-bold")
-            .div.text-white.q-mb-sm Hi !  {{ account }}
+            .div.text-white.q-my-md Hi !  {{ account }}
         div.col-12.flex.column.q-ma-auto.q-ml-xl
           li.mypageIcon.q-pa-md.text-center.row(align="center" v-for="menuItem in menuList" )
-            q-btn.mypageIconBtn.q-pa-md(align="left" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="#182747") {{ menuItem.label}}
+            q-btn.mypageIconBtn.q-pa-md(@click="handleClick(menuItem)" align="left" size="lg" :icon="menuItem.icon" :to="menuItem.route" flat rounded color="#182747") {{ menuItem.label}}
 
       //- q-list(padding class="menu-list")
       //-   template(v-for="(menuItem, index) in menuList" :key="index")
@@ -53,6 +53,12 @@ const { avatar, account } = storeToRefs(user)
 // const drawer = ref(false)
 const miniState = ref(true)
 const { logout } = user
+
+const handleClick = (menuItem) => {
+  if (menuItem.label === '登出') {
+    logout()
+  }
+}
 
 const menuList = [
   {
@@ -103,7 +109,7 @@ const menuList = [
     icon: 'fa-solid fa-person-running',
     iconColor: 'primary',
     label: '登出',
-    route: 'logout',
+    route: '',
     separator: false
   }
 ]
