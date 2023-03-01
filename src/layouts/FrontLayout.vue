@@ -8,10 +8,10 @@
         q-btn.text-h7(to="/Products" flat style="color: #FFf" label=" Star Shopping")
 
       .header-toolbar.row(style="background: white;")
-        q-tabs.col-2
+        q-tabs.col-1
           q-route-tab(to="/" bg-color="#630606")
-            img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
-        q-tabs.col-8.header-tabs.rounded-borders( indicator-color="transparent")
+            img(src="../assets/logoicons/logo_glass.png" style="width:10%;")
+        q-tabs.col-9.header-tabs.rounded-borders( indicator-color="transparent")
           q-btn.btnNews.text-h6(flat color="secondary"  to="/News" label="最新消息")
             q-tooltip NEWS
           q-btn.text-h6(flat color="secondary"  to="/Products" label="所有商品")

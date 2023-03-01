@@ -2,11 +2,15 @@
 #home
   div(style="padding:35px 35px 0 35px")
     //- 視差
-    section#parallaxArea
-      .parallax-bg(data-relative-input="true" data-depth="0.6")
-      //- 添加其他元素（例如，文本、图像等）
-      h1 This is a parallax section
-      p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in risus ac nisl lobortis aliquam. Nulla facilisi. Nullam sed lectus non mauris efficitur tincidunt.
+    #parallaxArea
+      q-parallax(:height="660" :speed="0.4")
+        template(v-slot:media)
+          video( width="800" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4"  autoplay loop muted)
+
+            //- source( type="video/webm" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4" width="800")
+          //- img(src="../../assets/parallaxs/home_parallax.jpg" style="height:75vw")
+        h2.dynamic-text( class="text-white" data-aos="flip-down") Welcome to WINEhouse
+
     //-最新消息輪播圖
     .qcarousel-area
       q-carousel(style="width:100%; height:90%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
@@ -145,10 +149,10 @@ import EventCard from '@/components/EventCard.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
-// gsap
-import $ from 'jquery'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+// // gsap
+// import $ from 'jquery'
+// import gsap from 'gsap'
+// import ScrollTrigger from 'gsap/ScrollTrigger'
 
 // aos
 import AOS from 'aos'
@@ -162,26 +166,26 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-gsap.registerPlugin(ScrollTrigger)
-// const triggers = ScrollTrigger.getAll()
+// gsap.registerPlugin(ScrollTrigger)
+// // const triggers = ScrollTrigger.getAll()
 
-onMounted(() => {
-  const sections = gsap.utils.toArray('section')
-  // 視差
-  $('#parallaxArea').css({
-    backgroundImage: new URL('../../assets/parallaxs/home_parallax.jpg', import.meta.url).href
-  })
-  gsap.to('#parallaxArea', {
-    scrollTrigger: {
-      trigger: '#parallaxArea',
-      start: 'top 0%',
-      end: 'bottom 0%',
-      scrub: true
-    },
-    backgroundPosition: '50% -400%',
-    ease: 'none'
-  })
-})
+// onMounted(() => {
+//   const sections = gsap.utils.toArray('section')
+//   // 視差
+//   $('#parallaxArea').css({
+//     backgroundImage: new URL('../../assets/parallaxs/home_parallax.jpg', import.meta.url).href
+//   })
+//   gsap.to('#parallaxArea', {
+//     scrollTrigger: {
+//       trigger: '#parallaxArea',
+//       start: 'top 0%',
+//       end: 'bottom 0%',
+//       scrub: true
+//     },
+//     backgroundPosition: '50% -400%',
+//     ease: 'none'
+//   })
+// })
 // 取資訊
 const route = useRoute()
 const user = useUserStore()
