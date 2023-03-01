@@ -96,8 +96,8 @@
       q-page-scroller(position='bottom-right' :scroll-offset='150' :offset='[45, 200]')
         q-btn(fab icon='fa-solid fa-chevron-up' color='primary').
 
-    q-footer.q-footer(fixed)
-      q-img(style="width:100%" src="@/assets/drinkdontdrive.jpg")
+    q-footer.q-footer.bg-black.text-center(fixed )
+      q-img(style="width:80%" src="@/assets/drinkdontdrive.jpg")
 
 </template>
 
