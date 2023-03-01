@@ -10,22 +10,22 @@
           q-scroll-area(fit style="height: calc(100% - 200px); margin-top: 200px; border-top:1px solid #999;")
 
     q-drawer.bg-accent( show-if-above :width="300" :breakpoint="500" bordered )
-      q-scroll-area.fit(style="height: calc(100% - 200px);margin-top: 200px; ")
+      q-scroll-area.fit(style="height: calc(100% - 220px);margin-top: 220px; ")
         q-list( class="menu-list")
           template(v-for="(menuItem, index) in menuList" :key="index")
             q-item.col-10(class="q-px-xl" clickable v-ripple :active="menuItem.label === 'Outbox'" :to="menuItem.route")
               q-item-section.col-3.q-ma-sm
                 q-icon(:name="menuItem.icon" size="sm" :color="menuItem.iconColor")
-              q-item-section.text-h6 {{ menuItem.label }}
+              q-item-section.text-h6(@click="logoutClick(menuItem)") {{ menuItem.label }}
 
-      div.top(class="absolute-top" color="white" style="height: 200px; background:#630606;")
+      div.top(class="absolute-top" color="white" style="height: 220px; background:#630606;")
         div.q-pa-md.text-center(class="absolute-center bg-transparent" style="width:100%")
           div.q-my-md
             img(src="../assets/logoicons/logo&name.png" style="width:150px;filter: brightness(100);")
-          q-avatar( size="56px" class="q-mb-sm")
+          q-avatar( size="80px")
             img(:src="avatar")
           //- div(class="text-weight-bold")
-          div.q-ma-sm.flex.row.justify-center(style="color:#fff")
+          div.q-my-md.flex.row.justify-center(style="color:#fff")
             .text-h6 Hi ! 管理員 &nbsp;
             .text-h6 {{ account }}
             //- .text-h6 {{ email }}
@@ -45,6 +45,13 @@ const user = useUserStore()
 const { avatar, account, email } = storeToRefs(user)
 const drawer = ref(false)
 const miniState = ref(true)
+const { logout } = user
+
+const logoutClick = (menuItem) => {
+  if (menuItem.label === '登出') {
+    logout()
+  }
+}
 
 const menuList = [
   {
@@ -94,6 +101,13 @@ const menuList = [
     iconColor: 'primary',
     label: '回首頁',
     route: '/',
+    separator: false
+  },
+  {
+    icon: 'fa-solid fa-person-running',
+    iconColor: 'primary',
+    label: '登出',
+    route: '',
     separator: false
   }
 ]

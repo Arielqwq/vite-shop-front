@@ -10,7 +10,7 @@
       .header-toolbar.row(style="background: white;")
         q-tabs.col-2
           q-route-tab.flex.row.align-left.items-start(to="/")
-            img(src="../assets/logoicons/logo&name.png" style="width:50%;")
+            img(src="../assets/logoicons/logo&name.png" style="width:85%;")
         q-tabs.col-8.header-tabs.rounded-borders( indicator-color="transparent")
           q-btn.btnNews.text-h6(flat color="secondary"  to="/News" label="最新消息")
             q-tooltip.bg-warning NEWS
