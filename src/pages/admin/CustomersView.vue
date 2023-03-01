@@ -96,7 +96,7 @@ const openDialog = (idx) => {
   } else {
     form._id = customers[idx]._id
     form.account = customers[idx].account
-    form.password = customers[idx].password
+    form.password = ''
     form.email = customers[idx].email
     form.username = customers[idx].username
     form.birth = customers[idx].birth
