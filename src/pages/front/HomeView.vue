@@ -41,14 +41,14 @@
           #swiper-dj-next.swiper-button-next
 
     //- 第一則最新活動
-    .homeEvent-area1.flex.column.justify-around(data-aos="flip-down" )
+    .homeEvent-area1.flex.column.justify-around
       .firstEvent
         .row.flex.justify-center(style="height:100%")
-          .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around
+          .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around(data-aos="fade-right")
             //- .even1Img(style=":background-image:events[0]?.image ; background-size:;")
             q-img(style=" mix-width:270px")
               img(:src="events[0]?.image" style="width:100%")
-          .homeEventRight.col-12.col-md-5.ml-auto.flex.column.justify-around
+          .homeEventRight.col-12.col-md-5.ml-auto.flex.column.justify-around(data-aos="fade-left")
             .homeEventContent(style="height:75%").flex.column.no-wrap
               .contentTitle.q-mb-md
                 .text-h3 {{ events[0]?.title }}
@@ -61,7 +61,7 @@
     .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up")
       .secondEvent
         .row.flex(style="height:100%" )
-          .homeEventLeft-2.col-12.col-md-5
+          .homeEventLeft-2.col-12.col-md-5(data-aos="fade-down-right")
             .homeEventContent-2(style="height:100%").q-mx-xl
               .contentTitle.q-mb-md
                 .text-h4 {{ events[1]?.title }}
@@ -70,7 +70,7 @@
               .contentBtn
                 q-btn(:to="'/event/' + events[1]?._id" style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
-          .homeEventRight-2.col-12.col-md-7.ml-auto.flex.column.justify-centent
+          .homeEventRight-2.col-12.col-md-7.ml-auto.flex.column.justify-centent(data-aos="fade-up-left")
             q-img(style="height:100%;")
               img(:src="events[1]?.image" style="width:100%")
         //- div.flex.row.wrap(v-for="event in events" :key="event._id")
