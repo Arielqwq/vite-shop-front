@@ -66,7 +66,7 @@
                 q-item-section(avatar)
                   q-icon(name="fa-regular fa-envelope")
                 q-item-section
-                  q-item-label 我的回應
+                  q-item-label 我的訊息
 
               q-item(clickable v-close-popup @click="logout")
                 q-item-section.q-pa-none(avatar)
