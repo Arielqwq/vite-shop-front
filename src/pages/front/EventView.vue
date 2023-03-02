@@ -65,7 +65,7 @@
       q-card-actions( align="right" class="bg-white text-accent")
         q-btn(@click="router.go(-1)" flat label="back" v-close-popup )
 
-  </template>
+</template>
 
 <script setup>
 import { reactive, ref, computed } from 'vue'
@@ -102,7 +102,7 @@ const onSubmit = async () => {
     if (!data.result.phone) {
       await editUser({
         phone: phone.value
-      })
+      }, '報名成功')
     } else {
       if (phone.value !== data.result.phone) {
         Swal.fire({

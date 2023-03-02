@@ -129,7 +129,7 @@ export const useUserStore = defineStore('user', function () {
     }
   }
 
-  async function editUser (form) {
+  async function editUser (form, successText) {
     try {
       const { data } = await apiAuth.patch('/users/edit', form)
 
@@ -145,7 +145,8 @@ export const useUserStore = defineStore('user', function () {
         icon: 'success',
         title: '成功',
         // text: '加入購物車成功'
-        text: '報名成功'
+        // text: '報名成功'
+        text: successText
       })
     } catch (error) {
       console.log(error)

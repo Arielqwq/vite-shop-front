@@ -205,7 +205,7 @@ const onCheckoutBtnClick = async (val) => {
       await editUser({
         username: inputUsername.value,
         birth: birthday.value
-      })
+      }, '結帳成功')
     } else {
       if (birthday.value !== data.result.birth || inputUsername.value !== data.result.username) {
         Swal.fire({
