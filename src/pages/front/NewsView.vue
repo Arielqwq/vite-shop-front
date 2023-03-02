@@ -2,7 +2,7 @@
 #front-news
   div.flex.justify-center.row
     .cardinNewsView.flex.justify-center.col-4( style="margin-bottom:60px;" v-for="newscard in news" :key="newscard._id")
-      NewsCard.newscard(v-bind="newscard" data-aos="zoom-out-up")
+      NewsCard.newscard(v-bind="newscard" data-aos="zoom-out-up" data-aos-duration="1500")
 
 </template>
 

@@ -4,7 +4,7 @@
     q-btn.q-ml-lg.q-mb-lg(v-for="(name, i) in filterName" :key="i" :label="name" @click="filterCategory = name" push rounded style="background:#630606;color:white")
   div.flex.q-ma-xs.justify-center.row
     .CardinProductsView.flex.justify-center.q-py-xl.col-12.col-md-6.col-lg-3(v-for="product in filterData" :key="product._id")
-      ProductCard.productCard(v-bind="product" data-aos="flip-left")
+      ProductCard.productCard(v-bind="product" data-aos="flip-left" data-aos-duration="1500")
 
 </template>
 

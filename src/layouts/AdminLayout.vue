@@ -9,8 +9,9 @@
     //- q-drawer.bg-accent( show-if-above v-model="drawer"  :width="250" :breakpoint="500" bordered )
           q-scroll-area(fit style="height: calc(100% - 200px); margin-top: 200px; border-top:1px solid #999;")
 
-    q-drawer.bg-accent( show-if-above :width="300" :breakpoint="500" bordered )
-      q-scroll-area.fit(style="height: calc(100% - 220px);margin-top: 220px; ")
+    //- style="position:fixed"
+    q-drawer.bg-accent( show-if-above :width="300" :breakpoint="500" bordered style="position:fixed")
+      q-scroll-area(style="height: calc(100vh - 220px);margin-top: 220px; ")
         q-list( class="menu-list")
           template(v-for="(menuItem, index) in menuList" :key="index")
             q-item.col-10(class="q-px-xl" clickable v-ripple :active="menuItem.label === 'Outbox'" :to="menuItem.route")

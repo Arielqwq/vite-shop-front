@@ -13,7 +13,7 @@
 
     //-最新消息輪播圖
     .qcarousel-area
-      q-carousel(data-aos="fade-up" data-aos-anchor-placement="top-center" style="width:100%; height:90%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
+      q-carousel(data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-duration="1500" style="width:100%; height:90%" animated v-model='slide' navigation infinite :autoplay='autoplay' arrows transition-prev='slide-right' transition-next='slide-left' @mouseenter='autoplay = false' @mouseleave='autoplay = true')
         q-carousel-slide(:name='1' :img-src='news[0]?.image')
           router-link(:to="'/newsPage/' + news[0]?._id")
             q-img(style="height:100%")
@@ -44,7 +44,7 @@
     .homeEvent-area1.flex.column.justify-around
       .firstEvent
         .row.flex.justify-center(style="height:100%")
-          .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around(data-aos="fade-right")
+          .homeEventLeft.col-12.col-md-5.ml-auto.flex.column.justify-around(data-aos="fade-right" data-aos-duration="1500")
             //- .even1Img(style=":background-image:events[0]?.image ; background-size:;")
             q-img(style=" mix-width:270px")
               img(:src="events[0]?.image" style="width:100%")
@@ -58,7 +58,7 @@
                 q-btn(:to="'/event/' + events[0]?._id" style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
     //- 第二則最新活動
-    .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up")
+    .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up" data-aos-duration="1500")
       .secondEvent
         .row.flex(style="height:100%" )
           .homeEventLeft-2.col-12.col-md-5(data-aos="fade-down-right")
