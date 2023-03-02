@@ -1,6 +1,6 @@
 <template lang="pug">
 #home
-  div(style="padding:35px 35px 0 35px")
+  div
     //- 視差
     #parallaxArea
       q-parallax(:height="660" :speed="0.4")
