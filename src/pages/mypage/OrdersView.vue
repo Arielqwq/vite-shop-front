@@ -154,6 +154,7 @@ const columnsOfEvents = [
     // {data} 只是解構，要改名的話要再冒號後面
     const { data: eventsData } = await apiAuth.get('/events/me')
     events.push(...eventsData.result)
+    console.log(eventsData)
   } catch (error) {
     console.log(error)
     Swal.fire({
