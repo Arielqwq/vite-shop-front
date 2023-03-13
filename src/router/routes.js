@@ -13,7 +13,7 @@ const routes = [
         name: 'home',
         component: FrontHomeView,
         meta: {
-          title: '購物網',
+          title: '小酒窩',
           login: false,
           admin: false
         }
