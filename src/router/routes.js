@@ -23,7 +23,7 @@ const routes = [
       //   name: 'register',
       //   component: () => import('@/pages/front/RegisterView.vue'),
       //   meta: {
-      //     title: '購物網 | 註冊',
+      //     title: '小酒窩 | 註冊',
       //     // 是否登入才能看
       //     login: false,
       //     admin: false
@@ -34,7 +34,7 @@ const routes = [
       //   name: 'login',
       //   component: () => import('@/pages/front/LoginView.vue'),
       //   meta: {
-      //     title: '購物網 | 登入',
+      //     title: '小酒窩 | 登入',
       //     login: false,
       //     admin: false
       //   }
@@ -44,7 +44,7 @@ const routes = [
       //   name: 'cart',
       //   component: () => import('@/pages/front/CartView.vue'),
       //   meta: {
-      //     title: '購物網 | 購物車',
+      //     title: '小酒窩 | 購物車',
       //     login: true,
       //     admin: false
       //   }
@@ -54,7 +54,7 @@ const routes = [
       //   name: 'orders',
       //   component: () => import('@/pages/front/OrdersView.vue'),
       //   meta: {
-      //     title: '購物網 | 訂單',
+      //     title: '小酒窩 | 訂單',
       //     login: true,
       //     admin: false
       //   }
@@ -64,7 +64,7 @@ const routes = [
         name: 'Products',
         component: () => import('@/pages/front/ProductsView.vue'),
         meta: {
-          title: '購物網 | 最新商品',
+          title: '小酒窩 | 最新商品',
           login: false,
           admin: false
         }
@@ -74,7 +74,7 @@ const routes = [
         name: 'product',
         component: () => import('@/pages/front/ProductView.vue'),
         meta: {
-          title: '購物網 | 商品',
+          title: '小酒窩 | 商品',
           login: false,
           admin: false
         }
@@ -84,7 +84,7 @@ const routes = [
         name: 'front-news',
         component: () => import('@/pages/front/NewsView.vue'),
         meta: {
-          title: '購物網 | 最新消息',
+          title: '小酒窩 | 最新消息',
           login: false,
           admin: false
         }
@@ -93,7 +93,7 @@ const routes = [
         name: 'NewsPage',
         component: () => import('@/pages/front/NewsPageView.vue'),
         meta: {
-          title: '購物網 | 商品',
+          title: '小酒窩 | 商品',
           login: false,
           admin: false
         }
@@ -103,7 +103,7 @@ const routes = [
         name: 'front-aboutus',
         component: () => import('@/pages/front/AboutusView.vue'),
         meta: {
-          title: '購物網 | 關於我們',
+          title: '小酒窩 | 關於我們',
           login: false,
           admin: false
         }
@@ -113,7 +113,7 @@ const routes = [
         name: 'front-ContactUs',
         component: () => import('@/pages/front/ContactusView.vue'),
         meta: {
-          title: '購物網 | 聯絡我們',
+          title: '小酒窩 | 聯絡我們',
           login: false,
           admin: false
         }
@@ -123,7 +123,7 @@ const routes = [
         name: 'front-Events',
         component: () => import('@/pages/front/EventsView.vue'),
         meta: {
-          title: '購物網 | 課程活動',
+          title: '小酒窩 | 課程活動',
           login: false,
           admin: false
         }
@@ -133,7 +133,7 @@ const routes = [
         name: 'event',
         component: () => import('@/pages/front/EventView.vue'),
         meta: {
-          title: '購物網 | 商品',
+          title: '小酒窩 | 商品',
           login: false,
           admin: false
         }
@@ -150,7 +150,7 @@ const routes = [
       //   name: 'admin-home',
       //   component: () => import('@/pages/admin/HomeView.vue'),
       //   meta: {
-      //     title: '購物網 | 管理',
+      //     title: '小酒窩 | 管理',
       //     login: true,
       //     admin: true
       //   }
@@ -160,7 +160,7 @@ const routes = [
         name: 'admin-products',
         component: () => import('@/pages/admin/ProductsView.vue'),
         meta: {
-          title: '購物網 | 商品管理',
+          title: '小酒窩 | 商品管理',
           login: true,
           admin: true
         }
@@ -170,7 +170,7 @@ const routes = [
         name: 'admin-orders',
         component: () => import('@/pages/admin/OrdersView.vue'),
         meta: {
-          title: '購物網 | 訂單管理',
+          title: '小酒窩 | 訂單管理',
           login: true,
           admin: true
         }
@@ -180,7 +180,7 @@ const routes = [
         name: 'admin-news',
         component: () => import('@/pages/admin/NewsView.vue'),
         meta: {
-          title: '購物網 | 商品管理',
+          title: '小酒窩 | 商品管理',
           login: true,
           admin: true
         }
@@ -190,7 +190,7 @@ const routes = [
         name: 'admin-customers',
         component: () => import('@/pages/admin/CustomersView.vue'),
         meta: {
-          title: '購物網 | 訂單管理',
+          title: '小酒窩 | 訂單管理',
           login: true,
           admin: true
         }
@@ -200,7 +200,7 @@ const routes = [
         name: 'admin-feedbacks',
         component: () => import('@/pages/admin/FeedbacksView.vue'),
         meta: {
-          title: '購物網 | 回應管理',
+          title: '小酒窩 | 回應管理',
           login: true,
           admin: true
         }
@@ -210,7 +210,7 @@ const routes = [
         name: 'admin-aboutus',
         component: () => import('@/pages/admin/AboutusView.vue'),
         meta: {
-          title: '購物網 | 關於我們管理',
+          title: '小酒窩 | 關於我們管理',
           login: true,
           admin: true
         }
@@ -220,7 +220,7 @@ const routes = [
         name: 'admin-events',
         component: () => import('@/pages/admin/EventsView.vue'),
         meta: {
-          title: '購物網 | 課程活動管理',
+          title: '小酒窩 | 課程活動管理',
           login: true,
           admin: true
         }
@@ -237,7 +237,7 @@ const routes = [
         name: 'Mypageinfo',
         component: () => import('@/pages/mypage/InfoView.vue'),
         meta: {
-          title: '購物網 | 會員後台',
+          title: '小酒窩 | 會員後台',
           login: true,
           admin: false
         }
@@ -247,7 +247,7 @@ const routes = [
         name: 'Mypagecart',
         component: () => import('@/pages/mypage/CartView.vue'),
         meta: {
-          title: '購物網 | 購物車',
+          title: '小酒窩 | 購物車',
           login: true,
           admin: false
         }
@@ -257,7 +257,7 @@ const routes = [
         name: 'Paymentcards',
         component: () => import('@/pages/mypage/PaymentcardsView.vue'),
         meta: {
-          title: '購物網 | 付款資訊',
+          title: '小酒窩 | 付款資訊',
           login: true,
           admin: false
         }
@@ -267,7 +267,7 @@ const routes = [
         name: 'MypageOrders',
         component: () => import('@/pages/mypage/OrdersView.vue'),
         meta: {
-          title: '購物網 | 我的訂單',
+          title: '小酒窩 | 我的訂單',
           login: true,
           admin: false
         }
@@ -277,7 +277,7 @@ const routes = [
         name: 'Wishlist',
         component: () => import('@/pages/mypage/WishlistView.vue'),
         meta: {
-          title: '購物網 | 我的收藏',
+          title: '小酒窩 | 我的收藏',
           login: true,
           admin: false
         }
@@ -287,7 +287,7 @@ const routes = [
         name: 'Feedbacks',
         component: () => import('@/pages/mypage/FeedbacksView.vue'),
         meta: {
-          title: '購物網 | 我的收藏',
+          title: '小酒窩 | 我的收藏',
           login: true,
           admin: false
         }
@@ -302,7 +302,7 @@ const routes = [
     // component: NotFoundView,
     component: () => import('pages/ErrorNotFound.vue'),
     meta: {
-      title: '購物網 | 404',
+      title: '小酒窩 | 404',
       login: false,
       admin: false
     }
