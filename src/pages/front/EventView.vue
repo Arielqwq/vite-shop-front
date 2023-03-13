@@ -178,7 +178,7 @@ const event = reactive({
     event.sell = data.result.sell
     event.category = data.result.category
     // 對使用者來說，頁面標題有變化
-    document.title = '購物網 | ' + event.title
+    document.title = '小酒窩 | ' + event.title
     // 修改 og 的 title 無效，
     // document.querySelector('meta[property="og:title"]').setAttribute('content', event.name)
     console.log(data.result)

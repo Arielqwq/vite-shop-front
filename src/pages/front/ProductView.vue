@@ -168,7 +168,7 @@ const editLove = async () => {
     product.sell = data.result.sell
     product.category = data.result.category
     // 對使用者來說，頁面標題有變化
-    document.title = '購物網 | ' + product.name
+    document.title = '小酒窩 | ' + product.name
     console.log(data.result.images)
 
     // 推薦商品
