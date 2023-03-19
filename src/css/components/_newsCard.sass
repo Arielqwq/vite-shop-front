@@ -6,17 +6,32 @@
   overflow: hidden
 
 .newCardContent
-  opacity: 0
-  width: 18rem
-  height: 4rem
+  margin: 0
   position: absolute
+  top:50%
+  left:50%
+  opacity: 0
+  width: calc(30vw + 10rem)
+  height: calc(5vw + 10px)
   padding: 10px
   background-color: $accent
   color: $primary
-  font-size: 2rem
-  transform: translate(5rem, -15rem)
-  margin: 0
+  font-size: calc(2vw + 5px)
+  transform: translate(-50%, -100%)
   text-align: center
 
 .cardinNewsView:hover .newCardContent
   opacity: 1
+
+// .my-card:hover ::after
+//   content: "LEARN MORE"
+//   position: absolute
+//   display: inline-block
+//   vertical-align: middle
+//   z-index: 100
+//   width: calc(30vw + 10rem)
+//   height: calc(5vw + 10px)
+//   padding: 10px
+//   background-color: $accent
+//   color: $primary
+//   font-size: calc(2vw + 5px)

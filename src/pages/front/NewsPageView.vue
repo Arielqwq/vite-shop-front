@@ -1,5 +1,5 @@
 <template lang="pug">
-#front-news(style="margin:50px 0 ")
+#front-new(style="margin:50px 0 ")
   div.flex.justify-center.row
     .col-10
       q-img(:src="newsPage.image")
