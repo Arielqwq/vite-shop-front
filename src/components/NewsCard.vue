@@ -1,5 +1,5 @@
 <template lang="pug">
-#newsCard
+#newsCard(style="width:85%")
   router-link.text-h8.q-pa-md.textUnderline-none(:to="'/newsPage/' + _id")
     .my-card.q-pa-lg
       .ImginNewsCard(style="position:relative")
