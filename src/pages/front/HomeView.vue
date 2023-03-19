@@ -6,7 +6,7 @@
       //- //- .plVideo(style="position:relative")
       //- //-   video( width="100%" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4"  autoplay loop muted)
       //- //- h2.dynamic-text(class="text-white" style="position:absolute" data-aos="flip-down") Welcome to WINEhouse
-      q-parallax(  :speed="0.4" style="max-height:90vh;" )
+      q-parallax(:height="660"  :speed="0.4" style="max-height:90vh;" )
         template(v-slot:media)
           video(style="max-width: 100%;height:100%; object-fit:cover" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4" autoplay loop muted)
         span.dynamic-text( class="text-white" data-aos="flip-down") Welcome to WINEhouse
