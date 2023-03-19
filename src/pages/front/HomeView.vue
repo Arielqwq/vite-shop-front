@@ -3,17 +3,14 @@
   div
     //- 視差
     #parallaxArea
-      .plVideo(style="position:relative")
-        video( width="100%" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4"  autoplay loop muted)
-      h2.dynamic-text(class="text-white" style="position:absolute" data-aos="flip-down") Welcome to WINEhouse
-
-      //- q-parallax(:height="660" :speed="0.4")
-      //-   template(v-slot:media)
-      //-     video( width="800" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4"  autoplay loop muted)
-      //-       //- source( type="video/webm" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4" width="800")
-      //-     //- img(src="../../assets/parallaxs/home_parallax.jpg" style="height:75vw")
-      //-   h2.dynamic-text( class="text-white" data-aos="flip-down") Welcome to WINEhouse
-    .parallaxmask(style="background: rgba(0,0,0,0.7)")
+      //- //- .plVideo(style="position:relative")
+      //- //-   video( width="100%" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4"  autoplay loop muted)
+      //- //- h2.dynamic-text(class="text-white" style="position:absolute" data-aos="flip-down") Welcome to WINEhouse
+      q-parallax(  :speed="0.4" style="max-height:90vh;" )
+        template(v-slot:media)
+          video(style="max-width: 100%;height:100%; object-fit:cover" src="../../assets/parallaxs/pexels-tp-motion-8554368.mp4" autoplay loop muted)
+        span.dynamic-text( class="text-white" data-aos="flip-down") Welcome to WINEhouse
+    .parallaxmask(style="height:auto; background: rgba(0,0,0,0.7)")
 
     //-最新消息輪播圖
     .qcarousel-area

@@ -97,7 +97,7 @@
         q-btn(fab icon='fa-solid fa-chevron-up' color='primary').
 
     q-footer.q-footer.bg-black.text-center(fixed )
-      q-img(style="width:80%" src="@/assets/drinkdontdrive.jpg")
+      q-img(style="width:80%;" fit="contain" src="@/assets/drinkdontdrive.jpg")
 
 </template>
 
