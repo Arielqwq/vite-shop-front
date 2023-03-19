@@ -1,0 +1,1 @@
+import{Q as t}from"./QPage.03f92ce8.js";import{j as e,k as a,d as o,Y as s,l as c,_ as n}from"./index.ab9e2c6a.js";const r={id:"contactus"},_=c("h3",null,"front-Contactus",-1);function d(l,u){return e(),a("div",r,[o(t,null,{default:s(()=>[_]),_:1})])}const i={};var h=n(i,[["render",d]]);export{h as default};
