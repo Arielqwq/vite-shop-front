@@ -7,8 +7,8 @@
         .text-h7 Get Free Shipping Now !
         q-btn.text-h7(to="/Products" flat style="color: #FFf" label=" Star Shopping")
 
-      .header-toolbar.row(style="background: white;")
-        q-tabs.col-2
+      .header-toolbar.row.justify-center(style="background: white;")
+        q-tabs.logoQtabs.col-2
           q-route-tab.flex.row.align-left.items-start(to="/")
             img(class="logoName" src="../assets/logoicons/logo&name.png"  data-aos="zoom-out-up" data-aos-duration="1500"  data-aos-anchor-placement="top-bottom")
         q-tabs.col-8.header-tabs.rounded-borders( indicator-color="transparent")
