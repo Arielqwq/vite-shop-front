@@ -62,23 +62,32 @@
     z-index: -1
   
 .homeEventRight-2
+  // height: 100%
+  width: 100%
+
   display: flex
   align-items: star
 .homeEventLeft-2
-  height: 100%
+  // height: 100%
   display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: right
+  // flex-direction: column
+  // justify-content: center
+  // align-items: right
 .homeEventContent-2
+  width: 80%
+  margin: 0 0 0 20px
   display: flex
-  flex-direction: column
+  // flex-direction: column
   flex-wrap: no-wrap
-  justify-content: center
+  // justify-content: center
 
 
 @media screen and (min-width: 992px)
+  .homeEventRight-2
+    padding: 10px
   .homeEventRight-2 .q-img
     width:80%
+  .homeEventContent-2
+    margin: 0
 
   

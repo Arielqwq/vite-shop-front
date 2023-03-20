@@ -59,20 +59,20 @@
                 q-btn(:to="'/event/' + events[0]?._id" style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
     //- 第二則最新活動
-    .homeEvent-area2.flex.column.justify-around.q-ma-md(data-aos="fade-up" data-aos-duration="1500")
+    .homeEvent-area2.flex.column.justify-md-around.q-ma-md(data-aos="fade-up" data-aos-duration="1500")
       .secondEvent
-        .row.flex(style="height:100%" )
-          .homeEventLeft-2.col-12.col-md-5(data-aos="fade-down-right")
-            .homeEventContent-2(style="height:100%").q-mx-xl
+        .flex.row-md.justify-center.column-sm(style="height:100%" )
+          .homeEventLeft-2.order-last.order-md-first.col-sm-12.col-md-5.column.items-start.justify-md-center.items-md-center(data-aos="fade-down-right")
+            .homeEventContent-2.column.justify-sm-start.justify-md-center
               .contentTitle.q-mb-md
                 .text-h4 {{ events[1]?.title }}
-              .contentText.q-mb-md.q-ml-lg
+              .contentText.q-mb-md
                 p.lessWord {{ events[1]?.description }}
               .contentBtn
                 q-btn(:to="'/event/' + events[1]?._id" style="width:250px; background: #182747 ; color: white" label="LEARN MORE")
 
-          .homeEventRight-2.col-12.col-md-7.ml-auto.flex.column.justify-centent(data-aos="fade-up-left")
-            q-img(style="height:100%;")
+          .homeEventRight-2.order-first.order-md-last.col-sm-12.col-md-6.column.q-my-sm.justify-centent(data-aos="fade-up-left")
+            q-img(style="height:100% ; mix-width:270px")
               img(:src="events[1]?.image" style="width:100%")
         //- div.flex.row.wrap(v-for="event in events" :key="event._id")
         //-   q-card(style="width:250px").flex.justify-center.q-pa-lg.col-12.col-md-6.col-lg-3

@@ -1,7 +1,7 @@
 <template lang="pug">
 .productcard
   router-link(:to="'/product/' + _id" style="padding:0 20px;").notextUnderline
-    .clumn(align="center")
+    .column.items-center
       q-img.productcardImg(:src="image" )
       q-card-section.nameinProductCard.q-pa-none.q-my-lg.text-black
         .text-center.text-weight-bold.textUnderline-none {{ name }}
