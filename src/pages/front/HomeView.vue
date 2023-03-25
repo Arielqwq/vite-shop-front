@@ -119,7 +119,7 @@
     q-page-sticky(position='bottom-right' :offset='fabPos' style="z-index:50;")
       q-fab(icon='fa-regular fa-envelope' direction="left" color='primary' :disable='draggingFab' v-touch-pan.mouse='moveFab')
         q-fab-action(@click="openDialog" color="accent" icon="edit" )
-        q-fab-action(@click="onClick" color="primary" icon="fa-solid fa-gift" )
+        q-fab-action( color="primary" icon="fa-solid fa-gift" )
 
     //- 回應對話框
     .feedbackDialog
@@ -298,8 +298,8 @@ onMounted(() => {
 
       const newsdata = results[2].data
       news.push(...newsdata.result)
-      console.log(news)
-      console.log(news[0]._id)
+      // console.log(news)
+      // console.log(news[0]._id)
       await nextTick()
       AOS.init()
     // setTimeout(() => {
