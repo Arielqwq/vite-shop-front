@@ -271,8 +271,7 @@ const submit = async (val) => {
     Swal.fire({
       icon: 'success',
       title: '成功',
-      text: '提交回覆成功',
-      message: '已收到您的來信，我們將再盡快回覆您，謝謝。'
+      text: '提交回覆成功'
     })
     isDialogOpen.value = false
   } catch (error) {
